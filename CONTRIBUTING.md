@@ -65,6 +65,17 @@ tipo-de-rama/funcion-grande/sub-función
 
 Para este apartado se seguirán al 100% las [recomendaciones de estilo](https://github.com/nhn/tui.calendar/blob/master/docs/COMMIT_MESSAGE_CONVENTION.md) propuestas por GitHub para los commits. En el propio documento viene exquisitamente resumido por lo que es una referencia directa y no hace falta extender nada aquí.
 
+Un aspecto que se puede añadir a los commit es el uso que proporciona GitHub de los emojis para marcar el tipo de commit. La siguiente lista es una referencia al simbolismo aplicado en este proyecto:
+
+- Commit de solicitud  de Pull Request para característica :pray:
+- Commit de despliegue de característica :rocket:
+- Commit de contenido en la rama `junk` :test_tube:
+- Commit de solución de bugs :bug:
+- Commit de hotfix :warning:
+- Commit intermedio en el desarrollo de una característica :gear:
+- Commit de refactorización de código :recycle:
+- Commit para añadir o corregir tests :rotating_light:
+
 ### **Otros** :sparkles:
 Es importante tener en cuenta los siguientes aspectos extra, aplicarlos es positivamente enriquecedor:
 
