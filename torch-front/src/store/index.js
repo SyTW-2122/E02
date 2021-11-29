@@ -19,6 +19,18 @@ export default new Vuex.Store({
       endedRoutinesList: [],
       createdRoutinesList: [], 
     },
+    finishedRoutineStats: {
+      exerciseTime: 0,
+      breakTime: 0,
+      userEvaluation: {
+        value: 0,
+        comment: "",
+      },
+      routineEvaluation: {
+        value: 0,
+        comment: "",
+      }, 
+    },
     routinePreviewCard: {
       name: '',
       media: '',
