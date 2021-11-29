@@ -19,6 +19,10 @@ export default new Vuex.Store({
       endedRoutinesList: [],
       createdRoutinesList: [], 
     },
+    userItemCard: {
+      image: '',
+      active: false,
+    }
   },
   mutations: {
   },
