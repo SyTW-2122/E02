@@ -30,7 +30,19 @@ export default new Vuex.Store({
         value: 0,
         comment: "",
       }, 
-    }
+    },
+    routinePreviewCard: {
+      name: '',
+      media: '',
+      description: '',
+      date: '',
+      owner: '',
+      rating: 0,
+      comments: [],
+      time: 0,//in seconds
+      endingState: 0,
+      done: false
+    },
   },
   mutations: {
   },
