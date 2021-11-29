@@ -1,0 +1,22 @@
+{
+  "name": "e02",
+  "version": "1.0.0",
+  "description": "Proyecto Torch",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SyTW-2122/E02.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SyTW-2122/E02/issues"
+  },
+  "homepage": "https://github.com/SyTW-2122/E02#readme",
+  "dependencies": {
+    "@vue/cli": "^4.5.15"
+  }
+}
