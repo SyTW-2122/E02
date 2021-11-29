@@ -19,6 +19,10 @@ export default new Vuex.Store({
       endedRoutinesList: [],
       createdRoutinesList: [], 
     },
+    userItemAvatar: {
+      image: '',
+      active: false,
+    },
     mutualUserList: [],
     updateUserList: [],
     stat: {
