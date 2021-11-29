@@ -19,6 +19,13 @@ export default new Vuex.Store({
       endedRoutinesList: [],
       createdRoutinesList: [], 
     },
+
+    stat: {
+      name: '',
+      range: [0, 0],
+      userValue: 0,
+      otherUserValue: 0,
+    },
   },
   mutations: {
   },
