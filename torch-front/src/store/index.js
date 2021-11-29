@@ -19,6 +19,18 @@ export default new Vuex.Store({
       endedRoutinesList: [],
       createdRoutinesList: [], 
     },
+    routinePreviewCard: {
+      name: '',
+      media: '',
+      description: '',
+      date: '',
+      owner: '',
+      rating: 0,
+      comments: [],
+      time: 0,//in seconds
+      endingState: 0,
+      done: false
+    },
   },
   mutations: {
   },
