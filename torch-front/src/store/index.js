@@ -20,6 +20,12 @@ export default new Vuex.Store({
       createdRoutinesList: [], 
     },
     updateUserList: [],
+    stat: {
+      name: '',
+      range: [0, 0],
+      userValue: 0,
+      otherUserValue: 0,
+    },
     finishedRoutineStats: {
       exerciseTime: 0,
       breakTime: 0,
