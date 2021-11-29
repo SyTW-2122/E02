@@ -19,6 +19,17 @@ export default new Vuex.Store({
       endedRoutinesList: [],
       createdRoutinesList: [], 
     },
+    inprocessRoutine: [],
+    exercise: {
+      name: '',
+      media: '',
+      reps: 0,
+      sets: 0,
+      stopedTime: 0,
+      currentTime: 0,
+      state: 'current',
+      tags: [],
+    },
     userItemAvatar: {
       image: '',
       active: false,
