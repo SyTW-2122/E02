@@ -19,6 +19,7 @@ export default new Vuex.Store({
       endedRoutinesList: [],
       createdRoutinesList: [], 
     },
+    mutualUserList: [],
   },
   mutations: {
   },
