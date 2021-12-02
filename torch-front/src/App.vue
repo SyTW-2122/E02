@@ -1,17 +1,38 @@
 <template>
   <div class="fluid-container">
+    <DesktopNavbar v-if="!mobile"/>
     <router-view/>
-    <Navbar/>
+    <MobileNavbar v-if="mobile"/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Navbar from '@/components/Navbar.vue';
+import DesktopNavbar from '@/components/DesktopNavbar.vue';
+import MobileNavbar from '@/components/MobileNavbar.vue';
 
 export default {
   components: {
-    Navbar,
+    MobileNavbar,
+    DesktopNavbar,
+  },
+  data: () => ({
+    width: document.documentElement.clientWidth,
+    height: document.documentElement.clientHeight,
+    mobile: false,
+  }),
+  mounted() {
+    window.addEventListener('resize', this.getDimensions);
+  },
+  unmounted() {
+    window.removeEventListener('resize', this.getDimensions);
+  },
+  methods: {
+    getDimensions() {
+      this.width = document.documentElement.clientWidth;
+      this.height = document.documentElement.clientHeight;
+      this.mobile = this.width <= 1000;
+    },
   },
 };
 </script>
