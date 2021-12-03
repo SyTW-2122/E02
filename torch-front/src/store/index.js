@@ -62,7 +62,7 @@ export default new Vuex.Store({
       owner: '',
       rating: 0,
       comments: [],
-      time: 0,//in seconds
+      time: 0, //in seconds
       endingState: 0,
       done: false
     },
