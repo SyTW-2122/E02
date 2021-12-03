@@ -1,8 +1,8 @@
 <template>
   <div class="fluid-container">
-    <DesktopNavbar v-if="!mobile"/>
+    <MobileNavbar v-if="isMobile()"/>
+    <DesktopNavbar v-else/>
     <router-view/>
-    <MobileNavbar v-if="mobile"/>
   </div>
 </template>
 
@@ -32,6 +32,12 @@ export default {
       this.width = document.documentElement.clientWidth;
       this.height = document.documentElement.clientHeight;
       this.mobile = this.width <= 1000;
+    },
+    isMobile() {
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        return true;
+      }
+      return false;
     },
   },
 };
