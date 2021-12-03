@@ -1,12 +1,47 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/user">User</router-link>
-    </div>
+  <div class="fluid-container">
+    <MobileNavbar v-if="isMobile()"/>
+    <DesktopNavbar v-else/>
     <router-view/>
   </div>
 </template>
+
+<script>
+// @ is an alias to /src
+import DesktopNavbar from '@/components/DesktopNavbar.vue';
+import MobileNavbar from '@/components/MobileNavbar.vue';
+
+export default {
+  components: {
+    MobileNavbar,
+    DesktopNavbar,
+  },
+  data: () => ({
+    width: document.documentElement.clientWidth,
+    height: document.documentElement.clientHeight,
+    mobile: false,
+  }),
+  mounted() {
+    window.addEventListener('resize', this.getDimensions);
+  },
+  unmounted() {
+    window.removeEventListener('resize', this.getDimensions);
+  },
+  methods: {
+    getDimensions() {
+      this.width = document.documentElement.clientWidth;
+      this.height = document.documentElement.clientHeight;
+      this.mobile = this.width <= 1000;
+    },
+    isMobile() {
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        return true;
+      }
+      return false;
+    },
+  },
+};
+</script>
 
 <style lang="less">
 #app {
