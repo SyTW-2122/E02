@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Explore from '../views/Explore.vue';
 import User from '../views/User.vue';
+import Activity from '../views/Activity.vue';
 
 Vue.use(VueRouter);
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/explore',
     name: 'explore',
     component: Explore,
+  },
+  {
+    path: '/activity',
+    name: 'Activity',
+    component: Activity,
   },
 ];
 
