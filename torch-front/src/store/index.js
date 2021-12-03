@@ -17,7 +17,7 @@ export default new Vuex.Store({
       followers: 0,
       following: 0,
       endedRoutinesList: [],
-      createdRoutinesList: [], 
+      createdRoutinesList: [],
     },
     inprocessRoutine: [],
     exercise: {
@@ -47,12 +47,12 @@ export default new Vuex.Store({
       breakTime: 0,
       userEvaluation: {
         value: 0,
-        comment: "",
+        comment: '',
       },
       routineEvaluation: {
         value: 0,
-        comment: "",
-      }, 
+        comment: '',
+      },
     },
     routinePreviewCard: {
       name: '',
@@ -62,9 +62,9 @@ export default new Vuex.Store({
       owner: '',
       rating: 0,
       comments: [],
-      time: 0, //in seconds
+      time: 0,
       endingState: 0,
-      done: false
+      done: false,
     },
   },
   mutations: {
