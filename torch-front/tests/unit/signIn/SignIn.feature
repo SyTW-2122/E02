@@ -21,5 +21,3 @@ Scenario: Opening the sign in page
     Then page content is changed
   And When user taps on login with Facebook
     Then page content is changed
-    
-  
