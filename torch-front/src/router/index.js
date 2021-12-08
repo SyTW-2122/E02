@@ -30,8 +30,8 @@ const routes = [
     component: Activity,
   },
   {
-    path: '/signUp',
-    name: 'signUp',
+    path: '/sign-up',
+    name: 'sign-up',
     component: SignUp,
   },
 ];
