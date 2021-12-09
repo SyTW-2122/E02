@@ -1,12 +1,12 @@
-import Explore from '@/views/Explore.vue';
 import { defineFeature, loadFeature} from 'jest-cucumber';
 import { mount, createLocalVue} from '@vue/test-utils';
+import SignIn from '@/views/SignIn.vue';
 
-const feature = loadFeature('./explore.feature');
+const feature = loadFeature('./SignIn.feature');
 defineFeature(feature, (test) => {
-  test('Opening the explore page', ({ given, when, then, and }) => {
+  test('Opening the sign in page', ({ given, when, then, and }) => {
     given('the page is open in a browser', () => {
-     wrapper =  mount(Explore);
+     wrapper =  mount(SignIn);
     });
     when('user inspects the page', () => {
       // Nothing yet
