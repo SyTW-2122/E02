@@ -33,7 +33,12 @@ export default {
     getDimensions() {
       this.width = document.documentElement.clientWidth;
       this.height = document.documentElement.clientHeight;
-      this.mobile = document.documentElement.clientWidth <= 800;
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        this.mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      }
+      else {
+        this.mobile = document.documentElement.clientWidth <= 800;
+      }
     },
     isMobile() {
       if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
