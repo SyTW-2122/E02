@@ -35,8 +35,7 @@ export default {
       this.height = document.documentElement.clientHeight;
       if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         this.mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      }
-      else {
+      } else {
         this.mobile = document.documentElement.clientWidth <= 800;
       }
     },
