@@ -1,6 +1,5 @@
-Feature: Display navbar for desktop
+Feature: Display user view
 
-  Scenario: Elements under activity view
-    When I'm in te activity page
-    Then I should see the activity content
-    And The activity link in navbar is active
+  Scenario: Elements under user
+    When I'm in te user page
+    Then I should see the user content
