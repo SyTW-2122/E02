@@ -5,7 +5,7 @@
       <div class="container">
         <a class="navbar-brand text-white float-left " href="#">
           <img
-            src="../assets/torch-inline-white(1).png"
+            src="../assets/images/torch-inline-white(1).png"
             alt=""
             class="img-fluid">
         </a>
