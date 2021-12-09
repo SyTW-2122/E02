@@ -20,4 +20,4 @@ Scenario: Opening the sign in page
   And When user taps on login with Google
     Then page content is changed
   And When user taps on login with Facebook
-    Then page content is changed
+    Then page content is changed  
