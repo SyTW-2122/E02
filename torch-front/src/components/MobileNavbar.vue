@@ -46,7 +46,7 @@ export default {
 
 /* Add a color to the active/current link */
 .navbar a.router-link-active {
-  color: #006e6f;
+  color: var(--bg-dark-teal);
   filter: drop-shadow( 0px 2px 1px rgba(0, 0, 0, 0.30));
 }
 
