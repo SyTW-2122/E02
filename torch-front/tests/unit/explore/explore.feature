@@ -16,3 +16,5 @@ Scenario: Opening the explore page
   And When user taps on a recommended user 
     Then page content is changed
     And the recommended user is displayed
+ 
+ 
