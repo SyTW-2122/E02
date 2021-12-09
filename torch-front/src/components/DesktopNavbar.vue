@@ -7,6 +7,7 @@
           <img
             src="../assets/torch-inline-white(1).png"
             alt=""
+            width="200"
             class="img-fluid">
         </a>
         <ul class="nav navbar-nav justify-content-between flex-nowrap flex-row ">
