@@ -11,4 +11,8 @@
     --bg-dark-orange: #f77806;
     --bg-primary-orange: #f99338;
     --bg-light-orange: #ffd183;
+
+    /* Font details */
+    --font: 'Oxygen';
+    --size: 22px;
 }
