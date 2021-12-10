@@ -1,18 +1,18 @@
 <template>
   <div class="sign-in">
     <div class="welcome">
-      <img src="../assets/torch-logo.png" alt="">
+      <img src="../assets/images/torch-logo.png" alt="">
       <h1>Welcome</h1>
     </div>
     <div class="passport-google">
         <b-button pill class="login-google">
-          <img src="../assets/google.png" alt=""/>
+          <img src="../assets/images/google.png" alt=""/>
           <p>Login with Google</p>
         </b-button>
     </div>
     <div class="passport-facebook">
         <b-button pill class="login-facebook">
-          <img src="../assets/facebook.svg" alt=""/>
+          <img src="../assets/images/facebook.svg" alt=""/>
           <p>Login with Facebook</p>
         </b-button>
     </div>
