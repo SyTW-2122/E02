@@ -18,6 +18,7 @@ mongoose.connect(uri, {
   .catch((err) => console.error(err));
 
 const userAPI = require('./routes/user');
+const auth = require('./routes/auth');
 const app = express();
 
 app.use(logger('dev'));
@@ -31,6 +32,7 @@ app.use(cors());
 
 // API
 app.use('/user', userAPI);
+app.use('/api/auth', auth);
 
 // Create port
 const port = process.env.PORT || 5000;
