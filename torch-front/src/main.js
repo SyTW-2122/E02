@@ -13,8 +13,6 @@ import {
   faSearch,
   faUserCircle,
 } from '@fortawesome/free-solid-svg-icons';
-<<<<<<< HEAD
-=======
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import App from './App.vue';
 import './registerServiceWorker';
@@ -25,7 +23,6 @@ import store from './store';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import './assets/css/custom-variables.css';
->>>>>>> main
 
 // Framework imports
 import Vue from 'vue';
