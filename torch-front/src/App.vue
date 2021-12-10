@@ -1,11 +1,11 @@
 <template>
   <div class="fluid-container">
-    <MobileNavbar v-if="isMobile()"/>
-    <DesktopNavbar v-else/>
+    <MobileNavbar v-if="isMobile() && !['sign-in','sign-up'].includes($route.name)"/>
+    <DesktopNavbar v-else-if="isMobile()==false && !['sign-in','sign-up'].includes($route.name)"/>
+    <DesktopNavbar v-else v-pre />
     <router-view/>
   </div>
 </template>
-
 <script>
 // @ is an alias to /src
 import DesktopNavbar from '@/components/DesktopNavbar.vue';
