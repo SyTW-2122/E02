@@ -1,12 +1,20 @@
-import Vue from 'vue';
+// Style imports
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 import { library } from '@fortawesome/fontawesome-svg-core';
+
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import './registerServiceWorker';
+
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
 import {
   faUserSecret,
   faHome,
   faSearch,
   faUserCircle,
 } from '@fortawesome/free-solid-svg-icons';
+<<<<<<< HEAD
+=======
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import App from './App.vue';
 import './registerServiceWorker';
@@ -17,17 +25,30 @@ import store from './store';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import './assets/css/custom-variables.css';
+>>>>>>> main
 
-Vue.config.productionTip = false;
+// Framework imports
+import Vue from 'vue';
+import Vuex from 'vuex';
+import storeConfig from './store/index';
+import router from './router';
+import App from './App.vue';
 
-library.add(faUserSecret, faHome, faSearch, faUserCircle);
-
-Vue.component('font-awesome-icon', FontAwesomeIcon);
-
+/// Style addons activation
 // Make BootstrapVue available throughout your project
 Vue.use(BootstrapVue);
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin);
+// Font awesome icons used in the app
+library.add(faUserSecret, faHome, faSearch, faUserCircle);
+Vue.component('font-awesome-icon', FontAwesomeIcon);
+
+// Framework tools activation
+Vue.use(Vuex);
+
+const store = new Vuex.Store(storeConfig);
+
+Vue.config.productionTip = false;
 
 new Vue({
   router,

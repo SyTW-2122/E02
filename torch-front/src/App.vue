@@ -1,6 +1,6 @@
 <template>
   <div class="fluid-container">
-    <MobileNavbar v-if="isMobile()"/>
+    <MobileNavbar v-if="mobile"/>
     <DesktopNavbar v-else/>
     <router-view/>
   </div>
@@ -22,16 +22,22 @@ export default {
     mobile: false,
   }),
   mounted() {
+    this.getDimensions();
     window.addEventListener('resize', this.getDimensions);
   },
   unmounted() {
+    this.getDimensions();
     window.removeEventListener('resize', this.getDimensions);
   },
   methods: {
     getDimensions() {
       this.width = document.documentElement.clientWidth;
       this.height = document.documentElement.clientHeight;
-      this.mobile = this.width <= 1000;
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        this.mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      } else {
+        this.mobile = document.documentElement.clientWidth <= 800;
+      }
     },
     isMobile() {
       if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
