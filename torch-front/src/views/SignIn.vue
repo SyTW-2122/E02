@@ -22,7 +22,7 @@
       <div class="line"></div>
     </div>
     <div class="login-form">
-      <b-form>
+      <b-form @submit.prevent="handleLogin">
         <b-form-group
           id="input-group-email"
           label=""
@@ -31,10 +31,17 @@
         >
           <b-form-input
               id="input-email"
-              type="email"
+              type="text"
+              v-model="user.username"
+              v-validate="'required'"
               placeholder="Enter email"
               class="input-email border-bottom"
           ></b-form-input>
+          <div
+            v-if="errors.has('username')"
+            class="alert alert-danger"
+            role="alert"
+          >Username is required!</div>
         </b-form-group>
         <b-form-group
           id="input-group-password"
@@ -45,9 +52,16 @@
           <b-form-input
               id="input-password"
               type="password"
+              v-model="user.password"
+              v-validate="'required'"
               placeholder="Enter password"
               class="input-password border-bottom"
           ></b-form-input>
+          <div
+            v-if="errors.has('password')"
+            class="alert alert-danger"
+            role="alert"
+          >Password is required!</div>
           <div class="bottom-form">
             <b-form-checkbox class="remember-me">&nbsp;Remember me</b-form-checkbox>
             <a href="" class="forgot-password">Forgot password?</a>
@@ -66,8 +80,53 @@
 </template>
 
 <script>
-/*
-*/
+import User from '../models/user';
+
+export default {
+  name: 'Login',
+  data() {
+    return {
+      user: new User('', ''),
+      loading: false,
+      message: '',
+    };
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    },
+  },
+  created() {
+    if (this.loggedIn) {
+      this.$router.push('/profile');
+    }
+  },
+  methods: {
+    handleLogin() {
+      this.loading = true;
+      this.$validator.validateAll().then((isValid) => {
+        if (!isValid) {
+          this.loading = false;
+          return;
+        }
+
+        if (this.user.username && this.user.password) {
+          this.$store.dispatch('auth/login', this.user).then(
+            () => {
+              this.$router.push('/profile');
+            },
+            (error) => {
+              this.loading = false;
+              this.message = (error.response && error.response.data)
+                || error.message
+                || error.toString();
+            },
+          );
+        }
+      });
+    },
+  },
+};
 </script>
 
 <style scoped>
