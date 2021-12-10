@@ -8,23 +8,14 @@ let express = require('express'),
   bodyParser = require('body-parser');
 
 // Database config
+const uri = 'mongodb+srv://torch-carrier:olympic!@torch.gzcmz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 mongoose.Promise = require('bluebird');
-mongoose
-   .connect("mongodb://localhost/torch", { promiseLibrary: require('bluebird') })
-   .then(() => console.log('conection successful'))
-   .catch((err) => console.error(err));
-
-// // Connect mongoDB
-// mongoose.connect(database.db, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-// }).then(() => {
-//     console.log("Database connected");
-//   },
-//   error => {
-//     console.log("Database could't be connected to: " + error);
-//   }
-// );
+mongoose.connect(uri, {
+    useNewUrlParser: true, 
+    useUnifiedTopology: true, 
+  })
+  .then(() => console.log('Database conection successful'))
+  .catch((err) => console.error(err));
 
 const userAPI = require('./routes/user');
 const app = express();
