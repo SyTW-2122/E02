@@ -25,17 +25,41 @@
       <b-form>
         <b-form-group
           id="input-group-email"
-          label="Email"
+          label=""
           label-for="input-email"
+          class="input-group-email"
         >
-          <b-form-imput
+          <b-form-input
               id="input-email"
               type="email"
               placeholder="Enter email"
-          ></b-form-imput>
-          <b-form-checkbox value="me">Check me out</b-form-checkbox>
+              class="input-email border-bottom"
+          ></b-form-input>
         </b-form-group>
-        <b-button type="submit" variant="primary">Submit</b-button>
+        <b-form-group
+          id="input-group-password"
+          label=""
+          label-for="input-password"
+          class="input-group-password"
+        >
+          <b-form-input
+              id="input-password"
+              type="password"
+              placeholder="Enter password"
+              class="input-password border-bottom"
+          ></b-form-input>
+          <div class="bottom-form">
+            <b-form-checkbox class="remember-me">&nbsp;Remember me</b-form-checkbox>
+            <a href="" class="forgot-password">Forgot password?</a>
+          </div>
+        </b-form-group>
+        <div class="login-button">
+          <b-button pill type="submit" variant="primary">LOGIN</b-button>
+        </div>
+        <div class="create-account">
+          <p>Don't have an account?&nbsp;</p>
+          <a href="">Create a torch account</a>
+        </div>
       </b-form>
     </div>
   </div>
@@ -123,6 +147,76 @@ h1 {
   display: inline;
   font-size: 13px;
   margin-left: 10px;
+}
+
+.login-form {
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 40px;
+}
+
+.input-group-email {
+  margin-bottom: 20px;
+}
+
+.input-email {
+  border: none;
+}
+
+.input-group-password {
+  margin-bottom: 20px;
+}
+
+.input-password {
+  border: none;
+}
+
+.remember-me{
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+  margin-top: 10px;
+}
+
+.bottom-form a{
+  display: inline-block;
+  position: fixed;
+  right: 40px;
+  color: #00DBDE;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.login-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.login-button button {
+  width: 200px;
+  height: 70px;
+  background-color: #00DBDE;
+  border: none;
+  font-size: 25px;
+}
+
+.create-account {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.create-account p{
+  margin-bottom: 0;
+}
+
+.create-account a{
+  color: #00DBDE;
+  text-decoration: none;
 }
 
 </style>
