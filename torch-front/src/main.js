@@ -1,28 +1,19 @@
 // Style imports
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
-import { library } from '@fortawesome/fontawesome-svg-core';
 
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import './registerServiceWorker';
 
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
+import './assets/css/custom-variables.css';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faUserSecret,
   faHome,
   faSearch,
   faUserCircle,
 } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import App from './App.vue';
-import './registerServiceWorker';
-import router from './router';
-import store from './store';
-
-// Import Bootstrap an BootstrapVue CSS files (order is important)
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-vue/dist/bootstrap-vue.css';
-import './assets/css/custom-variables.css';
 
 // Framework imports
 import Vue from 'vue';
