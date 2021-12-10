@@ -6,7 +6,8 @@ let express = require('express'),
   mongoose = require('mongoose'),
   database = require('./database'),
   bodyParser = require('body-parser');
-
+  var util= require('util');
+  var encoder = new util.TextEncoder('utf-8');
 // Database config
 const uri = 'mongodb+srv://torch-carrier:olympic!@torch.gzcmz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 mongoose.Promise = require('bluebird');

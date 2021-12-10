@@ -18,6 +18,7 @@ import {
 // Framework imports
 import Vue from 'vue';
 import Vuex from 'vuex';
+import VeeValidate from 'vee-validate';
 import storeConfig from './store/index';
 import router from './router';
 import App from './App.vue';
@@ -33,6 +34,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 // Framework tools activation
 Vue.use(Vuex);
+Vue.use(VeeValidate);
 
 const store = new Vuex.Store(storeConfig);
 
