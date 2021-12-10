@@ -5,8 +5,9 @@
       <div class="container">
         <a class="navbar-brand text-white float-left " href="#">
           <img
-            src="../assets/torch-inline-white(1).png"
+            src="../assets/images/torch-inline-white(1).png"
             alt=""
+            width="200"
             class="img-fluid">
         </a>
         <ul class="nav navbar-nav justify-content-between flex-nowrap flex-row ">
@@ -42,20 +43,21 @@
     </b-nav-item>
 -->
 <style scoped>
+
   .bg-teal {
-  background-color: #00dbde;
+  background-color: var(--bg-primary-teal);
   box-shadow: 0 0px 4px 0
             rgba(0, 0, 0, 0.3), 0
             2px 10px 0 rgba(0, 0, 0, 0.5);
   }
   .nav a {
-  color: #99F1F2;
+  color: var(--bg-ligth-teal);
   text-align: center;
   text-decoration: none;
   }
   .nav a.router-link-active {
-    color: #006e6f !important;
+    color: var(--bg-dark-teal) !important;
     filter: drop-shadow( 0px 2px 1px rgba(0, 0, 0, 0.30));
-    border-bottom: 1px solid #006e6f;
+    border-bottom: 1px solid var(--bg-dark-teal);
   }
 </style>

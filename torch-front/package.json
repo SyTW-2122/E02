@@ -7,7 +7,9 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-    "test": "vue-cli-service test:unit"
+    "test": "npx cypress open",
+    "test:ci": "npx cypress run --spec **/*.features",
+    "test:tags": "npx cypress-tags run -e TAGS=$TAGS"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
@@ -43,9 +45,21 @@
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^6.2.2",
+    "cypress-cucumber-preprocessor": "^4.3.1",
     "jest-cucumber": "^3.0.1",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
     "vue-template-compiler": "^2.6.11"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true,
+    "stepDefinitions": "tests/e2e/specs",
+    "commonPath": "tests/e2e/common",
+    "cucumberJson": {
+      "generate": true,
+      "outputFolder": "tests/e2e/cucumber-json",
+      "filePrefix": "",
+      "fileSuffix": ".cucumber"
+    }
   }
 }
