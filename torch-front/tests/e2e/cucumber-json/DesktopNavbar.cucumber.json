@@ -22,7 +22,7 @@
             "name": "I'm in te user page",
             "result": {
               "status": "passed",
-              "duration": 410000000
+              "duration": 886000000
             }
           },
           {
@@ -32,7 +32,7 @@
             "name": "I should see the user content",
             "result": {
               "status": "passed",
-              "duration": 37000000
+              "duration": 49000000
             }
           }
         ]
