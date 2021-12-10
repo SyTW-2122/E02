@@ -1,5 +1,3 @@
-// import axios from 'axios'
-
 export default {
   state: {
     user: {
@@ -66,14 +64,7 @@ export default {
   },
   mutations: {
   },
-  actions: { /*
-    signinLoadData ({
-      commit
-    }) {
-      axios.get().then((response) => {
-        commit()
-      })
-    } */
+  actions: {
   },
   modules: {
   },
