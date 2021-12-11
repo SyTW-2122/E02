@@ -1,17 +1,17 @@
 import { defineFeature, loadFeature} from 'jest-cucumber';
 import { mount, createLocalVue} from '@vue/test-utils';
-import Activity from '@/views/Activity.vue';
+import SignIn from '@/views/SignIn.vue';
 
-const feature = loadFeature('./Activity.feature');
+const feature = loadFeature('./SignIn.feature');
 defineFeature(feature, (test) => {
-  test('Opening the activity page', ({ given, when, then, and }) => {
+  test('Opening the sign in page', ({ given, when, then, and }) => {
     given('the page is open in a browser', () => {
-     wrapper =  mount(Activity);
+     wrapper =  mount(SignIn);
     });
     when('user inspects the page', () => {
       // Nothing yet
     });
-    then('user should see the activities aspects', () => {
+    then('user should see the User profile aspects', () => {
       // Nothing yet
     });
   });
