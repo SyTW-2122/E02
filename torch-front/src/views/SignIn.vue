@@ -36,6 +36,7 @@
               v-validate="'required'"
               placeholder="Enter username"
               class="input-email border-bottom"
+               name="username"
           ></b-form-input>
           <div
             v-if="errors.has('username')"
@@ -56,6 +57,7 @@
               v-validate="'required'"
               placeholder="Enter password"
               class="input-password border-bottom"
+              name="password"
           ></b-form-input>
           <div
             v-if="errors.has('password')"
@@ -67,12 +69,17 @@
             <a href="" class="forgot-password">Forgot password?</a>
           </div>
         </b-form-group>
+        <div class="form-group">
+          <div v-if="message" class="alert alert-danger" role="alert">{{message.msg}}</div>
+        </div>
         <div class="login-button">
-          <b-button pill type="submit" variant="primary">LOGIN</b-button>
+          <b-button pill type="submit" variant="primary" :disabled="loading">
+            <span v-show="loading" class="spinner-border spinner-border-sm"></span>
+            <span>Login</span></b-button>
         </div>
         <div class="create-account">
-          <p>Don't have an account?&nbsp;</p>
-          <a href="">Create a torch account</a>
+          <p class="mx-2">Don't have an account?</p>
+          <router-link to="/sign-up">Create a torch account</router-link>
         </div>
       </b-form>
     </div>

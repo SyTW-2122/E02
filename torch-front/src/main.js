@@ -13,6 +13,10 @@ import {
   faHome,
   faSearch,
   faUserCircle,
+  faUser,
+  faUserPlus,
+  faSignInAlt,
+  faSignOutAlt,
 } from '@fortawesome/free-solid-svg-icons';
 
 // Framework imports
@@ -29,7 +33,16 @@ Vue.use(BootstrapVue);
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin);
 // Font awesome icons used in the app
-library.add(faUserSecret, faHome, faSearch, faUserCircle);
+library.add(
+  faUserSecret,
+  faHome,
+  faSearch,
+  faUserCircle,
+  faUser,
+  faUserPlus,
+  faSignInAlt,
+  faSignOutAlt,
+);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 // Framework tools activation
