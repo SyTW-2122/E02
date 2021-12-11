@@ -31,17 +31,7 @@
     </nav>
   </div>
 </template>
-<!--
-<b-nav-item to="/activity" >
-      <font-awesome-icon icon="home" class="nav-icon "/>
-    </b-nav-item>
-    <b-nav-item to="/explore">
-      <font-awesome-icon icon="search" class="nav-icon"/>
-    </b-nav-item>
-    <b-nav-item to="/user" >
-      <font-awesome-icon icon="user-circle" class="nav-icon "/>
-    </b-nav-item>
--->
+
 <style scoped>
 
   .bg-teal {

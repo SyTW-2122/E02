@@ -56,11 +56,11 @@
     <b-col></b-col>
     <b-col cols="8">
       <form name="form" @submit.prevent="handleRegister">
-        <div v-if="!sucessful">
+        <div v-if="!successTrue()">
           <div class="form-group">
             <label for="username">Username</label>
             <input
-              v-model="user.usaername"
+              v-model="user.username"
               v-validate="'required|min:3|max:20'"
               type="text"
               class="form-control"
@@ -68,24 +68,9 @@
               placeholder="Enter username"
             />
             <div
-            v-if="submited && errors.has('username')"
+            v-if="submitTrue() && errors.has('username')"
             class="bg-danger"
             >{{errors.first('username')}}</div>
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input
-              v-model="user.email"
-              v-validate="'required|email|max:50'"
-              type="email"
-              class="form-control"
-              name="email"
-              placeholder="Enter email"
-            />
-            <div
-            v-if="errors.has('email')"
-            class="bg-danger"
-            >{{errors.first('email')}}</div>
           </div>
           <div class="form-group">
             <label for="password">Password</label>
@@ -97,19 +82,19 @@
               name="password"
             />
             <div
-              v-if="submitted && errors.has('password')"
+              v-if="submitTrue() && errors.has('password')"
               class="alert-danger"
             >{{errors.first('password')}}</div>
           </div>
-        </div>
-        <div class="form-group text-center my-3">
-          <button type="submit" class="btn btn-success px-5">SIGN UP</button>
+          <div class="form-group text-center my-3">
+            <button type="submit" class="btn btn-success px-5">SIGN UP</button>
+          </div>
         </div>
       </form>
       <div
         v-if="message"
         class="alert"
-        :class="successful ? 'alert-success' : 'alert-danger'"
+        :class="successTrue() ? 'alert-success' : 'alert-danger'"
       >{{message}}</div>
     </b-col>
     <b-col></b-col>
@@ -141,10 +126,10 @@ export default {
   name: 'sign-up',
   data() {
     return {
-      user: new User('', '', ''),
       submitted: false,
       successful: false,
       message: '',
+      user: new User('', ''),
     };
   },
   computed: {
@@ -178,6 +163,8 @@ export default {
         }
       });
     },
+    submitTrue() { return this.submitted; },
+    successTrue() { return this.submitted; },
   },
 };
 </script>
