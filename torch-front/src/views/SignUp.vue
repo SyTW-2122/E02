@@ -55,36 +55,62 @@
   <b-row>
     <b-col></b-col>
     <b-col cols="8">
-      <form>
-        <br />
-        <div class="form-group">
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            aria-describedby="emailHelp"
-            placeholder="Email address"
-          />
+      <form name="form" @submit.prevent="handleRegister">
+        <div v-if="!sucessful">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              v-model="user.usaername"
+              v-validate="'required|min:3|max:20'"
+              type="text"
+              class="form-control"
+              name="username"
+              placeholder="Enter username"
+            />
+            <div
+            v-if="submited && errors.has('username')"
+            class="bg-danger"
+            >{{errors.first('username')}}</div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              v-model="user.email"
+              v-validate="'required|email|max:50'"
+              type="email"
+              class="form-control"
+              name="email"
+              placeholder="Enter email"
+            />
+            <div
+            v-if="errors.has('email')"
+            class="bg-danger"
+            >{{errors.first('email')}}</div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              v-model="user.password"
+              v-validate="'required|min:6|max:40'"
+              type="password"
+              class="form-control"
+              name="password"
+            />
+            <div
+              v-if="submitted && errors.has('password')"
+              class="alert-danger"
+            >{{errors.first('password')}}</div>
+          </div>
         </div>
-        <br />
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            id="password"
-            placeholder="Password"
-          />
-        </div>
-        <br />
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            id="repeatPassword"
-            placeholder="Repeat password"
-          />
+        <div class="form-group text-center my-3">
+          <button type="submit" class="btn btn-success px-5">SIGN UP</button>
         </div>
       </form>
+      <div
+        v-if="message"
+        class="alert"
+        :class="successful ? 'alert-success' : 'alert-danger'"
+      >{{message}}</div>
     </b-col>
     <b-col></b-col>
   </b-row>
@@ -93,7 +119,6 @@
     <b-col></b-col>
     <center>
       <b-col>
-        <button type="submit" class="btn btn-primary">SIGN UP</button>
       </b-col>
     </center>
     <b-col></b-col>
@@ -110,27 +135,48 @@
 </template>
 
 <script>
+import User from '../models/user';
+
 export default {
   name: 'sign-up',
-  data: () => ({
-    email: '',
-    password: '',
-    confirm_password: '',
-  }),
+  data() {
+    return {
+      user: new User('', '', ''),
+      submitted: false,
+      successful: false,
+      message: '',
+    };
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    },
+  },
+  mounted() {
+    if (this.loggedIn) {
+      this.$router.push('/profile');
+    }
+  },
   methods: {
-    register() {
-      if (this.valid()) {
-        this.$store.dispatch('REGISTER', {
-          email: this.email,
-          password: this.password,
-        })
-          .then(() => {
-            this.$store.commit('SET NOTIFICATION', {
-              display: true,
-              messaje: 'Your account has been successfully created!',
-            });
-          });
-      }
+    handleRegister() {
+      this.message = '';
+      this.submitted = true;
+      this.$validator.validate().then((isValid) => {
+        if (isValid) {
+          this.$store.dispatch('auth/register', this.user).then(
+            (data) => {
+              this.message = data.message;
+              this.successful = true;
+            },
+            (error) => {
+              this.message = (error.response && error.response.data)
+              || error.message
+              || error.toString();
+              this.successful = false;
+            },
+          );
+        }
+      });
     },
   },
 };
