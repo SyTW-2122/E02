@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
 import Explore from '../views/Explore.vue';
 import User from '../views/User.vue';
 import Activity from '../views/Activity.vue';
@@ -10,11 +9,6 @@ import SignIn from '../views/SignIn.vue';
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home,
-  },
   {
     path: '/user',
     name: 'User',
@@ -49,3 +43,17 @@ const router = new VueRouter({
 });
 
 export default router;
+
+router.beforeEach((to, from, next) => {
+  const publicPages = ['/sign-in', '/sign-up'];
+  const authRequired = !publicPages.includes(to.path);
+  const loggedIn = localStorage.getItem('user');
+
+  // trying to access a restricted page + not logged in
+  // redirect to login page
+  if (authRequired && !loggedIn) {
+    next('/sign-in');
+  } else {
+    next();
+  }
+});

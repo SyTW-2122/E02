@@ -6,7 +6,6 @@
     <router-view/>
   </div>
 </template>
-
 <script>
 // @ is an alias to /src
 import DesktopNavbar from '@/components/DesktopNavbar.vue';
