@@ -1,80 +1,82 @@
 <template>
-  <div class="sign-in">
-    <div class="welcome">
-      <img src="../assets/images/torch-logo.png" alt="">
-      <h1>Welcome</h1>
-    </div>
-    <div class="passport-google">
-        <b-button pill class="login-google">
-          <img src="../assets/images/google.png" alt=""/>
-          <p>Login with Google</p>
-        </b-button>
-    </div>
-    <div class="passport-facebook">
-        <b-button pill class="login-facebook">
-          <img src="../assets/images/facebook.svg" alt=""/>
-          <p>Login with Facebook</p>
-        </b-button>
-    </div>
-    <div class="separator">
-      <div class="line"></div>
-      <p>or</p>
-      <div class="line"></div>
-    </div>
-    <div class="login-form">
-      <b-form @submit.prevent="handleLogin">
-        <b-form-group
-          id="input-group-email"
-          label=""
-          label-for="input-email"
-          class="input-group-email"
-        >
-          <b-form-input
-              id="input-email"
-              type="text"
-              v-model="user.username"
-              v-validate="'required'"
-              placeholder="Enter username"
-              class="input-email border-bottom"
-          ></b-form-input>
-          <div
-            v-if="errors.has('username')"
-            class="alert alert-danger"
-            role="alert"
-          >Username is required!</div>
-        </b-form-group>
-        <b-form-group
-          id="input-group-password"
-          label=""
-          label-for="input-password"
-          class="input-group-password"
-        >
-          <b-form-input
-              id="input-password"
-              type="password"
-              v-model="user.password"
-              v-validate="'required'"
-              placeholder="Enter password"
-              class="input-password border-bottom"
-          ></b-form-input>
-          <div
-            v-if="errors.has('password')"
-            class="alert alert-danger"
-            role="alert"
-          >Password is required!</div>
-          <div class="bottom-form">
-            <b-form-checkbox class="remember-me">&nbsp;Remember me</b-form-checkbox>
-            <a href="" class="forgot-password">Forgot password?</a>
+  <div class = "background">
+    <div class="sign-in">
+      <div class="welcome">
+        <img src="../assets/images/torch-logo.png" alt="">
+        <h1>Welcome</h1>
+      </div>
+      <div class="passport-google">
+          <b-button pill class="login-google">
+            <img src="../assets/images/google.png" alt=""/>
+            <p>Login with Google</p>
+          </b-button>
+      </div>
+      <div class="passport-facebook">
+          <b-button pill class="login-facebook">
+            <img src="../assets/images/facebook.svg" alt=""/>
+            <p>Login with Facebook</p>
+          </b-button>
+      </div>
+      <div class="separator">
+        <div class="line"></div>
+        <p>or</p>
+        <div class="line"></div>
+      </div>
+      <div class="login-form">
+        <b-form @submit.prevent="handleLogin">
+          <b-form-group
+            id="input-group-email"
+            label=""
+            label-for="input-email"
+            class="input-group-email"
+          >
+            <b-form-input
+                id="input-email"
+                type="text"
+                v-model="user.username"
+                v-validate="'required'"
+                placeholder="Enter username"
+                class="input-email border-bottom"
+            ></b-form-input>
+            <div
+              v-if="errors.has('username')"
+              class="alert alert-danger"
+              role="alert"
+            >Username is required!</div>
+          </b-form-group>
+          <b-form-group
+            id="input-group-password"
+            label=""
+            label-for="input-password"
+            class="input-group-password"
+          >
+            <b-form-input
+                id="input-password"
+                type="password"
+                v-model="user.password"
+                v-validate="'required'"
+                placeholder="Enter password"
+                class="input-password border-bottom"
+            ></b-form-input>
+            <div
+              v-if="errors.has('password')"
+              class="alert alert-danger"
+              role="alert"
+            >Password is required!</div>
+            <div class="bottom-form">
+              <b-form-checkbox class="remember-me">&nbsp;Remember me</b-form-checkbox>
+              <a href="" class="forgot-password">Forgot password?</a>
+            </div>
+          </b-form-group>
+          <div class="login-button">
+            <b-button pill type="submit" variant="primary">LOGIN</b-button>
           </div>
-        </b-form-group>
-        <div class="login-button">
-          <b-button pill type="submit" variant="primary">LOGIN</b-button>
-        </div>
-        <div class="create-account">
-          <p>Don't have an account?&nbsp;</p>
-          <a href="">Create a torch account</a>
-        </div>
-      </b-form>
+          <div class="create-account">
+            <p>Don't have an account?&nbsp;</p>
+            <a href="">Create a torch account</a>
+          </div>
+        </b-form>
+      </div>
     </div>
   </div>
 </template>
@@ -130,6 +132,44 @@ export default {
 </script>
 
 <style scoped>
+
+@media screen and (min-width: 1025px) {
+  .background {
+    position:fixed;
+    padding:0;
+    margin:0;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0.25turn, #00DBDE,#7B00DB);
+  }
+}
+
+@media screen and (max-width: 1025px) {
+  .sign-in {
+    position:fixed;
+    padding:0;
+    margin:0;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: #FFF;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .sign-in {
+    visibility: visible;
+    background-color: #FFF;
+    height: 90%;
+    width: 40%;
+    margin-left: 3%
+
+  }
+}
+
 .welcome img {
   display: block;
   margin-left: auto;
