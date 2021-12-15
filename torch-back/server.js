@@ -12,7 +12,7 @@ mongoose.connect(uri, {
   .catch((err) => console.error(err));
   
   // Create port
-  const port = process.env.PORT || 3000;
+  const port = process.env.PORT || 5000;
   
   // Start server
  app.listen(port, () => {
