@@ -1,22 +1,12 @@
 let express = require('express'),
   cors = require('cors'),
   path = require('path'),
-  favicon = require('serve-favicon'),
   logger = require('morgan'),
-  mongoose = require('mongoose'),
   database = require('./database'),
   bodyParser = require('body-parser');
   var util= require('util');
   var encoder = new util.TextEncoder('utf-8');
-// Database config
-const uri = 'mongodb+srv://torch-carrier:olympic!@torch.gzcmz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-mongoose.Promise = require('bluebird');
-mongoose.connect(uri, {
-    useNewUrlParser: true, 
-    useUnifiedTopology: true, 
-  })
-  .then(() => console.log('Database conection successful'))
-  .catch((err) => console.error(err));
+
 
 const userAPI = require('./routes/user');
 const auth = require('./routes/auth');
@@ -35,11 +25,7 @@ app.use(cors());
 app.use('/user', userAPI);
 app.use('/api/auth', auth);
 
-// Create port
-const port = process.env.PORT || 5000;
-const server = app.listen(port, () => {
-  console.log('Connected to port ' + port)
-})
+
 
 // Find 404
 app.use(function(req, res, next) {
@@ -58,3 +44,5 @@ app.use(function(err, req, res, next) {
 
     res.status(err.statusCode || 500).json(err);
 });
+
+module.exports = app;

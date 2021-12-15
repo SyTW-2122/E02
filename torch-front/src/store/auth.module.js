@@ -11,9 +11,9 @@ export const auth = {
   actions: {
     login({ commit }, user) {
       return AuthService.login(user).then(
-        () => {
-          commit('loginSuccess', user);
-          return Promise.resolve(user);
+        (res) => {
+          commit('loginSuccess', res);
+          return Promise.resolve(res);
         },
         (error) => {
           commit('loginFailure');
@@ -27,9 +27,9 @@ export const auth = {
     },
     register({ commit }, user) {
       return AuthService.register(user).then(
-        (response) => {
+        (res) => {
           commit('registerSuccess');
-          return Promise.resolve(response.data);
+          return Promise.resolve(res.data);
         },
         (error) => {
           commit('registerFailure');

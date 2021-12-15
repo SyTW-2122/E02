@@ -21,6 +21,7 @@
     </b-col>
     <b-col></b-col>
   </b-row>
+  <div v-if="!successTrue()">
   <br />
   <b-row class="text-center">
     <b-col></b-col>
@@ -56,7 +57,6 @@
     <b-col></b-col>
     <b-col cols="8">
       <form name="form" @submit.prevent="handleRegister">
-        <div v-if="!successTrue()">
           <div class="form-group">
             <label for="username">Username</label>
             <input
@@ -71,6 +71,20 @@
             v-if="submitTrue() && errors.has('username')"
             class="bg-danger"
             >{{errors.first('username')}}</div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              v-model="user.email"
+              v-validate="'required|email|max:50'"
+              type="email"
+              class="form-control"
+              name="email"
+            />
+            <div
+              v-if="submitted && errors.has('email')"
+              class="alert-danger"
+            >{{errors.first('email')}}</div>
           </div>
           <div class="form-group">
             <label for="password">Password</label>
@@ -89,13 +103,12 @@
           <div class="form-group text-center my-3">
             <button type="submit" class="btn btn-success px-5">SIGN UP</button>
           </div>
-        </div>
       </form>
       <div
         v-if="message"
         class="alert"
         :class="successTrue() ? 'alert-success' : 'alert-danger'"
-      >{{message}}</div>
+      >{{message.msg}}</div>
     </b-col>
     <b-col></b-col>
   </b-row>
@@ -112,10 +125,18 @@
   <b-row class="text-center">
     <b-col></b-col>
     <b-col cols="8">
-      <p> Already have an account? Login here</p>
+      <p> Already have an account?
+          <router-link to="/sign-in">Login here</router-link></p>
     </b-col>
     <b-col></b-col>
   </b-row>
+  </div>
+  <div v-else class="text-center">
+    <h1 class="text-success text-center">Account created succesfully</h1>
+    <router-link to="/sign-in">
+      <b-button class="btn-primary m-5">Go to login</b-button>
+    </router-link>
+  </div>
 </b-container>
 </template>
 
@@ -129,7 +150,7 @@ export default {
       submitted: false,
       successful: false,
       message: '',
-      user: new User('', ''),
+      user: new User('', '', ''),
     };
   },
   computed: {
