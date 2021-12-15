@@ -12,7 +12,7 @@
       <b-row class="passport-google">
           <b-col cols="12">
             <b-button pill class="login-google">
-              <img src="../assets/images/google.png" alt=""/>
+              <img src="../assets/images/google.png" align="left" alt=""/>
               <p>Login with Google</p>
             </b-button>
           </b-col>
@@ -20,7 +20,7 @@
       <b-row class="passport-facebook">
           <b-col cols="12">
             <b-button pill class="login-facebook">
-              <img src="../assets/images/facebook.svg" alt=""/>
+              <img src="../assets/images/facebook.svg" align="left" alt=""/>
               <p>Login with Facebook</p>
             </b-button>
           </b-col>
@@ -269,7 +269,6 @@ h1 {
 .login-facebook p {
   display: inline;
   font-size: 13px;
-  margin-left: 10px;
 }
 
 .login-form {
