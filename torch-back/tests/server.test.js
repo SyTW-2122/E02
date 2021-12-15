@@ -1,18 +1,25 @@
-const app = require("../server");
-const Post = require("../models/User");
-const mongoose = require("mongoose");
-const supertest = require("supertest");
+const supertest = require('supertest');
+const should = require('chai').should();
+const app = require('../app');
+// This agent refers to PORT where program is runninng.
 
-beforeEach((done) => {
-  mongoose.connect("mongodb://localhost:27017/JestDB",
-    { useNewUrlParser: true, useUnifiedTopology: true },
-    () => done());
-});
+// UNIT test begin
 
-afterEach((done) => {
-  mongoose.connection.db.dropDatabase(() => {
-    mongoose.connection.close(() => done())
+describe('SAMPLE unit test', async() => {
+  // #1 should return home page
+
+  const server = await supertest.agent('http://localhost:5000');
+  it('should return 200', (done) => {
+    server
+      .get('/user(get-usr')
+      .send({
+        username: 'eric',
+        password: '1234'
+      })
+      .expect(200)
+      .end((err, res) => {
+        res.status.should.equal(200);
+        done();
+      });
   });
 });
-
-// Test goes here

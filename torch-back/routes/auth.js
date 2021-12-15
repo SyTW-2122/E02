@@ -1,17 +1,17 @@
+const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
 const settings = require('../config/settings');
 require('../config/passport')(passport);
-const express = require('express');
-const jwt = require('jsonwebtoken');
 const router = express.Router();
-const User = require("../models/User.js");
+const User = require('../models/User');
 
-router.post('/register', function(req, res) {
+router.post('/register', (req, res) => {
   if (!req.body.username || !req.body.password) {
-    res.json({success: false, msg: 'Please pass username and password.'});
+    res.json({ success: false, msg: 'Please pass username and password.'});
   } else {
-    var newUser = new User({
+    const newUser = new User({
       username: req.body.username,
       password: req.body.password
     });
