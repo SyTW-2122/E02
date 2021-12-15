@@ -9,25 +9,35 @@
         <h1>Welcome</h1>
         </b-col>
       </b-row>
-      <div class="passport-google">
-          <b-button pill class="login-google">
-            <img src="../assets/images/google.png" alt=""/>
-            <p>Login with Google</p>
-          </b-button>
-      </div>
-      <div class="passport-facebook">
-          <b-button pill class="login-facebook">
-            <img src="../assets/images/facebook.svg" alt=""/>
-            <p>Login with Facebook</p>
-          </b-button>
-      </div>
-      <div class="separator">
-        <div class="line"></div>
-        <p>or</p>
-        <div class="line"></div>
-      </div>
+      <b-row class="passport-google">
+          <b-col cols="12">
+            <b-button pill class="login-google">
+              <img src="../assets/images/google.png" alt=""/>
+              <p>Login with Google</p>
+            </b-button>
+          </b-col>
+      </b-row>
+      <b-row class="passport-facebook">
+          <b-col cols="12">
+            <b-button pill class="login-facebook">
+              <img src="../assets/images/facebook.svg" alt=""/>
+              <p>Login with Facebook</p>
+            </b-button>
+          </b-col>
+      </b-row>
+      <b-row class="separator" align-v="center">
+        <b-col>
+          <div class="line"></div>
+        </b-col>
+        <b-col cols="1" xl="2" class="text-center">
+          <p>or</p>
+        </b-col>
+        <b-col>
+          <div class="line"></div>
+        </b-col>
+      </b-row>
       <div class="login-form">
-        <b-form @submit.prevent="handleLogin">
+        <b-form-row @submit.prevent="handleLogin">
           <b-form-group
             id="input-group-email"
             label=""
@@ -67,10 +77,14 @@
               class="alert alert-danger"
               role="alert"
             >Password is required!</div>
-            <div class="bottom-form">
-              <b-form-checkbox class="remember-me">&nbsp;Remember me</b-form-checkbox>
-              <a href="" class="forgot-password">Forgot password?</a>
-            </div>
+            <b-row class="bottom-form" align-h="between">
+              <b-col cols="6">
+                <b-form-checkbox class="remember-me">&nbsp;Remember me</b-form-checkbox>
+              </b-col>
+              <b-col cols="6">
+                <p><a href="" class="forgot-password">Forgot password?</a></p>
+              </b-col>
+            </b-row>
           </b-form-group>
           <div class="login-button">
             <b-button pill type="submit" variant="primary">LOGIN</b-button>
@@ -79,7 +93,7 @@
             <p>Don't have an account?&nbsp;</p>
             <a href="">Create a torch account</a>
           </div>
-        </b-form>
+        </b-form-row>
       </div>
     </b-container>
   </div>
@@ -168,11 +182,11 @@ export default {
     padding:0;
     margin:0;
     background-color: #FFF;
-    height: 90%;
-    width: 35%;
-    margin-left: 3%;
-    margin-top: 3%;
-    margin-bottom: 3%;
+    height: 96%;
+    width: 30%;
+    margin-left: 1%;
+    margin-top: 1%;
+    margin-bottom: 1%;
     border-radius: 40px;
   }
 }
@@ -206,6 +220,7 @@ h1 {
   padding: 0 10px;
   opacity: 0.2;
   color: #000;
+  margin-top: 10px;
 }
 
 .separator .line {
@@ -290,6 +305,11 @@ h1 {
 
   color: #00DBDE;
   text-decoration: none;
+  margin-top: 10px;
+}
+
+.bottom-form p {
+  text-align: right;
   margin-top: 10px;
 }
 
