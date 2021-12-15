@@ -1,10 +1,14 @@
 <template>
   <div class = "background">
-    <div class="sign-in">
-      <div class="welcome">
-        <img src="../assets/images/torch-logo.png" alt="">
+    <b-container fluid="lg" class="sign-in">
+      <b-row class="welcome">
+        <b-col cols="12">
+          <img src="../assets/images/torch-logo.png" alt="">
+        </b-col>
+        <b-col cols="12">
         <h1>Welcome</h1>
-      </div>
+        </b-col>
+      </b-row>
       <div class="passport-google">
           <b-button pill class="login-google">
             <img src="../assets/images/google.png" alt=""/>
@@ -77,7 +81,7 @@
           </div>
         </b-form>
       </div>
-    </div>
+    </b-container>
   </div>
 </template>
 
@@ -142,7 +146,7 @@ export default {
     left:0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(0.25turn, #00DBDE,#7B00DB);
+    background: linear-gradient(0.25turn,#7B00DB, #00DBDE);
   }
 }
 
@@ -161,12 +165,15 @@ export default {
 
 @media screen and (min-width: 1025px) {
   .sign-in {
-    visibility: visible;
+    padding:0;
+    margin:0;
     background-color: #FFF;
     height: 90%;
-    width: 40%;
-    margin-left: 3%
-
+    width: 35%;
+    margin-left: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-radius: 40px;
   }
 }
 
@@ -280,9 +287,7 @@ h1 {
 }
 
 .bottom-form a{
-  display: inline-block;
-  position: fixed;
-  right: 40px;
+
   color: #00DBDE;
   text-decoration: none;
   margin-top: 10px;
