@@ -4,19 +4,23 @@ const express = require('express'),
   path = require('path'),
   favicon = require('serve-favicon'),
   logger = require('morgan'),
+  dotenv = require('dotenv'),
   mongoose = require('mongoose'),
   bodyParser = require('body-parser'),
   database = require('./database');
+
+dotenv.config();
+
 // Database config
-const uri = 'mongodb+srv://torch-carrier:olympic!@torch.gzcmz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const uri = process.env.MAIN_DB_HOST;
 const encoder = new util.TextEncoder('utf-8');
 
 mongoose.Promise = require('bluebird');
 
 mongoose.connect(uri, {
   useNewUrlParser: true,
-  useUnifiedTopology: true})
-  .then(() => console.log('Database conection successful'))
+  useUnifiedTopology: true
+}).then(() => console.error('Database conection successful'))
   .catch((err) => console.error(err));
 
 const userAPI = require('./routes/user');
@@ -27,7 +31,7 @@ const app = express();
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: false,
+  extended: false
 }));
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use('/user', express.static(path.join(__dirname, 'dist')));
