@@ -1,46 +1,71 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
-const bcrypt = require('bcrypt-nodejs');
+const { userImage } = require('../config/DefaultUserImage');
+const authFunctions = require('../helpers/authFunctions');
 
-let UserSchema = new Schema({
-  username: {
-    type: String,
-    unique: true,
-    required: true
-  },
-  password: {
-      type: String,
-      required: true
-  }
-});
+const userSchema = new Schema({
+    name: {
+        type: Schema.Types.String,
+        required: true,
+    },
+    email: {
+        type: Schema.Types.String,
+        unique: true
+    },
+    password: {
+        type: Schema.Types.String,
+        required: true
+    },
+    address: {
+        type: Schema.Types.String,
+        required: true,
+    },
+    education_qualification: {
+        type: Schema.Types.String,
+        required: true,
+    },
+    dob: {
+        type: Schema.Types.Date,
+        required: true,
+    },
+    job_title: {
+        type: Schema.Types.String,
+        required: true,
+    },
+    photo: {
+        type: Schema.Types.String,
+        required: false,
+        default: userImage
+    },
+    contact_number: {
+        type: Schema.Types.Number,
+        required: true,
+    },
+}, { timestamps: true })
 
-UserSchema.pre('save', function (next) {
-  var user = this;
-  if (this.isModified('password') || this.isNew) {
-      bcrypt.genSalt(10, function (err, salt) {
-          if (err) {
-              return next(err);
-          }
-          bcrypt.hash(user.password, salt, null, function (err, hash) {
-              if (err) {
-                  return next(err);
-              }
-              user.password = hash;
-              next();
-          });
-      });
-  } else {
-      return next();
-  }
-});
+const User = mongoose.model('users', userSchema)
 
-UserSchema.methods.comparePassword = function (passw, cb) {
-  bcrypt.compare(passw, this.password, function (err, isMatch) {
-      if (err) {
-          return cb(err);
-      }
-      cb(null, isMatch);
-  });
-};
+module.exports = {
+    
+    getUsers: () => User.find(),
+    storeUser: async userData => {
+        const hashPassword = await authFunctions.createPassword(userData.password)
+        const user = {
+            name: userData.name,
+            email: userData.email,
+            password: hashPassword,
+            address: userData.address,
+            contact_number: userData.contact_number,
+            education_qualification: userData.education_qualification,
+            dob: userData.dob,
+            job_title: userData.job_title
+        }
+        return new User(user).save();
+    },
+    updateUser: (userData, userId) => User.findByIdAndUpdate(userId, userData),
+    findUserById: userId => User.findById(userId),
+    findUserByEmail: userEmail => User.findOne({ email: userEmail }).exec(),
+    deleteUser: userId => User.findByIdAndRemove(userId),
+    removeUsers: () => User.deleteMany()
 
-module.exports = mongoose.model('User', UserSchema);
+}

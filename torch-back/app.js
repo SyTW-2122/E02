@@ -2,14 +2,13 @@ let express = require('express'),
   cors = require('cors'),
   path = require('path'),
   logger = require('morgan'),
-  database = require('./database'),
   bodyParser = require('body-parser');
   var util= require('util');
   var encoder = new util.TextEncoder('utf-8');
 
 
-const userAPI = require('./routes/user');
-const auth = require('./routes/auth');
+const userAPI = require('./route/user');
+const auth = require('./route/auth');
 const app = express();
 
 app.use(logger('dev'));
@@ -22,7 +21,7 @@ app.use('/user', express.static(path.join(__dirname, 'dist')));
 app.use(cors());
 
 // API
-app.use('/user', userAPI);
+app.use('/api/user', userAPI);
 app.use('/api/auth', auth);
 
 
