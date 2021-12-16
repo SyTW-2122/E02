@@ -6,8 +6,8 @@ Given ('User is at the login page', () => {
 })
 
 When ('User enters username as {string} and password as {string}', (username, password) => {
-    cy.get('#txtUsername').type(username)
-    cy.get('#txtPassword').type(password)
+    cy.get('#input-email').type(username)
+    cy.get('#input-password').type(password)
 })
 
 And ('User clicks on login button', () => {
