@@ -1,42 +1,78 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="logo col-12">
-        <img src="../assets/images/torch-logo.png" alt="Logo" class="img-fluid">
-      </div>
-      <div class="col-12 text-center mt-2">
-        <h1 class="display-4 font-weight-bold">Welcome</h1>
-      </div>
-      <div class="login-google col-12 col-md-6 text-center mt-2">
-        <a class="btn btn-primary btn-lg mb-1">
-          <img src="../assets/images/google.png" alt="Google" class="img-fluid h-100">
-          Login with Google
-        </a>
-      </div>
-      <div class="login-facebook col-12 col-md-6 text-center mt-2">
-        <a class="btn btn-primary btn-lg mb-3">
-          <img src="../assets/images/facebook.svg" alt="Logo" class="img-fluid h-100">
-          Login with Facebook
-        </a>
-      </div>
-      <div class="line col-5 mt-2"></div>
-      <div class="or col-2 text-center">Or</div>
-      <div class="line col-5 mt-2"></div>
-      <div class="login-form col-12 text-center mt-2">
-        <b-form @submit.prevent="handleLogin">
+  <div class = "background">
+    <b-container fluid="lg" class="sign-up">
+      <b-row class="welcome">
+        <b-col cols="12">
+          <img src="../assets/images/torch-logo.png" alt="Logo" class="img-fluid">
+        </b-col>
+        <b-col cols="12">
+          <h1 class="text-center mt-10">Welcome</h1>
+        </b-col>
+      </b-row>
+      <b-row class="passport">
+        <div class="passport-google col-lg-6">
+          <b-col cols="12">
+            <b-button pill class="login-google">
+              <img src="../assets/images/google.png" align="left" alt=""/>
+              <p>Login with Google</p>
+            </b-button>
+          </b-col>
+        </div>
+        <div class="passport-facebook col-lg-6">
+          <b-col cols="12">
+            <b-button pill class="login-facebook">
+              <img src="../assets/images/facebook.svg" align="left" alt=""/>
+              <p>Login with Facebook</p>
+            </b-button>
+          </b-col>
+        </div>
+      </b-row>
+      <b-row class="separator" align-v="center">
+        <b-col>
+          <div class="line"></div>
+        </b-col>
+        <b-col cols="1" xl="2" class="text-center">
+          <p>or</p>
+        </b-col>
+        <b-col>
+          <div class="line"></div>
+        </b-col>
+      </b-row>
+      <div class="register-form">
+        <b-form-row @submit.prevent="handleLogin">
+          <b-form-group
+            id="input-group-username"
+            label=""
+            label-for="input-username"
+            class="input-group-username"
+          >
+            <b-form-input
+              id="input-email"
+              type="text"
+              v-model="user.username"
+              v-validate="'required'"
+              placeholder="Username"
+              class="input-username border-bottom"
+            ></b-form-input>
+            <div
+              v-if="errors.has('username')"
+              class="alert alert-danger"
+              role="alert"
+            >Username is required!</div>
+          </b-form-group>
           <b-form-group
             id="input-group-email"
             label=""
             label-for="input-email"
-            class="input-group-email text-center"
+            class="input-group-email"
           >
             <b-form-input
-                id="input-email"
-                type="text"
-                v-model="user.email"
-                v-validate="'required'"
-                placeholder="Email Address"
-                class="input-email border-bottom"
+              id="input-email"
+              type="text"
+              v-model="user.email"
+              v-validate="'required'"
+              placeholder="Email Address"
+              class="input-email border-bottom"
             ></b-form-input>
             <div
               v-if="errors.has('email')"
@@ -48,15 +84,15 @@
             id="input-group-password"
             label=""
             label-for="input-password"
-            class="input-group-password mt-2"
+            class="input-group-password"
           >
             <b-form-input
-                id="input-password"
-                type="password"
-                v-model="user.password"
-                v-validate="'required'"
-                placeholder="Password"
-                class="input-password border-bottom"
+              id="input-password"
+              type="password"
+              v-model="user.password"
+              v-validate="'required'"
+              placeholder="Password"
+              class="input-password border-bottom"
             ></b-form-input>
             <div
               v-if="errors.has('password')"
@@ -64,35 +100,16 @@
               role="alert"
             >Password is required!</div>
           </b-form-group>
-          <b-form-group
-            id="input-group-repeat-password"
-            label=""
-            label-for="input-password"
-            class="input-group-repeat-password mt-2"
-            >
-            <b-form-input
-              id="input-password"
-              type="password"
-              v-model="user.password"
-              v-validate="'required'"
-              placeholder="Repeat password"
-              class="input-password border-bottom"
-            ></b-form-input>
-            <div
-              v-if="errors.has('password')"
-              class="alert alert-danger"
-              role="alert"
-            >Password do not match!</div>
-          </b-form-group>
-          <div class="login-button mt-2">
+          <div class="signup-button">
             <b-button pill type="submit" variant="primary">SIGN UP</b-button>
           </div>
-          <div class="create-account mt-2">
-            <p>Already have an account?&nbsp;<a href="">Login here</a></p>
+          <div class="login-here">
+            <p>Already have an account?&nbsp;</p>
+            <a href="">Login here</a>
           </div>
-        </b-form>
+        </b-form-row>
       </div>
-    </div>
+    </b-container>
   </div>
 </template>
 
@@ -147,38 +164,137 @@ export default {
 </script>
 
 <style scoped>
-.logo {
-  width: 250px;
-  margin:auto;
+@media screen and (min-width: 1025px) {
+  .background {
+    position:fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0.25turn,#7B00DB, #00DBDE);
+  }
 }
-.login-google a {
-  width: 250px;
+
+.sign-up {
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.welcome img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10px;
+  width: 120px;
+}
+
+.separator {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.separator p {
+  opacity: 0.2;
+  color: #000;
+  margin-top: 10px;
+}
+
+.separator .line {
+  flex: 1;
+  height: 1px;
+  background-color: #000;
+  opacity: 0.1;
+}
+
+.login-google {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
   height: 45px;
   background-color: #FFFFFF;
-  color: #000000;
+  margin-top: 4px;
+}
+
+.login-google img {
+  width: 25px;
+}
+
+.login-google p {
+  display: inline;
+  color: #000;
   font-size: 13px;
+}
+
+.login-facebook {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+  height: 45px;
+  background-color: #3b5998;
+  margin-top: 4px;
 }
 
 .login-facebook img {
+  width: 25px;
   filter: invert(100%) sepia(1%) saturate(7500%) hue-rotate(59deg) brightness(115%) contrast(100%);
 }
 
-.login-facebook a{
-  width: 250px;
-  height: 45px;
-  background-color: #3b5998;
+.login-facebook p {
+  display: inline;
   font-size: 13px;
 }
 
-.line {
-  height: 2px;
-  background-color: #000000;
-  opacity: 0.2;
+.input-group-email {
+  margin-bottom: 20px;
 }
 
-.login-form {
-  margin:auto;
-  width: 400px;
-  height: 35px;
+.input-email {
+  border: none;
+}
+
+.input-password {
+  border: none;
+}
+
+.input-group-username {
+  margin-bottom: 20px;
+}
+
+.input-username {
+  border: none;
+}
+
+.signup-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.signup-button button {
+  width: 200px;
+  height: 70px;
+  background-color: #00DBDE;
+  border: none;
+  font-size: 25px;
+}
+
+.login-here {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.login-here p{
+  margin-bottom: 0;
+}
+
+.login-here a{
+  color: #00DBDE;
+  text-decoration: none;
 }
 </style>
