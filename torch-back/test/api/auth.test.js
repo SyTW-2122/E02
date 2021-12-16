@@ -6,41 +6,23 @@ const { expect } = require('chai');
 const should = chai.should();
 
 describe('Auth', () => {
+  beforeEach((done) => {
+  });
 
-    beforeEach((done) => {
-        const user = {
-            "email": "user@test.com",
-            "name": "test user",
-            "password": "testuser",
-            "address": "the one",
-            "education_qualification": "bsc",
-            "job_title": "creating",
-            "contact_number": 9836789211,
-            "dob": "2020-10-20T00:00:00.000Z",
-        }
-        User.storeUser(user).then(
-            (result) =>{
-                done()
-            }
-            
-        )
-    });
-
-    describe('/POST user login', () => {
-        const user = {
-            "email": "user@test.com",
-            "password": "testuser",
-        }
-        it('it should login the user', (done) => {
-            chai.request(app)
-                .post('/api/auth/login')
-                .send(user)
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    // expect(res.body.token).to.be.a("string")
-                    done();
-                });
+  describe('User try to access web', () => {
+    const user = {
+      "email": "test_user",
+      "password": "1123456",
+    }
+    it('it should register the user', (done) => {
+      chai.request(app)
+        .post('/api/auth/register')
+        .send(user)
+        .end((err, res) => {
+          res.should.have.status(200);
+          // expect(res.body.token).to.be.a("string")
+          done();
         });
-    })
-
+    });
+  })
 });

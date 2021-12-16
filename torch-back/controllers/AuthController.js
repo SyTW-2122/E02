@@ -20,10 +20,10 @@ module.exports = {
             // if user is found and password is right create a token
             const token = jwt.sign(user.toJSON(), settings.jwtSecret);
             // return the information including token as JSON
-            res.json({ success: true, token: `JWT ${token}`, data: req.body});
+            res.json({ success: true, token: `JWT ${token}`, data: req.body });
           }
           else {
-            res.status(401).send({success: false, msg: 'Authentication failed. Wrong password.'});
+            res.status(401).send({ success: false, msg: 'Authentication failed. Wrong password.' });
           }
         });
       }
@@ -34,18 +34,27 @@ module.exports = {
       res.json({ success: false, msg: 'Please pass username and password.' });
     }
     else {
-      const newUser = new User({
+      User.findOne({
         username: req.body.username,
-        password: req.body.password,
-      });
-      // save the user
-      newUser.save((err) => {
-        if (err) {
-          console.log(err);
-          res.json({ success: false, msg: err.msg });
+      }, (err, user) => {
+        if (err) throw err;
+        if (!user) {
+          const newUser = new User({
+            username: req.body.username,
+            password: req.body.password,
+          });
+          // save the user
+          newUser.save((err) => {
+            if (err) {
+              res.json({ success: false, msg: err.msg });
+            }
+            else {
+              res.json({ success: true, msg: 'Successful created new user.' });
+            }
+          });
         }
         else {
-          res.json({ success: true, msg: 'Successful created new user.' });
+          res.status(401).send({ success: false, msg: 'User already exists' });
         }
       });
     }
