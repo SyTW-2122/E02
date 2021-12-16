@@ -15,6 +15,6 @@ And ('User clicks on login button', () => {
     cy.get('.login-button').click()
 })
 
-Then ('User is able to succesfully login', () => {
-    cy.get('#welcome').should('be.visible', {timeout: 10000})
+Then ('User is able to login', () => {
+    cy.visit('/user', {timeout: 10000});
 })

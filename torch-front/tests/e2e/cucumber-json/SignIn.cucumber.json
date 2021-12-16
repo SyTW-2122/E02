@@ -8,10 +8,10 @@
     "uri": "SignIn.feature",
     "elements": [
       {
-        "id": "user-sign-in;user-login-with-username-and-password",
+        "id": "user-sign-in;user-with-an-acount-created-can-login-with-username-and-password",
         "keyword": "Scenario",
-        "line": 2,
-        "name": "User login with username and password",
+        "line": 11,
+        "name": "User with an acount created can login with username and password",
         "tags": [],
         "type": "scenario",
         "steps": [
@@ -22,17 +22,17 @@
             "name": "User is at the login page",
             "result": {
               "status": "passed",
-              "duration": 715000000
+              "duration": 826000000
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
             "line": 4,
-            "name": "User enters username as '<username>' and password as '<password>'",
+            "name": "User enters username as \"Eric\" and password as \"1234\"",
             "result": {
               "status": "passed",
-              "duration": 1082000000
+              "duration": 536000000
             }
           },
           {
@@ -42,17 +42,67 @@
             "name": "User clicks on login button",
             "result": {
               "status": "passed",
-              "duration": 130000000
+              "duration": 144000000
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
             "line": 6,
-            "name": "User is ablle to successfully login",
+            "name": "User is able to login",
             "result": {
-              "status": "undefined",
-              "duration": 43000000
+              "status": "passed",
+              "duration": 555000000
+            }
+          }
+        ]
+      },
+      {
+        "id": "user-sign-in;user-with-an-acount-created-can-login-with-username-and-password",
+        "keyword": "Scenario",
+        "line": 12,
+        "name": "User with an acount created can login with username and password",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 3,
+            "name": "User is at the login page",
+            "result": {
+              "status": "passed",
+              "duration": 586000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 4,
+            "name": "User enters username as \"Laura\" and password as \"1234\"",
+            "result": {
+              "status": "passed",
+              "duration": 543000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 5,
+            "name": "User clicks on login button",
+            "result": {
+              "status": "passed",
+              "duration": 124000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 6,
+            "name": "User is able to login",
+            "result": {
+              "status": "passed",
+              "duration": 576000000
             }
           }
         ]
