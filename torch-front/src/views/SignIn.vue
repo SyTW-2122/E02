@@ -295,7 +295,6 @@ h1 {
 
 .remember-me{
   display: inline-block;
-  width: 50%;
   height: 100%;
   margin-top: 10px;
 }
