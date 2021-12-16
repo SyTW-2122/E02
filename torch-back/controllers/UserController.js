@@ -20,9 +20,9 @@ module.exports = {
     create: async (req, res, next) => {
         try {
             const {
-                email
-            } = req.body;
-            const userExist = await User.findUserByEmail(email)
+                username
+            } = req.body.username;
+            const userExist = await User.findUserByUsername(username)
             if (!userExist) {
                 const newUser = await storeUser(req.body)
                 if (newUser) {

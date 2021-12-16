@@ -1,29 +1,50 @@
-const createError = require('http-errors');
-const User = require("../models/User");
-const authFunctions = require("../helpers/authFunctions");
+const passport = require('passport');
+const settings = require('../config/SecretToken');
+require('../config/passport')(passport);
+const express = require('express');
+const jwt = require('jsonwebtoken');
+const router = express.Router();
+const User = require("../models/User.js");
 
 module.exports = {
-    login: async (req, res, next) => {
-        const {
-            email,
-            password
-        } = req.body;
-        try {
-            const userExist = await User.findUserByEmail(email)
-            if (userExist) {
-                const isMatch = await authFunctions.comparePassword(password, userExist.password)
-                if (isMatch) {
-                    const token = await authFunctions.generateToken(userExist)
-                    return res.status(200).json({
-                        status: 'success',
-                        token: token,
-                        authUser: userExist
-                    });
-                }
+    login: (req, res) => {
+      User.findOne({
+        username: req.body.username
+      }, function(err, user) {
+        if (err) throw err;
+        if (!user) {
+          res.status(401).send({success: false, msg: 'Authentication failed. User not found.'});
+        } else {
+          // check if password matches
+          res.send(req.body.password)
+          user.comparePassword(req.body.password, function (err, isMatch) {
+            if (isMatch && !err) {
+              // if user is found and password is right create a token
+              var token = jwt.sign(user.toJSON(), settings.jwtSecret);
+              // return the information including token as JSON
+              res.json({success: true, token: 'JWT ' + token, data: req.body});
+            } else {
+              res.status(401).send({success: false, msg: 'Authentication failed. Wrong password.'});
             }
-        } catch (error) {
-            console.log(error)
+          });
         }
-    }
-    /* register: */
+      });
+    },
+    register: (req, res) => {
+      if (!req.body.username || !req.body.password) {
+        res.json({success: false, msg: 'Please pass username and password.'});
+      } else {
+        var newUser = new User({
+          username: req.body.username,
+          password: req.body.password
+        });
+        // save the user
+        newUser.save(function(err) {
+          if (err) {
+            return res.json({success: false, msg: err.msg});
+          }
+          res.json({success: true, msg: 'Successful created new user.'});
+        });
+      }
+    }  
 };
