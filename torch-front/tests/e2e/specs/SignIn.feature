@@ -4,4 +4,3 @@ Feature: User sign in
         When User enters username as '<username>' and password as '<password>'
         And User clicks on login button
         Then User is ablle to successfully login
-    

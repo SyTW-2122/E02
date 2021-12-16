@@ -3,6 +3,7 @@ const { visit } = cy;
 
 Given ('User is at the login page', () => {
     cy.visit('/', {timeout: 10000});
+    cy.viewport(375, 812);
 })
 
 When ('User enters username as {string} and password as {string}', (username, password) => {
@@ -11,7 +12,7 @@ When ('User enters username as {string} and password as {string}', (username, pa
 })
 
 And ('User clicks on login button', () => {
-    cy.get('#btnLogin').click()
+    cy.get('.login-button').click()
 })
 
 Then ('User is able to succesfully login', () => {

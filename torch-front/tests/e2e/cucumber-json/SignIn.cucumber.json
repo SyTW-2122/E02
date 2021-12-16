@@ -22,7 +22,7 @@
             "name": "User is at the login page",
             "result": {
               "status": "passed",
-              "duration": 1957000000
+              "duration": 715000000
             }
           },
           {
@@ -31,9 +31,8 @@
             "line": 4,
             "name": "User enters username as '<username>' and password as '<password>'",
             "result": {
-              "status": "failed",
-              "duration": 4086000000,
-              "error_message": "CypressError: Timed out retrying: Expected to find element: '#txtUsername', but never found it.\n    at Object.cypressErr (http://localhost:8080/__cypress/runner/cypress_runner.js:86207:11)\n    at Object.throwErr (http://localhost:8080/__cypress/runner/cypress_runner.js:86162:18)\n    at Object.throwErrByPath (http://localhost:8080/__cypress/runner/cypress_runner.js:86194:17)\n    at retry (http://localhost:8080/__cypress/runner/cypress_runner.js:76849:16)\n    at onFailFn (http://localhost:8080/__cypress/runner/cypress_runner.js:65634:16)\nFrom previous event:\n    at Object.verifyUpcomingAssertions (http://localhost:8080/__cypress/runner/cypress_runner.js:65641:69)\n    at http://localhost:8080/__cypress/runner/cypress_runner.js:71950:21\nFrom previous event:\n    at resolveElements (http://localhost:8080/__cypress/runner/cypress_runner.js:71945:44)\n    at tryFn (http://localhost:8080/__cypress/runner/cypress_runner.js:77307:21)\n    at whenStable (http://localhost:8080/__cypress/runner/cypress_runner.js:77342:12)\n    at http://localhost:8080/__cypress/runner/cypress_runner.js:76892:16"
+              "status": "passed",
+              "duration": 1082000000
             }
           },
           {
@@ -42,7 +41,8 @@
             "line": 5,
             "name": "User clicks on login button",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 130000000
             }
           },
           {
@@ -51,7 +51,8 @@
             "line": 6,
             "name": "User is ablle to successfully login",
             "result": {
-              "status": "skipped"
+              "status": "undefined",
+              "duration": 43000000
             }
           }
         ]
