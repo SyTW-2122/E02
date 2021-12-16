@@ -22,7 +22,7 @@
             "name": "I'm in te user page",
             "result": {
               "status": "passed",
-              "duration": 886000000
+              "duration": 2017000000
             }
           },
           {
@@ -31,8 +31,9 @@
             "line": 5,
             "name": "I should see the user content",
             "result": {
-              "status": "passed",
-              "duration": 49000000
+              "status": "failed",
+              "duration": 4074000000,
+              "error_message": "CypressError: Timed out retrying: Expected to find element: '.user', but never found it.\n    at Object.cypressErr (http://localhost:8080/__cypress/runner/cypress_runner.js:86207:11)\n    at Object.throwErr (http://localhost:8080/__cypress/runner/cypress_runner.js:86162:18)\n    at Object.throwErrByPath (http://localhost:8080/__cypress/runner/cypress_runner.js:86194:17)\n    at retry (http://localhost:8080/__cypress/runner/cypress_runner.js:76849:16)\n    at onFailFn (http://localhost:8080/__cypress/runner/cypress_runner.js:65634:16)\nFrom previous event:\n    at Object.verifyUpcomingAssertions (http://localhost:8080/__cypress/runner/cypress_runner.js:65813:16)\n    at http://localhost:8080/__cypress/runner/cypress_runner.js:71950:21\nFrom previous event:\n    at resolveElements (http://localhost:8080/__cypress/runner/cypress_runner.js:71945:44)\n    at tryFn (http://localhost:8080/__cypress/runner/cypress_runner.js:77307:21)\n    at whenStable (http://localhost:8080/__cypress/runner/cypress_runner.js:77342:12)\n    at http://localhost:8080/__cypress/runner/cypress_runner.js:76892:16"
             }
           }
         ]
