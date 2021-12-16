@@ -146,13 +146,14 @@ export default {
   },
   mounted() {
     if (this.loggedIn) {
-      this.$router.push('/profile');
+      this.$router.push('/user');
     }
   },
   methods: {
     handleRegister() {
       this.message = '';
       this.submitted = true;
+      console.log(this.user);
       this.$validator.validate().then((isValid) => {
         if (isValid) {
           this.$store.dispatch('auth/register', this.user).then(
@@ -171,7 +172,7 @@ export default {
       });
     },
     submitTrue() { return this.submitted; },
-    successTrue() { return this.submitted; },
+    successTrue() { return this.successful; },
   },
 };
 </script>
