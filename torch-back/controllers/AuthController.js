@@ -3,7 +3,6 @@ const settings = require('../config/SecretToken');
 require('../config/passport')(passport);
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const router = express.Router();
 const User = require("../models/User.js");
 
 module.exports = {
@@ -14,9 +13,9 @@ module.exports = {
         if (err) throw err;
         if (!user) {
           res.status(401).send({success: false, msg: 'Authentication failed. User not found.'});
+          return;
         } else {
           // check if password matches
-          res.send(req.body.password)
           user.comparePassword(req.body.password, function (err, isMatch) {
             if (isMatch && !err) {
               // if user is found and password is right create a token
