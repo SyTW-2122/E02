@@ -43,4 +43,11 @@ userSchema.methods.comparePassword = function bCryptCompare(passw, cb) {
   });
 };
 
+userSchema.methods.deleteData = function deleteData(uname, cb) {
+  const userId = this.findOne({
+    username: uname,
+  }).id;
+  console.log(userId);
+};
+
 module.exports = mongoose.model('User', userSchema);
