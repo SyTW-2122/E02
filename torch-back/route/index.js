@@ -1,5 +1,7 @@
+const userAPI = require('./user');
+const authAPI = require('./auth');
+
 module.exports = (app) => {
-  app.use('/api/user', require('./api/user'));
-  app.use('/api/auth', require('./api/auth'));
-  app.use('/upload', require('./multer'));
+  app.use('/api/user', userAPI);
+  app.use('/api/auth', authAPI);
 };
