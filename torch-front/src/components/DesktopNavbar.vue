@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- Nav bar -->
     <nav class="navbar navbar-dark bg-teal justify-content-between flex-nowrap flex-row">
       <div class="container">
         <a class="navbar-brand text-white float-left " href="#">
@@ -26,11 +25,67 @@
               PROFILE
             </b-nav-item>
           </li>
+
+          <div v-if="!currentUser" class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <router-link to="/sign-up" class="nav-link">
+                <font-awesome-icon icon="user-plus" />Sign Up
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/sign-in" class="nav-link">
+                <font-awesome-icon icon="sign-in-alt" />Login
+              </router-link>
+            </li>
+          </div>
+
+          <div v-if="currentUser" class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <font-awesome-icon icon="user" />
+                {{currentUser.data.username}}
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href @click.prevent="logOut">
+                <font-awesome-icon icon="sign-out-alt" />LogOut
+              </a>
+            </li>
+          </div>
         </ul>
       </div>
     </nav>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    currentUser() {
+      console.log(this.$store.state.auth.user);
+      return this.$store.state.auth.user;
+    },
+    showAdminBoard() {
+      if (this.currentUser && this.currentUser.roles) {
+        return this.currentUser.roles.includes('ROLE_ADMIN');
+      }
+
+      return false;
+    },
+    showModeratorBoard() {
+      if (this.currentUser && this.currentUser.roles) {
+        return this.currentUser.roles.includes('ROLE_MODERATOR');
+      }
+
+      return false;
+    },
+  },
+  methods: {
+    logOut() {
+      this.$store.dispatch('auth/logout');
+      this.$router.push('/sign-in');
+    },
+  },
+};
+</script>
 
 <style scoped>
 

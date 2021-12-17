@@ -21,6 +21,7 @@
     </b-col>
     <b-col></b-col>
   </b-row>
+  <div v-if="!successTrue()">
   <br />
   <b-row class="text-center">
     <b-col></b-col>
@@ -56,7 +57,6 @@
     <b-col></b-col>
     <b-col cols="8">
       <form name="form" @submit.prevent="handleRegister">
-        <div v-if="!successTrue()">
           <div class="form-group">
             <label for="username">Username</label>
             <input
@@ -89,13 +89,12 @@
           <div class="form-group text-center my-3">
             <button type="submit" class="btn btn-success px-5">SIGN UP</button>
           </div>
-        </div>
       </form>
       <div
         v-if="message"
         class="alert"
         :class="successTrue() ? 'alert-success' : 'alert-danger'"
-      >{{message}}</div>
+      >{{message.msg}}</div>
     </b-col>
     <b-col></b-col>
   </b-row>
@@ -112,10 +111,18 @@
   <b-row class="text-center">
     <b-col></b-col>
     <b-col cols="8">
-      <p> Already have an account? Login here</p>
+      <p> Already have an account?
+          <router-link to="/sign-in">Login here</router-link></p>
     </b-col>
     <b-col></b-col>
   </b-row>
+  </div>
+  <div v-else class="text-center">
+    <h1 class="text-success text-center">Account created succesfully</h1>
+    <router-link to="/sign-in">
+      <b-button class="btn-primary m-5">Go to login</b-button>
+    </router-link>
+  </div>
 </b-container>
 </template>
 
@@ -139,13 +146,14 @@ export default {
   },
   mounted() {
     if (this.loggedIn) {
-      this.$router.push('/profile');
+      this.$router.push('/user');
     }
   },
   methods: {
     handleRegister() {
       this.message = '';
       this.submitted = true;
+      console.log(this.user);
       this.$validator.validate().then((isValid) => {
         if (isValid) {
           this.$store.dispatch('auth/register', this.user).then(
@@ -164,7 +172,7 @@ export default {
       });
     },
     submitTrue() { return this.submitted; },
-    successTrue() { return this.submitted; },
+    successTrue() { return this.successful; },
   },
 };
 </script>
