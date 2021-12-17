@@ -8,10 +8,10 @@
     "uri": "SignUp.feature",
     "elements": [
       {
-        "id": "user-sign-up;user-register-with-username,-email-and-password",
+        "id": "user-sign-up;user-register-with-username-and-password",
         "keyword": "Scenario",
         "line": 2,
-        "name": "User register with username, email and password",
+        "name": "User register with username and password",
         "tags": [],
         "type": "scenario",
         "steps": [
@@ -22,17 +22,17 @@
             "name": "User is at the sign up page",
             "result": {
               "status": "passed",
-              "duration": 3247000000
+              "duration": 1109000000
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
             "line": 4,
-            "name": "User enters username as '<username>', email as '<email>' and password as '<password>'",
+            "name": "User enters username as \"usu1\" and password as \"usu1\"",
             "result": {
-              "status": "undefined",
-              "duration": 118000000
+              "status": "passed",
+              "duration": 888000000
             }
           },
           {
@@ -41,7 +41,8 @@
             "line": 5,
             "name": "User clicks on sign up button",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 241000000
             }
           },
           {
@@ -50,7 +51,8 @@
             "line": 6,
             "name": "User is fully registered and able to successfully login",
             "result": {
-              "status": "skipped"
+              "status": "passed",
+              "duration": 1434000000
             }
           }
         ]

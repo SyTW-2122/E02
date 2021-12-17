@@ -10,10 +10,10 @@ When ('User enters username as {string} and password as {string}', (username, pa
     cy.get('#input-password').type(password)
 })
 
-And ('User clicks on sign up button and is fully registered', () => {
+And ('User clicks on sign up button', () => {
     cy.get('.signup-button').click()
 })
 
-Then ('User clicks on Login here and User go to the login page', () => {
-    cy.visit('/http://localhost:8080/');
+Then ('User is fully registered and able to successfully login', () => {
+    cy.get('.login-here a').click()
 })
