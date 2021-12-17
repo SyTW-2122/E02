@@ -22,7 +22,7 @@
             "name": "User is at the login page",
             "result": {
               "status": "passed",
-              "duration": 826000000
+              "duration": 2135000000
             }
           },
           {
@@ -32,7 +32,7 @@
             "name": "User enters username as \"Eric\" and password as \"1234\"",
             "result": {
               "status": "passed",
-              "duration": 536000000
+              "duration": 909000000
             }
           },
           {
@@ -42,7 +42,7 @@
             "name": "User clicks on login button",
             "result": {
               "status": "passed",
-              "duration": 144000000
+              "duration": 135000000
             }
           },
           {
@@ -52,7 +52,7 @@
             "name": "User is able to login",
             "result": {
               "status": "passed",
-              "duration": 555000000
+              "duration": 611000000
             }
           }
         ]
@@ -72,7 +72,7 @@
             "name": "User is at the login page",
             "result": {
               "status": "passed",
-              "duration": 586000000
+              "duration": 445000000
             }
           },
           {
@@ -82,7 +82,7 @@
             "name": "User enters username as \"Laura\" and password as \"1234\"",
             "result": {
               "status": "passed",
-              "duration": 543000000
+              "duration": 495000000
             }
           },
           {
@@ -92,7 +92,7 @@
             "name": "User clicks on login button",
             "result": {
               "status": "passed",
-              "duration": 124000000
+              "duration": 114000000
             }
           },
           {
@@ -102,7 +102,75 @@
             "name": "User is able to login",
             "result": {
               "status": "passed",
-              "duration": 576000000
+              "duration": 335000000
+            }
+          }
+        ]
+      },
+      {
+        "id": "user-sign-in;user-without-an-account-created-can-not-login-and-taps-on-register-link",
+        "keyword": "Scenario",
+        "line": 14,
+        "name": "User without an account created can not login and taps on register link",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 15,
+            "name": "User is at the login main page",
+            "result": {
+              "status": "passed",
+              "duration": 453000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 16,
+            "name": "User enters not valid username as \"usu1\" and password as \"usu1\"",
+            "result": {
+              "status": "passed",
+              "duration": 537000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 17,
+            "name": "User clicks on button",
+            "result": {
+              "status": "passed",
+              "duration": 132000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 18,
+            "name": "User is not able to login",
+            "result": {
+              "status": "failed",
+              "error_message": "CypressError: Timed out retrying: Expected to find element: '.alert', but never found it.\n    at Object.cypressErr (http://localhost:8080/__cypress/runner/cypress_runner.js:86207:11)\n    at Object.throwErr (http://localhost:8080/__cypress/runner/cypress_runner.js:86162:18)\n    at Object.throwErrByPath (http://localhost:8080/__cypress/runner/cypress_runner.js:86194:17)\n    at retry (http://localhost:8080/__cypress/runner/cypress_runner.js:76849:16)\n    at onFailFn (http://localhost:8080/__cypress/runner/cypress_runner.js:65634:16)\nFrom previous event:\n    at Object.verifyUpcomingAssertions (http://localhost:8080/__cypress/runner/cypress_runner.js:65641:69)\n    at http://localhost:8080/__cypress/runner/cypress_runner.js:71950:21\nFrom previous event:\n    at resolveElements (http://localhost:8080/__cypress/runner/cypress_runner.js:71945:44)\n    at tryFn (http://localhost:8080/__cypress/runner/cypress_runner.js:77307:21)\n    at whenStable (http://localhost:8080/__cypress/runner/cypress_runner.js:77342:12)\n    at http://localhost:8080/__cypress/runner/cypress_runner.js:76892:16"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 19,
+            "name": "User clicks on register link",
+            "result": {
+              "status": "skipped"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 20,
+            "name": "User is at the register page",
+            "result": {
+              "status": "skipped"
             }
           }
         ]
