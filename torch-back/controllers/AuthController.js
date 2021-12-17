@@ -6,6 +6,9 @@ const User = require('../models/User');
 
 module.exports = {
   login: (req, res) => {
+    if (!req.body.username || !req.body.password) {
+      res.json({ success: false, msg: 'Please pass username and password.' });
+    }
     User.findOne({
       username: req.body.username,
     }, (err, user) => {
@@ -20,7 +23,12 @@ module.exports = {
             // if user is found and password is right create a token
             const token = jwt.sign(user.toJSON(), settings.jwtSecret);
             // return the information including token as JSON
-            res.json({ success: true, token: `JWT ${token}`, data: req.body });
+            res.json({
+              success: true,
+              msg: `Welcome ${req.body.username}!`,
+              token: `JWT ${token}`,
+              data: req.body,
+            });
           }
           else {
             res.status(401).send({ success: false, msg: 'Authentication failed. Wrong password.' });

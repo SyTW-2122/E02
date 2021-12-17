@@ -1,14 +1,11 @@
-let express = require('express'),
+const express = require('express'),
   cors = require('cors'),
   path = require('path'),
   logger = require('morgan'),
-  bodyParser = require('body-parser');
-  var util= require('util');
-  var encoder = new util.TextEncoder('utf-8');
+  bodyParser = require('body-parser'),
+  userAPI = require('./route/user'),
+  auth = require('./route/auth');
 
-
-const userAPI = require('./route/user');
-const auth = require('./route/auth');
 const app = express();
 
 app.use(logger('dev'));
@@ -24,24 +21,20 @@ app.use(cors());
 app.use('/api/user', userAPI);
 app.use('/api/auth', auth);
 
-
-
 // Find 404
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   console.log(err);
-
   if (req.app.get('env') !== 'development') {
-      delete err.stack;
+    delete err.stack;
   }
-
-    res.status(err.statusCode || 500).json(err);
+  res.status(err.statusCode || 500).json(err);
 });
 
 module.exports = app;
