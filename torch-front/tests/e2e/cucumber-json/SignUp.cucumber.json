@@ -22,7 +22,7 @@
             "name": "User is at the login main page",
             "result": {
               "status": "passed",
-              "duration": 3355000000
+              "duration": 3563000000
             }
           },
           {
@@ -32,7 +32,7 @@
             "name": "User enters not valid username as \"usu1\" and password as \"usu1\"",
             "result": {
               "status": "passed",
-              "duration": 1582000000
+              "duration": 2332000000
             }
           },
           {
@@ -42,7 +42,7 @@
             "name": "User clicks on button",
             "result": {
               "status": "passed",
-              "duration": 226000000
+              "duration": 182000000
             }
           },
           {
@@ -52,7 +52,7 @@
             "name": "User is not able to login",
             "result": {
               "status": "failed",
-              "duration": 4066000000,
+              "duration": 4088000000,
               "error_message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.username-alert`, but never found it.\n    at Context.eval (http://localhost:8080/__cypress/tests?p=tests/e2e/specs/SignUp.feature:41765:6)\n    at Context.resolveAndRunStepDefinition (http://localhost:8080/__cypress/tests?p=tests/e2e/specs/SignUp.feature:6935:29)\n    at Context.eval (http://localhost:8080/__cypress/tests?p=tests/e2e/specs/SignUp.feature:6256:35)"
             }
           },
