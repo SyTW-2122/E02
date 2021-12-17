@@ -54,7 +54,7 @@
             ></b-form-input>
             <div
               v-if="errors.has('username')"
-              class="alert alert-danger"
+              class="alert alert-danger username-alert"
               role="alert"
             >Username is required!</div>
           </b-form-group>

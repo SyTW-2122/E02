@@ -22,7 +22,7 @@
             "name": "User is at the login page",
             "result": {
               "status": "passed",
-              "duration": 2135000000
+              "duration": 777000000
             }
           },
           {
@@ -32,7 +32,7 @@
             "name": "User enters username as \"Eric\" and password as \"1234\"",
             "result": {
               "status": "passed",
-              "duration": 909000000
+              "duration": 559000000
             }
           },
           {
@@ -42,7 +42,7 @@
             "name": "User clicks on login button",
             "result": {
               "status": "passed",
-              "duration": 135000000
+              "duration": 118000000
             }
           },
           {
@@ -52,7 +52,7 @@
             "name": "User is able to login",
             "result": {
               "status": "passed",
-              "duration": 611000000
+              "duration": 631000000
             }
           }
         ]
@@ -72,7 +72,7 @@
             "name": "User is at the login page",
             "result": {
               "status": "passed",
-              "duration": 445000000
+              "duration": 713000000
             }
           },
           {
@@ -82,7 +82,7 @@
             "name": "User enters username as \"Laura\" and password as \"1234\"",
             "result": {
               "status": "passed",
-              "duration": 495000000
+              "duration": 561000000
             }
           },
           {
@@ -92,7 +92,7 @@
             "name": "User clicks on login button",
             "result": {
               "status": "passed",
-              "duration": 114000000
+              "duration": 159000000
             }
           },
           {
@@ -102,7 +102,7 @@
             "name": "User is able to login",
             "result": {
               "status": "passed",
-              "duration": 335000000
+              "duration": 670000000
             }
           }
         ]
@@ -122,7 +122,7 @@
             "name": "User is at the login main page",
             "result": {
               "status": "passed",
-              "duration": 453000000
+              "duration": 633000000
             }
           },
           {
@@ -132,7 +132,7 @@
             "name": "User enters not valid username as \"usu1\" and password as \"usu1\"",
             "result": {
               "status": "passed",
-              "duration": 537000000
+              "duration": 527000000
             }
           },
           {
@@ -142,7 +142,7 @@
             "name": "User clicks on button",
             "result": {
               "status": "passed",
-              "duration": 132000000
+              "duration": 122000000
             }
           },
           {
@@ -152,7 +152,7 @@
             "name": "User is not able to login",
             "result": {
               "status": "failed",
-              "error_message": "CypressError: Timed out retrying: Expected to find element: '.alert', but never found it.\n    at Object.cypressErr (http://localhost:8080/__cypress/runner/cypress_runner.js:86207:11)\n    at Object.throwErr (http://localhost:8080/__cypress/runner/cypress_runner.js:86162:18)\n    at Object.throwErrByPath (http://localhost:8080/__cypress/runner/cypress_runner.js:86194:17)\n    at retry (http://localhost:8080/__cypress/runner/cypress_runner.js:76849:16)\n    at onFailFn (http://localhost:8080/__cypress/runner/cypress_runner.js:65634:16)\nFrom previous event:\n    at Object.verifyUpcomingAssertions (http://localhost:8080/__cypress/runner/cypress_runner.js:65641:69)\n    at http://localhost:8080/__cypress/runner/cypress_runner.js:71950:21\nFrom previous event:\n    at resolveElements (http://localhost:8080/__cypress/runner/cypress_runner.js:71945:44)\n    at tryFn (http://localhost:8080/__cypress/runner/cypress_runner.js:77307:21)\n    at whenStable (http://localhost:8080/__cypress/runner/cypress_runner.js:77342:12)\n    at http://localhost:8080/__cypress/runner/cypress_runner.js:76892:16"
+              "error_message": "CypressError: Timed out retrying: Expected to find element: '.username-alert', but never found it.\n    at Object.cypressErr (http://localhost:8080/__cypress/runner/cypress_runner.js:86207:11)\n    at Object.throwErr (http://localhost:8080/__cypress/runner/cypress_runner.js:86162:18)\n    at Object.throwErrByPath (http://localhost:8080/__cypress/runner/cypress_runner.js:86194:17)\n    at retry (http://localhost:8080/__cypress/runner/cypress_runner.js:76849:16)\n    at onFailFn (http://localhost:8080/__cypress/runner/cypress_runner.js:65634:16)\nFrom previous event:\n    at Object.verifyUpcomingAssertions (http://localhost:8080/__cypress/runner/cypress_runner.js:65641:69)\n    at http://localhost:8080/__cypress/runner/cypress_runner.js:71950:21\nFrom previous event:\n    at resolveElements (http://localhost:8080/__cypress/runner/cypress_runner.js:71945:44)\n    at tryFn (http://localhost:8080/__cypress/runner/cypress_runner.js:77307:21)\n    at whenStable (http://localhost:8080/__cypress/runner/cypress_runner.js:77342:12)\n    at http://localhost:8080/__cypress/runner/cypress_runner.js:76892:16"
             }
           },
           {

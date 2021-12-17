@@ -34,8 +34,9 @@ And ('User clicks on button', () => {
     cy.get('.login-button').click()
 })
 
+// NOTE: username-alert must be visible here, but is not.
 Then ('User is not able to login', () => {
-    cy.get('.alert')
+    cy.get('.username-alert')
 })
 
 When ('User clicks on register link', () => {
