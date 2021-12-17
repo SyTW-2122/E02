@@ -73,20 +73,6 @@
             >{{errors.first('username')}}</div>
           </div>
           <div class="form-group">
-            <label for="email">Email</label>
-            <input
-              v-model="user.email"
-              v-validate="'required|email|max:50'"
-              type="email"
-              class="form-control"
-              name="email"
-            />
-            <div
-              v-if="submitted && errors.has('email')"
-              class="alert-danger"
-            >{{errors.first('email')}}</div>
-          </div>
-          <div class="form-group">
             <label for="password">Password</label>
             <input
               v-model="user.password"
@@ -150,7 +136,7 @@ export default {
       submitted: false,
       successful: false,
       message: '',
-      user: new User('', '', ''),
+      user: new User('', ''),
     };
   },
   computed: {
@@ -160,13 +146,14 @@ export default {
   },
   mounted() {
     if (this.loggedIn) {
-      this.$router.push('/profile');
+      this.$router.push('/user');
     }
   },
   methods: {
     handleRegister() {
       this.message = '';
       this.submitted = true;
+      console.log(this.user);
       this.$validator.validate().then((isValid) => {
         if (isValid) {
           this.$store.dispatch('auth/register', this.user).then(
@@ -185,7 +172,7 @@ export default {
       });
     },
     submitTrue() { return this.submitted; },
-    successTrue() { return this.submitted; },
+    successTrue() { return this.successful; },
   },
 };
 </script>
