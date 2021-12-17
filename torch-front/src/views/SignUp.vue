@@ -47,7 +47,7 @@
             class="input-group-username"
           >
             <b-form-input
-              id="input-email"
+              id="input-username"
               type="text"
               v-model="user.username"
               v-validate="'required'"
@@ -59,26 +59,6 @@
               class="alert alert-danger"
               role="alert"
             >Username is required!</div>
-          </b-form-group>
-          <b-form-group
-            id="input-group-email"
-            label=""
-            label-for="input-email"
-            class="input-group-email"
-          >
-            <b-form-input
-              id="input-email"
-              type="text"
-              v-model="user.email"
-              v-validate="'required'"
-              placeholder="Email Address"
-              class="input-email border-bottom"
-            ></b-form-input>
-            <div
-              v-if="errors.has('email')"
-              class="alert alert-danger"
-              role="alert"
-            >Email address is required!</div>
           </b-form-group>
           <b-form-group
             id="input-group-password"
@@ -176,8 +156,8 @@ export default {
 .sign-up {
   background-color: #FFFFFF;
   border-radius: 20px;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 55px;
+  margin-bottom: 55px;
 }
 
 .welcome img {
@@ -246,19 +226,15 @@ export default {
   font-size: 13px;
 }
 
-.input-group-email {
-  margin-bottom: 20px;
-}
-
-.input-email {
-  border: none;
-}
-
 .input-password {
   border: none;
 }
 
 .input-group-username {
+  margin-bottom: 20px;
+}
+
+.input-group-password {
   margin-bottom: 20px;
 }
 
