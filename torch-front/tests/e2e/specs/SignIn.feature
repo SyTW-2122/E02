@@ -3,13 +3,11 @@ Feature: User sign in
     Given User is at the login page
     When User enters username as "<username>" and password as "<password>"
     And User clicks on login button
-    Then User is able to login
+    Then User is at the user page
     
-
     Examples:
       | username | password |
-      |     Eric |     1234 |
-      |    Laura |     1234 |
+      |     Ale  |   123456 |
 
   Scenario: User without an account created can not login and taps on register link
     Given User is at the login main page

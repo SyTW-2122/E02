@@ -1,7 +1,7 @@
 import { defineFeature, loadFeature} from 'jest-cucumber';
-import { mount, createLocalVue} from '@vue/test-utils';
+import { mount, createLocalVue, shallowMount} from '@vue/test-utils';
 import SignIn from '@/views/SignIn.vue';
-import App from '@/App.vue';
+import storeModule from '../../../src/store/index';
 
 const feature = loadFeature('./SignIn.feature', { loadRelativePath: true, errors: true });
 defineFeature(feature, test => {
@@ -12,7 +12,7 @@ defineFeature(feature, test => {
     and
   }) => {
     given('the page is open in a browser', () => {
-      const wrapper =  mount(App);
+      const wrapper =  shallowMount(SignIn, {storeModule});
     });
 
     when('user inspects the page', () => {
