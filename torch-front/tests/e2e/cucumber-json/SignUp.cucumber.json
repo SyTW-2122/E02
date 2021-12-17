@@ -8,10 +8,10 @@
     "uri": "SignUp.feature",
     "elements": [
       {
-        "id": "user-sign-up;user-without-an-account-created-can-not-login-and-taps-on-register-link",
+        "id": "user-sign-up;user-register-with-username,-email-and-password",
         "keyword": "Scenario",
         "line": 2,
-        "name": "User without an account created can not login and taps on register link",
+        "name": "User register with username, email and password",
         "tags": [],
         "type": "scenario",
         "steps": [
@@ -19,85 +19,26 @@
             "arguments": [],
             "keyword": "Given ",
             "line": 3,
-            "name": "User is at the login main page",
+            "name": "User is at the sign up page",
             "result": {
               "status": "passed",
-              "duration": 3563000000
+              "duration": 3247000000
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
             "line": 4,
-            "name": "User enters not valid username as \"usu1\" and password as \"usu1\"",
+            "name": "User enters username as '<username>', email as '<email>' and password as '<password>'",
             "result": {
-              "status": "passed",
-              "duration": 2332000000
+              "status": "undefined",
+              "duration": 118000000
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
             "line": 5,
-            "name": "User clicks on button",
-            "result": {
-              "status": "passed",
-              "duration": 182000000
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Then ",
-            "line": 6,
-            "name": "User is not able to login",
-            "result": {
-              "status": "failed",
-              "duration": 4088000000,
-              "error_message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.username-alert`, but never found it.\n    at Context.eval (http://localhost:8080/__cypress/tests?p=tests/e2e/specs/SignUp.feature:41765:6)\n    at Context.resolveAndRunStepDefinition (http://localhost:8080/__cypress/tests?p=tests/e2e/specs/SignUp.feature:6935:29)\n    at Context.eval (http://localhost:8080/__cypress/tests?p=tests/e2e/specs/SignUp.feature:6256:35)"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "line": 7,
-            "name": "User clicks on register link",
-            "result": {
-              "status": "skipped"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Then ",
-            "line": 8,
-            "name": "User is at the register page",
-            "result": {
-              "status": "skipped"
-            }
-          }
-        ]
-      },
-      {
-        "id": "user-sign-up;user-register-with-username,-email-and-password",
-        "keyword": "Scenario",
-        "line": 10,
-        "name": "User register with username, email and password",
-        "tags": [],
-        "type": "scenario",
-        "steps": [
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "line": 11,
-            "name": "User enters username as \"<username>\", email as \"<email>\" and password as \"<password>\"",
-            "result": {
-              "status": "failed",
-              "error_message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `#input-username`, but never found it.\n    at Context.eval (http://localhost:8080/__cypress/tests?p=tests/e2e/specs/SignUp.feature:41776:6)\n    at Context.resolveAndRunStepDefinition (http://localhost:8080/__cypress/tests?p=tests/e2e/specs/SignUp.feature:6935:29)\n    at Context.eval (http://localhost:8080/__cypress/tests?p=tests/e2e/specs/SignUp.feature:6256:35)"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And ",
-            "line": 12,
             "name": "User clicks on sign up button",
             "result": {
               "status": "skipped"
@@ -106,7 +47,7 @@
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 13,
+            "line": 6,
             "name": "User is fully registered and able to successfully login",
             "result": {
               "status": "skipped"
