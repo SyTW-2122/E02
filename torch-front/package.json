@@ -9,7 +9,8 @@
     "test:e2e": "vue-cli-service test:e2e",
     "test": "npx cypress open",
     "test:ci": "npx cypress run --spec **/*.features",
-    "test:tags": "npx cypress-tags run -e TAGS=$TAGS"
+    "test:tags": "npx cypress-tags run -e TAGS=$TAGS",
+    "test-jest": "jest"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
@@ -40,9 +41,10 @@
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/eslint-config-airbnb": "^5.0.2",
-    "@vue/test-utils": "^1.0.3",
+    "@vue/test-utils": "^1.3.0",
     "babel-eslint": "^10.1.0",
     "cucumber": "^7.0.0-rc.0",
+    "cypress": "^9.1.1",
     "cypress-cucumber-preprocessor": "^4.3.1",
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.2",
