@@ -37,62 +37,72 @@
         </b-col>
       </b-row>
       <div class="login-form">
-        <b-form-row @submit.prevent="handleLogin">
-          <b-form-group
-            id="input-group-email"
-            label=""
-            label-for="input-email"
-            class="input-group-email"
-          >
-            <b-form-input
-                id="input-email"
-                type="text"
-                v-model="user.username"
-                v-validate="'required'"
-                placeholder="Enter username"
-                class="input-email border-bottom"
-            ></b-form-input>
-            <div
-              v-if="errors.has('username')"
-              class="alert alert-danger username-alert"
-              role="alert"
-            >Username is required!</div>
-          </b-form-group>
-          <b-form-group
-            id="input-group-password"
-            label=""
-            label-for="input-password"
-            class="input-group-password"
-          >
-            <b-form-input
-                id="input-password"
-                type="password"
-                v-model="user.password"
-                v-validate="'required'"
-                placeholder="Enter password"
-                class="input-password border-bottom"
-            ></b-form-input>
-            <div
-              v-if="errors.has('password')"
-              class="alert alert-danger"
-              role="alert"
-            >Password is required!</div>
-            <b-row class="bottom-form" align-h="between">
-              <b-col cols="6">
-                <b-form-checkbox class="remember-me">&nbsp;Remember me</b-form-checkbox>
-              </b-col>
-              <b-col cols="6">
-                <p><a href="" class="forgot-password">Forgot password?</a></p>
-              </b-col>
-            </b-row>
-          </b-form-group>
-          <div class="login-button">
-            <b-button pill type="submit" variant="primary">LOGIN</b-button>
-          </div>
-          <div class="create-account">
-            <p>Don't have an account?&nbsp;</p>
-            <a href="">Create a torch account</a>
-          </div>
+        <b-form-row>
+          <b-form @submit.prevent="handleLogin">
+            <b-form-group
+              id="input-group-email"
+              label=""
+              label-for="input-email"
+              class="input-group-email"
+            >
+              <b-form-input
+                  id="input-email"
+                  type="text"
+                  v-model="user.username"
+                  v-validate="'required'"
+                  placeholder="Enter username"
+                  class="input-email border-bottom"
+                  name="username"
+              ></b-form-input>
+              <div
+                v-if="errors.has('username')"
+                class="alert alert-danger username-alert"
+                role="alert"
+              >Username is required!</div>
+            </b-form-group>
+            <b-form-group
+              id="input-group-password"
+              label=""
+              label-for="input-password"
+              class="input-group-password"
+            >
+              <b-form-input
+                  id="input-password"
+                  type="password"
+                  v-model="user.password"
+                  v-validate="'required'"
+                  placeholder="Enter password"
+                  class="input-password border-bottom"
+                  name="password"
+              ></b-form-input>
+              <div
+                v-if="errors.has('password')"
+                class="alert alert-danger"
+                role="alert"
+              >Password is required!</div>
+              <b-row class="bottom-form" align-h="between">
+                <b-col cols="6">
+                  <b-form-checkbox class="remember-me">&nbsp;Remember me</b-form-checkbox>
+                </b-col>
+                <b-col cols="6">
+                  <p><a href="" class="forgot-password">Forgot password?</a></p>
+                </b-col>
+              </b-row>
+            </b-form-group>
+            <div class="form-group">
+              <div v-if="message" class="alert alert-danger" role="alert">{{message.msg}}</div>
+            </div>
+            <div class="login-button">
+              <b-button pill type="submit" variant="primary" :disabled="loading">
+                <span v-show="loading" class="spinner-border spinner-border-sm"></span>
+                <span>Login</span>
+              </b-button>
+            </div>
+            <div class="create-account">
+              <p class="mx-2">Don't have an account?&nbsp;</p>
+              <router-link to="/sign-up">Create a torch account</router-link>
+            </div>
+          </b-form>
         </b-form-row>
       </div>
     </b-container>

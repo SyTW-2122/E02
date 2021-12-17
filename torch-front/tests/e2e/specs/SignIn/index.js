@@ -2,7 +2,7 @@ import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps';
 const { visit } = cy;
 
 Given ('User is at the login page', () => {
-    cy.visit('/', {timeout: 10000});
+    cy.visit('/sign-in', {timeout: 10000});
     cy.viewport(375, 812);
 })
 
