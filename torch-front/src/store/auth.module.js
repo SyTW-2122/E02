@@ -8,6 +8,9 @@ const initialState = userData
 export const auth = {
   namespaced: true,
   state: initialState,
+  getters: {
+    isLoggedIn: () => initialState.status.loggedIn,
+  },
   actions: {
     login({ commit }, user) {
       return AuthService.login(user).then(
