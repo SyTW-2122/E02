@@ -51,7 +51,7 @@
                   v-model="user.username"
                   v-validate="'required'"
                   placeholder="Enter username"
-                  class="input-email- border-bottom"
+                  class="input-email border-bottom"
                   name="username"
               ></b-form-input>
               <div
