@@ -11,7 +11,7 @@ Scenario: Opening the sign in page
   And page should contain the option to login with Facebook
   And When user taps on login buttom
     Then page content is changed
-    And the activities view is displayed
+    And the user view is displayed
   And When user taps on Create a torch account
     Then page content is changed
     And the sign up view is displayed
