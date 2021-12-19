@@ -18,7 +18,15 @@ export default {
       content: '',
     };
   },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    },
+  },
   mounted() {
+    if (!this.currentUser) {
+      this.$router.push('/sign-in');
+    }
     UserService.getPublicContent().then(
       (response) => {
         this.content = response.data;

@@ -1,7 +1,7 @@
 <template>
   <div class="fluid-container">
-    <MobileNavbar v-if="mobile && !['sign-in','sign-up'].includes($route.name)"/>
-    <DesktopNavbar v-else-if="!mobile && !['sign-in','sign-up'].includes($route.name)"/>
+    <MobileNavbar v-if="mobile && ['activity','explore','user'].includes($route.name)"/>
+    <DesktopNavbar v-else-if="!mobile && ['activity','explore','user'].includes($route.name)"/>
     <router-view/>
   </div>
 </template>
