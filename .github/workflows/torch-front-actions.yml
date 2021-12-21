@@ -2,13 +2,15 @@ name: Frontend actions for CI/CD
 on:
   push:
     branches: [ main ]
+defaults:
+  run:
+    working-directory: torch-front
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: cd torch-front
       - run: npm install
       - run: npm run test
   #build:
