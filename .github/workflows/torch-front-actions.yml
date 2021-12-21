@@ -2,6 +2,7 @@ name: Frontend actions for CI/CD
 on:
   push:
     branches: [ main ]
+    
 defaults:
   run:
     working-directory: torch-front

@@ -7,8 +7,8 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-    "test": "npx cypress open",
-    "test:ci": "npx cypress run --spec **/*.features",
+    "test": "npx cypress open ",
+    "test:ci": "npx cypress run --record --key 32926fdb-76b1-42c4-99c9-740c442d13dd",
     "test:tags": "npx cypress-tags run -e TAGS=$TAGS"
   },
   "dependencies": {
