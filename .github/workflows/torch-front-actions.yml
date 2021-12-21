@@ -5,16 +5,13 @@ on:
 
 jobs:
   test:
-    runs-on: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ubuntu-latest
     steps:
-      - name: Enter frontend folder
-      - run: cd torch-front
+        - name: Enter frontend folder
+        - run: cd torch-front
 
-      - name: Install dependencies
-      - run: npm install
+        - name: Install dependencies
+        - run: npm install
 
-      - name: Run tests
-      - run: npm test
-
-  #build:
-  #deploy:
+        - name: Run tests
+        - run: npm test
