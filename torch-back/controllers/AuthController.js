@@ -1,6 +1,7 @@
 const passport = require('passport');
 require('../config/passport')(passport);
 const jwt = require('jsonwebtoken');
+const ObjectIDObj = require('mongoose').ObjectID;
 const settings = require('../config/SecretToken');
 const User = require('../models/User');
 
@@ -52,9 +53,9 @@ module.exports = {
             password: req.body.password,
           });
           // save the user
-          newUser.save((err) => {
-            if (err) {
-              res.json({ success: false, msg: err.msg });
+          newUser.save((error) => {
+            if (error) {
+              res.json({ success: false, msg: error.msg });
             }
             else {
               res.json({ success: true, msg: 'Successful created new user.' });
@@ -66,5 +67,34 @@ module.exports = {
         }
       });
     }
+  },
+  user: (req, res) => {
+    if (!req.user.id) {
+      res.status(400).json({
+        success: false,
+        msg: 'Please provide an ID',
+      });
+    }
+    const user = User
+      .find({ _id: ObjectIDObj(req.user.id) })
+      // All fields except password
+      .project({ password: 0 })
+      .toArray()
+      .then(() => {
+        if (!user) {
+          return res.status(404).json({
+            success: false,
+            msg: 'User does not exist',
+          });
+        }
+        res.json({ success: true, user });
+      })
+      .catch((err) => {
+        res.status(500).json({
+          success: false,
+          msg: 'Unable to fetch user',
+          err: err.message,
+        });
+      });
   },
 };
