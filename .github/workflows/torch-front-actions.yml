@@ -2,6 +2,7 @@ name: Frontend actions for CI/CD
 on:
   push:
     branches: [ main ]
+
 defaults:
   run:
     working-directory: torch-front
@@ -12,6 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: npm install
-      - run: npm run test
+      - run: npm run test:ci
   #build:
   #deploy:
