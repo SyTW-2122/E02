@@ -5,14 +5,13 @@ on:
 
 defaults:
   run:
-    working-directory: torch-front
+    working-directory: torch-back
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: cd torch-back
       - run: npm install
       - run: npm run test
   #build:
