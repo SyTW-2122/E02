@@ -5,11 +5,15 @@ on:
 
 jobs:
   test:
-    runs-on: [ubuntu-latest]
+    runs-on: [ubuntu-latest, macos-latest, windows-latest]
     steps:
-      - uses: actions/checkout@v2
+      - name: Enter backend folder
       - run: cd torch-back
+
+      - name: Install dependencies
       - run: npm install
+
+      - name: Run tests
       - run: npm test
 
   #build:
