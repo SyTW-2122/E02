@@ -3,14 +3,16 @@ on:
   push:
     branches: [ main ]
 
+defaults:
+  run:
+    working-directory: torch-front
+
 jobs:
   test:
     runs-on: [ubuntu-latest, macos-latest, windows-latest]
     steps:
-      - name: Enter backend folder
+      - uses: actions/checkout@v2
       - run: cd torch-back
-
-      - name: Install dependencies
       - run: npm install
       - run: npm run test
   #build:
