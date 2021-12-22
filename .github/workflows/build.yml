@@ -18,6 +18,9 @@ jobs:
     - run: npm install
     - run: npm run build
   GHPdeploy:
+    runs-on: ubuntu-latest
+    name: Deploy to branch
+    steps:
     - run: git config --global user.email "eric.durr.20@ull.edu.es"
     - run: git config --global user.name "eric.durr.20@ull.edu.es"
     - run: git add torch-front/dist -f && git commit -m 'adding dist subtree'
