@@ -4,16 +4,16 @@ on:
     branches: [main, config/gh-actions]
   pull_request:
     branches: [main]
+default:
+  runs:
+    working-directory: torch-front
+
 jobs:
   build_vue:
     runs-on: ubuntu-latest
     name: Build Vue
     steps:
     - uses: actions/checkout@v2
-    - id: Build-Vue
-      uses: xRealNeon/VuePagesAction@1.0.1
-      with:
-        working-directory: torch-front
-        username: 'Eric-Durr'
-        reponame: '/SyTW-2122/E02/'
-        token: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
+    - run: npm run build
+    - run: git add dist && git commit -m 'adding dist subtree'
+    - run: git subtree push --prefix dist origin gh-pages
