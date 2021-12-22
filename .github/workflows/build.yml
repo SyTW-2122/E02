@@ -4,8 +4,9 @@ on:
     branches: [main, config/gh-actions]
   pull_request:
     branches: [main]
-default:
-  runs:
+
+defaults:
+  run:
     working-directory: torch-front
 
 jobs:
