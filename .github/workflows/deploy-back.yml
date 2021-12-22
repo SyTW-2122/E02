@@ -1,27 +1,15 @@
-name: Build Vue
+name: Deploy
 on: 
   push:
     branches: [main, config/gh-actions]
   pull_request:
     branches: [main]
 
-
 jobs:
-  build_vue:
+  deploy-back:
+    name: Deploy backend
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: torch-front
-    name: Build Vue
     steps:
-    - uses: actions/checkout@v2
-    - run: npm install
-    - run: npm run build
-  GHPdeploy:
-    runs-on: ubuntu-latest
-    name: Deploy to branch
-    steps:
-    - run: git config --global user.email "eric.durr.20@ull.edu.es"
-    - run: git config --global user.name "eric.durr.20@ull.edu.es"
-    - run: git add torch-front/dist -f && git commit -m 'adding dist subtree'
-    - run: git subtree push --prefix torch-front/dist origin gh-pages
+      - uses: actions/checkout@v1
+      - run: git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
+      - run: git push --force heroku `git subtree split --prefix torch-back HEAD`:main
