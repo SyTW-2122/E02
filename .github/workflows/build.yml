@@ -17,5 +17,5 @@ jobs:
     - uses: actions/checkout@v2
     - run: npm install
     - run: npm run build
-    - run: git add dist && git commit -m 'adding dist subtree'
+    - run: git add dist -f && git commit -m 'adding dist subtree'
     - run: git subtree push --prefix dist origin gh-pages
