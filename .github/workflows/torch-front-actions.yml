@@ -13,10 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: npm install
-      - uses: cypress-io/github-action@v2.2.7
-        with:
-          working-directory: ./torch-front
-          install: false
-          start: npm run test:ci
+      - run: npm run serve &
+      - run: npm run test:ci
   #build:
   #deploy:

@@ -22,7 +22,7 @@
             "name": "User is at the login page",
             "result": {
               "status": "passed",
-              "duration": 2820000000
+              "duration": 2426000000
             }
           },
           {
@@ -32,7 +32,7 @@
             "name": "User enters username as \"Ale\" and password as \"123456\"",
             "result": {
               "status": "passed",
-              "duration": 1130000000
+              "duration": 843000000
             }
           },
           {
@@ -52,7 +52,7 @@
             "name": "User is at the user page",
             "result": {
               "status": "passed",
-              "duration": 879000000
+              "duration": 867000000
             }
           }
         ]
@@ -72,7 +72,7 @@
             "name": "User is at the login main page",
             "result": {
               "status": "passed",
-              "duration": 811000000
+              "duration": 595000000
             }
           },
           {
@@ -82,7 +82,7 @@
             "name": "User enters not valid username as \"usu1\" and password as \"usu1\"",
             "result": {
               "status": "passed",
-              "duration": 504000000
+              "duration": 518000000
             }
           },
           {
@@ -92,7 +92,7 @@
             "name": "User clicks on button",
             "result": {
               "status": "passed",
-              "duration": 100000000
+              "duration": 109000000
             }
           },
           {
@@ -102,7 +102,7 @@
             "name": "User is not able to login",
             "result": {
               "status": "passed",
-              "duration": 524000000
+              "duration": 527000000
             }
           },
           {
@@ -112,7 +112,7 @@
             "name": "User clicks on register link",
             "result": {
               "status": "passed",
-              "duration": 519000000
+              "duration": 463000000
             }
           },
           {
@@ -122,7 +122,7 @@
             "name": "User is at the register page",
             "result": {
               "status": "passed",
-              "duration": 639000000
+              "duration": 575000000
             }
           }
         ]
