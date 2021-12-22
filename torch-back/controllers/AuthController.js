@@ -6,6 +6,9 @@ const settings = require('../config/SecretToken');
 const User = require('../models/User');
 
 module.exports = {
+  root: (req, res) => {
+    res.send('Welcome to auth API');
+  },
   login: (req, res) => {
     if (!req.body.username || !req.body.password) {
       res.json({ success: false, msg: 'Please pass username and password.' });
