@@ -17,7 +17,6 @@ mongoose.connect(uri, {
 // Create port
 const port = process.env.PORT || 5000;
 
-
 // Start server
 module.exports = app.listen(port, () => {
   console.log(`Connected to port ${port}`);

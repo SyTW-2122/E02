@@ -13,8 +13,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false,
 }));
-app.use(express.static(path.join(__dirname, 'dist')));
-app.use('/user', express.static(path.join(__dirname, 'dist')));
 app.use(cors());
 
 // API

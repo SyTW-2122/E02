@@ -1,7 +1,7 @@
 name: Backend actions for CI/CD
 on:
   push:
-    branches: [ main ]
+    branches: [ main, config/gh-actions  ]
 
 defaults:
   run:
@@ -14,5 +14,3 @@ jobs:
       - uses: actions/checkout@v2
       - run: npm install
       - run: npm run test
-  #build:
-  #deploy:

@@ -1,4 +1,3 @@
-
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const {
@@ -60,7 +59,7 @@ describe('User try to access web', () => {
         });
     });
   });
-  describe('user tries to register twice', () =>{
+  describe('user tries to register twice', () => {
     it('Api shouldnt allow user to register twice', (done) => {
       chaiAppServer
         .post('/api/auth/register')

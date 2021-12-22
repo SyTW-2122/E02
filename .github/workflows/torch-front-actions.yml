@@ -1,7 +1,7 @@
 name: Frontend actions for CI/CD
 on:
   push:
-    branches: [ main ]
+    branches: [ main, config/gh-actions ]
 
 defaults:
   run:
@@ -13,10 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: npm install
-      - uses: cypress-io/github-action@v2.2.7
-        with:
-          install: false
-          start: npm run test:ci
-          wait-on: http://localhost:3000
+      - run: npm run serve &
+      - run: npm run test:ci
   #build:
   #deploy:
