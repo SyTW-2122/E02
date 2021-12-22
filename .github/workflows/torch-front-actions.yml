@@ -15,5 +15,3 @@ jobs:
       - run: npm install
       - run: npm run serve &
       - run: npm run test:ci
-  #build:
-  #deploy:
