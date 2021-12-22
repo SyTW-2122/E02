@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
+    "heroku-prebuild": "npm i -g pm2",
+    "start": "pm2-runtime start config/ecosystem.js --env production",
     "dev": "nodemon server.js",
     "test": "mocha --timeout 100000 --exit"
   },
