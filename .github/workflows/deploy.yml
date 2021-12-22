@@ -12,4 +12,4 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
-      - run: git push --force heroku `git subtree split --prefix server HEAD`:main
+      - run: git push --force heroku `git subtree split --prefix torch-back HEAD`:main
