@@ -6,10 +6,17 @@ on:
     branches: [main]
 
 jobs:
-  deploy:
-    name: Deploy
+  deploy-back:
+    name: Deploy backend
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - run: git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
       - run: git push --force heroku `git subtree split --prefix torch-back HEAD`:main
+  deploy-front:
+    name: Deploy frontend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: git remote add heroku https://heroku:${{ secrets.HEROKU_INTERFACE_KEY }}@git.heroku.com/${{ secrets.HEROKU_INTERFACE_NAME }}.git
+      - run: git push --force heroku `git subtree split --prefix torch-front HEAD`:main
