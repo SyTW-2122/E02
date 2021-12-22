@@ -4,7 +4,8 @@ on:
     branches: [ main, config/gh-actions ]
 
 defaults:
-  working-directory: torch-front
+  run:
+    working-directory: torch-front
 
 jobs:
   test:
