@@ -4,10 +4,7 @@ on:
     branches: [ main, config/gh-actions ]
 
 defaults:
-  run:
-    working-directory: torch-front
-  uses:
-    working-directory: torch-front
+  working-directory: torch-front
 
 jobs:
   test:
@@ -16,6 +13,7 @@ jobs:
       - uses: actions/checkout@v2
       - run: npm install
       - uses: cypress-io/github-action@v2.2.7
+        working-directory: torch-front
         with:
           install: false
           start: npm run test
