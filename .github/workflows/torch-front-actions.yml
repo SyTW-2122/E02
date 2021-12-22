@@ -6,6 +6,8 @@ on:
 defaults:
   run:
     working-directory: torch-front
+  uses:
+    working-directory: torch-front
 
 jobs:
   test:
