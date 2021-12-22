@@ -1,19 +1,33 @@
+
 const chai = require('chai');
 const chaiHttp = require('chai-http');
+const {
+  describe,
+  it,
+  before,
+  after,
+} = require('mocha');
 const { expect } = require('chai');
 const User = require('../../models/User');
-const app = require('../../server');
+const server = require('../testServer');
+
+chai.use(chaiHttp);
+
+const chaiAppServer = chai.request(server).keepOpen();
 const should = chai.should();
 
 describe('User try to access web', () => {
+  after(() => {
+    chaiAppServer.close();
+    server.close();
+  });
+
   const user = {
     username: 'test_user',
     password: '1123456',
   };
-  const userBadPssw = {
-    username: 'test_user',
-    password: '1123457',
-  };
+
+  // Checking existance of the test user (no multiple user for test)
   const exists = User.exists({ username: 'test_user' });
   if (exists) {
     User
@@ -21,9 +35,10 @@ describe('User try to access web', () => {
       .then(() => console.log('Cleaned test user'))
       .catch((err) => console.log(err));
   }
+
   describe('User try to acces by login', () => {
     it('shouldnt fin user', (done) => {
-      chai.request(app)
+      chaiAppServer
         .post('/api/auth/login')
         .send(user)
         .end((err, res) => {
@@ -35,7 +50,7 @@ describe('User try to access web', () => {
   });
   describe('user tries to register', () => {
     it('shoud respond with an user created (200)', (done) => {
-      chai.request(app)
+      chaiAppServer
         .post('/api/auth/register')
         .send(user)
         .end((err, res) => {
@@ -47,7 +62,7 @@ describe('User try to access web', () => {
   });
   describe('user tries to register twice', () =>{
     it('Api shouldnt allow user to register twice', (done) => {
-      chai.request(app)
+      chaiAppServer
         .post('/api/auth/register')
         .send(user)
         .end((err, res) => {
@@ -59,7 +74,7 @@ describe('User try to access web', () => {
   });
   describe('User tries to login with right credentials', () => {
     it('Should respond with welcome mesage (200)', (done) => {
-      chai.request(app)
+      chaiAppServer
         .post('/api/auth/login')
         .send(user)
         .end((err, res) => {
