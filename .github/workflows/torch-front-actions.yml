@@ -14,8 +14,8 @@ jobs:
       - uses: actions/checkout@v2
       - run: npm install
       - uses: cypress-io/github-action@v2.2.7
-        working-directory: torch-front
         with:
+          working-directory: ./torch-front
           install: false
           start: npm run test
           wait-on: http://localhost:8080
