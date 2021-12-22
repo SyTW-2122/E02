@@ -17,7 +17,6 @@ jobs:
         with:
           working-directory: ./torch-front
           install: false
-          start: npm run test
-          wait-on: http://localhost:8080
+          start: npm run test:ci
   #build:
   #deploy:
