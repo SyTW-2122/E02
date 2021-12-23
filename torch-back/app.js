@@ -31,6 +31,7 @@ app.set('view engine', 'pug');
 app.use((req, res, next) => {
   var err = new Error('Not Found');
   err.status = 404;
+  res.render('error', { title: 'Express' });
   next(err);
 });
 
