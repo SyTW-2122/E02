@@ -14,3 +14,17 @@ jobs:
       - uses: actions/checkout@v2
       - run: npm install
       - run: npm run test
+        if: always()
+      - uses: ravsamhq/notify-slack-action@v1
+        with:
+          status: ${{ job.status }} # required
+          notify_when: 'failure'
+          notification_title: '{workflow} has {status_message}'
+          message_format: '{emoji} *{workflow}* {status_message} in <{repo_url}|{repo}>'
+          footer: 'Linked to Repo <{repo_url}|{repo}>'
+          #mention_users: 'U0160UUNH8S,U0080UUAA9N'
+          #mention_users_when: 'failure,warnings'
+          #mention_groups: 'SAZ94GDB8'0
+          #mention_groups_when: 'failure,warnings'
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}    
