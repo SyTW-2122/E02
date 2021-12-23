@@ -21,8 +21,9 @@
             "line": 3,
             "name": "User is at the login page",
             "result": {
-              "status": "passed",
-              "duration": 2426000000
+              "status": "failed",
+              "duration": 1537000000,
+              "error_message": "Uncaught Error: Module build failed (from ./node_modules/eslint-loader/index.js):\nError: ENOENT: no such file or directory, open '/home/eric/Documentos/SyTW/E02/torch-front/src/main.js'\n\nThis error originated from your application code, not from Cypress.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the 'uncaught:exception' event.\n\nhttps://on.cypress.io/uncaught-exception-from-application\n    at eval (webpack-internal:///./src/main.js:1:7)\n    at Object../src/main.js (http://localhost:8080/js/app.js:948:1)\n    at __webpack_require__ (http://localhost:8080/js/app.js:849:30)\n    at fn (http://localhost:8080/js/app.js:151:20)\n    at Object.1 (http://localhost:8080/js/app.js:961:18)\n    at __webpack_require__ (http://localhost:8080/js/app.js:849:30)\n    at checkDeferredModules (http://localhost:8080/js/app.js:46:23)\n    at http://localhost:8080/js/app.js:925:18\n    at http://localhost:8080/js/app.js:928:10"
             }
           },
           {
@@ -31,8 +32,7 @@
             "line": 4,
             "name": "User enters username as \"Ale\" and password as \"123456\"",
             "result": {
-              "status": "passed",
-              "duration": 843000000
+              "status": "skipped"
             }
           },
           {
@@ -41,8 +41,7 @@
             "line": 5,
             "name": "User clicks on login button",
             "result": {
-              "status": "passed",
-              "duration": 107000000
+              "status": "skipped"
             }
           },
           {
@@ -51,8 +50,7 @@
             "line": 6,
             "name": "User is at the user page",
             "result": {
-              "status": "passed",
-              "duration": 867000000
+              "status": "skipped"
             }
           }
         ]
@@ -71,8 +69,8 @@
             "line": 13,
             "name": "User is at the login main page",
             "result": {
-              "status": "passed",
-              "duration": 595000000
+              "status": "failed",
+              "error_message": "Uncaught Error: Module build failed (from ./node_modules/eslint-loader/index.js):\nError: ENOENT: no such file or directory, open '/home/eric/Documentos/SyTW/E02/torch-front/src/main.js'\n\nThis error originated from your application code, not from Cypress.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the 'uncaught:exception' event.\n\nhttps://on.cypress.io/uncaught-exception-from-application\n    at eval (webpack-internal:///./src/main.js:1:7)\n    at Object../src/main.js (http://localhost:8080/js/app.js:948:1)\n    at __webpack_require__ (http://localhost:8080/js/app.js:849:30)\n    at fn (http://localhost:8080/js/app.js:151:20)\n    at Object.1 (http://localhost:8080/js/app.js:961:18)\n    at __webpack_require__ (http://localhost:8080/js/app.js:849:30)\n    at checkDeferredModules (http://localhost:8080/js/app.js:46:23)\n    at http://localhost:8080/js/app.js:925:18\n    at http://localhost:8080/js/app.js:928:10"
             }
           },
           {
@@ -81,8 +79,7 @@
             "line": 14,
             "name": "User enters not valid username as \"usu1\" and password as \"usu1\"",
             "result": {
-              "status": "passed",
-              "duration": 518000000
+              "status": "skipped"
             }
           },
           {
@@ -91,8 +88,7 @@
             "line": 15,
             "name": "User clicks on button",
             "result": {
-              "status": "passed",
-              "duration": 109000000
+              "status": "skipped"
             }
           },
           {
@@ -101,8 +97,7 @@
             "line": 16,
             "name": "User is not able to login",
             "result": {
-              "status": "passed",
-              "duration": 527000000
+              "status": "skipped"
             }
           },
           {
@@ -111,8 +106,7 @@
             "line": 17,
             "name": "User clicks on register link",
             "result": {
-              "status": "passed",
-              "duration": 463000000
+              "status": "skipped"
             }
           },
           {
@@ -121,8 +115,7 @@
             "line": 18,
             "name": "User is at the register page",
             "result": {
-              "status": "passed",
-              "duration": 575000000
+              "status": "skipped"
             }
           }
         ]
