@@ -27,11 +27,12 @@ app.use(require('connect-history-api-fallback')());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.all('*', (req, res) => res.redirect('/'));
 // Find 404
 app.use((req, res, next) => {
   var err = new Error('Not Found');
   err.status = 404;
-  res.render('error', { title: 'Express' });
+  res.render('404NotFound', { title: 'Express' });
   next(err);
 });
 
