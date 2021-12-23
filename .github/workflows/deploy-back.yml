@@ -20,7 +20,6 @@ jobs:
           notification_title: '{workflow} has {status_message}'
           message_format: '{emoji} *{workflow}* {status_message} in <{repo_url}|{repo}>'
           footer: 'Linked to Repo <{repo_url}|{repo}>'
-          notify_when: 'failure'
           #mention_users: 'U0160UUNH8S,U0080UUAA9N'
           #mention_users_when: 'failure,warnings'
           #mention_groups: 'SAZ94GDB8'0
