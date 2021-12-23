@@ -4,7 +4,7 @@ const express = require('express'),
   logger = require('morgan'),
   bodyParser = require('body-parser'),
   userAPI = require('./route/user'),
-  indexAPI = require('./route/index'),
+  indexAPI = require('./route/staticIndex'),
   auth = require('./route/auth');
 
 const app = express();
