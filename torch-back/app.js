@@ -4,6 +4,7 @@ const express = require('express'),
   logger = require('morgan'),
   bodyParser = require('body-parser'),
   userAPI = require('./route/user'),
+  indexAPI = require('./route/staticIndex'),
   auth = require('./route/auth');
 
 const app = express();
@@ -14,15 +15,24 @@ app.use(bodyParser.urlencoded({
   extended: false,
 }));
 app.use(cors());
+app.use(express.static(path.join(__dirname, 'public')));
 
 // API
+app.use('/', indexAPI);
 app.use('/api/user', userAPI);
 app.use('/api/auth', auth);
 
+app.use(require('connect-history-api-fallback')());
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+
+app.all('*', (req, res) => res.redirect('/'));
 // Find 404
 app.use((req, res, next) => {
   var err = new Error('Not Found');
   err.status = 404;
+  res.render('404NotFound', { title: 'Express' });
   next(err);
 });
 

@@ -7,7 +7,7 @@ const User = require('../models/User');
 
 module.exports = {
   root: (req, res) => {
-    res.send('Welcome to auth API');
+    res.send('Welcome to auth API from Heroku');
   },
   login: (req, res) => {
     if (!req.body.username || !req.body.password) {
