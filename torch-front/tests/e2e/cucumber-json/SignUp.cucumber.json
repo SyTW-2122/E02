@@ -1,0 +1,62 @@
+[
+  {
+    "keyword": "Feature",
+    "name": "User sign up",
+    "line": 1,
+    "id": "user-sign-up",
+    "tags": [],
+    "uri": "SignUp.feature",
+    "elements": [
+      {
+        "id": "user-sign-up;user-register-with-username-and-password",
+        "keyword": "Scenario",
+        "line": 2,
+        "name": "User register with username and password",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 3,
+            "name": "User is at the sign up page",
+            "result": {
+              "status": "passed",
+              "duration": 2253000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 4,
+            "name": "User enters username as \"usu1\" and password as \"usu1\"",
+            "result": {
+              "status": "passed",
+              "duration": 693000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 5,
+            "name": "User clicks on sign up button",
+            "result": {
+              "status": "passed",
+              "duration": 105000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 6,
+            "name": "User is fully registered and able to successfully login",
+            "result": {
+              "status": "passed",
+              "duration": 126000000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,9 +1,8 @@
 name: Deploy
 on: 
   push:
-    branches: [main, config/gh-actions]
-  pull_request:
     branches: [main]
+
 jobs:
   build-front:
     name: Build VueJS torch app inside backend public
