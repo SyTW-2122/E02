@@ -40,7 +40,8 @@
           </b-col>
         </b-row>
         <div class="register-form">
-          <b-form-row name="form" @submit.prevent="handleLogin">
+          <b-form name="form" @submit.prevent="handleRegister">
+
             <b-form-group
               id="input-group-username"
               label=""
@@ -81,21 +82,21 @@
                 v-if="submitTrue() && errors.has('password')"
                 class="alert alert-danger"
                 role="alert"
-              >Password is required!</div>
+              >{{errors.first('password')}}</div>
             </b-form-group>
+            <div
+              v-if="message"
+              class="alert my-3"
+              :class="successTrue() ? 'alert-success' : 'alert-danger'"
+            >{{message.msg}}</div>
             <div class="signup-button">
               <b-button pill type="submit" variant="primary">SIGN UP</b-button>
             </div>
-            <div
-              v-if="message"
-              class="alert"
-              :class="successTrue() ? 'alert-success' : 'alert-danger'"
-            >{{message.msg}}</div>
             <div class="login-here">
               <p>Already have an account?&nbsp;</p>
                <router-link to="/sign-in">Login here</router-link>
             </div>
-          </b-form-row>
+          </b-form>
         </div>
       </div>
       <div v-else class="text-center">
