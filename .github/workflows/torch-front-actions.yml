@@ -2,6 +2,8 @@ name: Frontend actions for CI/CD
 on:
   push:
     branches: [ main, config/gh-actions ]
+  pull_request:
+    branches: [main]
 
 defaults:
   run:
