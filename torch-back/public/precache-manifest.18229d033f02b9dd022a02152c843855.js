@@ -1,7 +1,7 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b9017035581fe3bf32c6",
-    "url": "/css/app.0a931d1d.css"
+    "revision": "f8046d3f1ca282746f8c",
+    "url": "/css/app.b5f8adb1.css"
   },
   {
     "revision": "d117dc6fa0380abd1070",
@@ -28,12 +28,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/img/torch-logo.9d9a58da.png"
   },
   {
-    "revision": "3c9fe2376ec630773308b48aec4fb483",
+    "revision": "74b8e687fa9ea290965b7e3be2b936a8",
     "url": "/index.html"
   },
   {
-    "revision": "b9017035581fe3bf32c6",
-    "url": "/js/app.ca342735.js"
+    "revision": "f8046d3f1ca282746f8c",
+    "url": "/js/app.d47a68ed.js"
   },
   {
     "revision": "d117dc6fa0380abd1070",
