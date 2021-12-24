@@ -26,6 +26,7 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
   deploy-back:
+    needs: [build-front]
     name: Deploy backend
     runs-on: ubuntu-latest
     steps:
