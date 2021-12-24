@@ -12,6 +12,8 @@ jobs:
       - run: cd torch-front && npm install
       - run: cd torch-front && npx vue-cli-service build --dest ../torch-back/public
       - run: cd ..
+      - run: git add .
+      - run: git commit -m "new frontend build"
       - run: git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
       - run: git push --force heroku `git subtree split --prefix torch-back HEAD`:main
         if: always()
