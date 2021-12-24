@@ -6,7 +6,7 @@
           <img src="../assets/images/torch-logo.png" alt="Logo" class="img-fluid">
         </b-col>
         <b-col cols="12">
-          <h1 class="text-center mt-10">Welcome</h1>
+          <h1 class="text-center mt-10">Welcome!</h1>
         </b-col>
       </b-row>
       <div v-if="!successTrue()">
