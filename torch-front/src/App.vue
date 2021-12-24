@@ -1,12 +1,15 @@
 <template>
   <div class="fluid-container">
-    <MobileNavbar v-if="mobile && !['sign-in','sign-up'].includes($route.name)"/>
-    <DesktopNavbar v-else-if="!mobile && !['sign-in','sign-up'].includes($route.name)"/>
+    <MobileNavbar v-if="mobile && ['activity','explore','user'].includes($route.name)"/>
+    <DesktopNavbar v-else-if="!mobile && ['activity','explore','user'].includes($route.name)"/>
     <router-view/>
   </div>
 </template>
 <script>
-// @ is an alias to /src
+// @ is an alias to /srcç
+
+import { mapActions } from 'vuex';
+
 import DesktopNavbar from '@/components/DesktopNavbar.vue';
 import MobileNavbar from '@/components/MobileNavbar.vue';
 
@@ -29,6 +32,15 @@ export default {
     window.removeEventListener('resize', this.getDimensions);
   },
   methods: {
+    ...mapActions(['attempt', 'logout']),
+    checkToken() {
+      this.atempt();
+    },
+    created() {
+      this.loading = true;
+      this.checkToken();
+      window.addEventListener('load', this.loading = false);
+    },
     getDimensions() {
       this.width = document.documentElement.clientWidth;
       this.height = document.documentElement.clientHeight;

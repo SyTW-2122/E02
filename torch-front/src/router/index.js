@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+// import store from '../store/index';
+import Errors from '../views/404NotFound.vue';
 import Explore from '../views/Explore.vue';
 import User from '../views/User.vue';
 import Activity from '../views/Activity.vue';
@@ -11,18 +13,24 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/user',
-    name: 'User',
+    name: 'user',
     component: User,
   },
   {
     path: '/explore',
     name: 'explore',
     component: Explore,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: '/activity',
-    name: 'Activity',
+    name: 'activity',
     component: Activity,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: '/sign-up',
@@ -30,9 +38,19 @@ const routes = [
     component: SignUp,
   },
   {
+    path: '/',
+    name: 'sign-in',
+    component: SignIn,
+  },
+  {
     path: '/sign-in',
     name: 'sign-in',
     component: SignIn,
+  },
+  {
+    path: '*',
+    component: Errors,
+    meta: { layout: 'none' },
   },
 ];
 

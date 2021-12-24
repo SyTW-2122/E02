@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "postinstall": "npm run build",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
@@ -29,6 +30,7 @@
     "vue-mc": "^0.6.0",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0",
+    "vuex-persist": "^3.1.3",
     "webpack-dev-server": "^4.6.0"
   },
   "devDependencies": {

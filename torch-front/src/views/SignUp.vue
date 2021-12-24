@@ -9,91 +9,107 @@
           <h1 class="text-center mt-10">Welcome</h1>
         </b-col>
       </b-row>
-      <b-row class="passport">
-        <div class="passport-google col-lg-6">
-          <b-col cols="12">
-            <b-button pill class="login-google">
-              <img src="../assets/images/google.png" align="left" alt=""/>
-              <p>Login with Google</p>
-            </b-button>
-          </b-col>
-        </div>
-        <div class="passport-facebook col-lg-6">
-          <b-col cols="12">
-            <b-button pill class="login-facebook">
-              <img src="../assets/images/facebook.svg" align="left" alt=""/>
-              <p>Login with Facebook</p>
-            </b-button>
-          </b-col>
-        </div>
-      </b-row>
-      <b-row class="separator" align-v="center">
-        <b-col>
-          <div class="line"></div>
-        </b-col>
-        <b-col cols="1" xl="2" class="text-center">
-          <p>or</p>
-        </b-col>
-        <b-col>
-          <div class="line"></div>
-        </b-col>
-      </b-row>
-      <div class="register-form">
-        <b-form-row @submit.prevent="handleLogin">
-          <b-form-group
-            id="input-group-username"
-            label=""
-            label-for="input-username"
-            class="input-group-username"
-          >
-            <b-form-input
-              id="input-username"
-              type="text"
-              v-model="user.username"
-              v-validate="'required'"
-              placeholder="Username"
-              class="input-username border-bottom"
-            ></b-form-input>
-            <div
-              v-if="errors.has('username')"
-              class="alert alert-danger"
-              role="alert"
-            >Username is required!</div>
-          </b-form-group>
-          <b-form-group
-            id="input-group-password"
-            label=""
-            label-for="input-password"
-            class="input-group-password"
-          >
-            <b-form-input
-              id="input-password"
-              type="password"
-              v-model="user.password"
-              v-validate="'required'"
-              placeholder="Password"
-              class="input-password border-bottom"
-            ></b-form-input>
-            <div
-              v-if="errors.has('password')"
-              class="alert alert-danger"
-              role="alert"
-            >Password is required!</div>
-          </b-form-group>
-          <div class="signup-button">
-            <b-button pill type="submit" variant="primary">SIGN UP</b-button>
+      <div v-if="!successTrue()">
+        <b-row class="passport">
+          <div class="passport-google col-lg-6">
+            <b-col cols="12">
+              <b-button pill class="login-google">
+                <img src="../assets/images/google.png" align="left" alt=""/>
+                <p>Login with Google</p>
+              </b-button>
+            </b-col>
           </div>
-          <div class="login-here">
-            <p>Already have an account?&nbsp;</p>
-            <a href="">Login here</a>
+          <div class="passport-facebook col-lg-6">
+            <b-col cols="12">
+              <b-button pill class="login-facebook">
+                <img src="../assets/images/facebook.svg" align="left" alt=""/>
+                <p>Login with Facebook</p>
+              </b-button>
+            </b-col>
           </div>
-        </b-form-row>
+        </b-row>
+        <b-row class="separator" align-v="center">
+          <b-col>
+            <div class="line"></div>
+          </b-col>
+          <b-col cols="1" xl="2" class="text-center">
+            <p>or</p>
+          </b-col>
+          <b-col>
+            <div class="line"></div>
+          </b-col>
+        </b-row>
+        <div class="register-form">
+          <b-form-row name="form" @submit.prevent="handleLogin">
+            <b-form-group
+              id="input-group-username"
+              label=""
+              label-for="input-username"
+              class="input-group-username"
+            >
+              <b-form-input
+                id="input-username"
+                type="text"
+                v-model="user.username"
+                v-validate="'required|min:3|max:20'"
+                placeholder="Username"
+                name="username"
+                class="input-username border-bottom"
+              ></b-form-input>
+              <div
+                v-if="submitTrue() && errors.has('username')"
+                class="alert alert-danger"
+                role="alert"
+              >{{errors.first('username')}}</div>
+            </b-form-group>
+            <b-form-group
+              id="input-group-password"
+              label=""
+              label-for="input-password"
+              class="input-group-password"
+            >
+              <b-form-input
+                id="input-password"
+                type="password"
+                v-model="user.password"
+                v-validate="'required|min:6|max:40'"
+                placeholder="Password"
+                name="password"
+                class="input-password border-bottom"
+              ></b-form-input>
+              <div
+                v-if="submitTrue() && errors.has('password')"
+                class="alert alert-danger"
+                role="alert"
+              >Password is required!</div>
+            </b-form-group>
+            <div class="signup-button">
+              <b-button pill type="submit" variant="primary">SIGN UP</b-button>
+            </div>
+            <div
+              v-if="message"
+              class="alert"
+              :class="successTrue() ? 'alert-success' : 'alert-danger'"
+            >{{message.msg}}</div>
+            <div class="login-here">
+              <p>Already have an account?&nbsp;</p>
+               <router-link to="/sign-in">Login here</router-link>
+            </div>
+          </b-form-row>
+        </div>
+      </div>
+      <div v-else class="text-center">
+        <h1 class="text-success text-center">Account created succesfully</h1>
+        <router-link to="/sign-in">
+          <b-button class="btn-primary m-5">Go to login</b-button>
+        </router-link>
       </div>
     </b-container>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import User from '../models/user';
 
 export default {
@@ -107,9 +123,9 @@ export default {
     };
   },
   computed: {
-    loggedIn() {
-      return this.$store.state.auth.status.loggedIn;
-    },
+    ...mapGetters({
+      loggedIn: 'auth/isLoggedIn',
+    }),
   },
   mounted() {
     if (this.loggedIn) {

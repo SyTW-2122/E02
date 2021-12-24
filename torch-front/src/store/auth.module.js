@@ -1,13 +1,28 @@
+import Axios from 'axios';
 import AuthService from '../services/auth.service';
 
 const userData = JSON.parse(localStorage.getItem('user'));
+const token = JSON.parse(localStorage.getItem('token'));
 const initialState = userData
-  ? { status: { loggedIn: true }, userData }
-  : { status: { loggedIn: false }, userData: null };
+  ? {
+    status: { loggedIn: true },
+    userData,
+    token,
+  }
+  : {
+    status: { loggedIn: false },
+    userData: null,
+    token: null,
+  };
 
 export const auth = {
   namespaced: true,
   state: initialState,
+  getters: {
+    isLoggedIn: (state) => state.status.loggedIn,
+    getToken: (state) => state.token,
+    getUser: (state) => state.userData,
+  },
   actions: {
     login({ commit }, user) {
       return AuthService.login(user).then(
@@ -37,6 +52,25 @@ export const auth = {
         },
       );
     },
+    async attempt({ commit }) {
+      const localToken = JSON.parse(localStorage.getItem('token'));
+      if (token !== null) {
+        await Axios.get('http://localhost:5000/api/auth/user', {
+          headers: {
+            ContentType: 'application/json',
+            xAuthToken: localToken,
+          },
+        })
+          .then((res) => {
+            commit('setToken', localToken);
+            commit('loginSuccess', res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+            localStorage.removeItem('token');
+          });
+      }
+    },
   },
   mutations: {
     loginSuccess(state, user) {
@@ -56,6 +90,9 @@ export const auth = {
     },
     registerFailure(state) {
       state.status.loggedIn = false;
+    },
+    setToken(state, newToken) {
+      state.token = newToken;
     },
   },
 };

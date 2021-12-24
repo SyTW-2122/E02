@@ -1,14 +1,22 @@
+import Vue from 'vue';
+import Vuex from 'vuex';
 import { shallowMount } from '@vue/test-utils'
 import SignUp from '@/views/SignUp.vue'
 
-describe('SignUp.vue', () => {
-  // Inspect the raw component options
-  it('has data', () => {
-    expect(typeof SignUp.data).toBe('function')
-  })
-})
+Vue.use(Vuex);
 
 describe('SignUp.vue', () => {
+  let store;
+  let authModule;
+
+  beforeEach(() => {
+    state = {
+      status: { loggedIn: false },
+      userData: null,
+      token: null,
+    }
+  })
+  
   const wrapper = shallowMount(SignUp)
 
   test('does a wrapper exist', () => {
