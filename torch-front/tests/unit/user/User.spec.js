@@ -1,18 +1,25 @@
-import { defineFeature, loadFeature} from 'jest-cucumber';
-import { mount, createLocalVue} from '@vue/test-utils';
+import { mount, createLocalVue, shallowMount} from '@vue/test-utils';
 import User from '@/views/User.vue';
+import vuex from 'vuex';
+import VuexPersistence from 'vuex-persist';
 
-const feature = loadFeature('./User.feature');
-defineFeature(feature, (test) => {
-  test('Opening the user page', ({ given, when, then, and }) => {
-    given('the page is open in a browser', () => {
-     wrapper =  mount(User);
-    });
-    when('user inspects the page', () => {
-      // Nothing yet
-    });
-    then('user should see the User profile aspects', () => {
-      // Nothing yet
-    });
+const local = createLocalVue();
+local.use(vuex);
+
+describe('User', () => {
+  let state;
+  let store;
+  beforeEach(() => {
+    state = {
+      errorMsg: jest.fn(),
+      error: jest.fn(),
+    }
+    store = new vuex.Store({
+      state
+    })
+  });
+  it ('is vue instance', () => {
+    const wrapper = mount(User, {store, local});
+    expect(wrapper.isVueInstance()).toBeTruthy();
   });
 });
