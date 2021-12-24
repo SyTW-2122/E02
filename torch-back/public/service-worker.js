@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.2e3ad2249b59cd5f80f571338d697874.js"
+  "/precache-manifest.73b5931be22f30708f61517155f64a96.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "torch-front"});
