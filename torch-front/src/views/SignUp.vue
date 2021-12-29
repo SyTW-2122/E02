@@ -1,132 +1,116 @@
 <template>
-<b-container class="bv-example-row">
-  <b-row>
-    <b-col></b-col>
-    <b-col cols="8">
-    <br />
-      <a href="#">
-        <center><img
-          src="../assets/torch-logo_Mesa de trabajo 1 copia.png"
-          alt=""
-          class="img-fluid"></center>
-      </a>
-    </b-col>
-    <b-col></b-col>
-  </b-row>
-  <br />
-   <b-row>
-    <b-col></b-col>
-    <b-col>
-      <center><h1> Welcome </h1></center>
-    </b-col>
-    <b-col></b-col>
-  </b-row>
-  <div v-if="!successTrue()">
-  <br />
-  <b-row class="text-center">
-    <b-col></b-col>
-    <b-col cols="8">
-      <b-button pill variant="outline-secondary" style="width: 100%;">
-      <img src="../assets/google.png" class="emo">&nbsp;&nbsp;Sign up with Google</b-button>
-    </b-col>
-    <b-col></b-col>
-  </b-row>
-  <br />
-   <b-row class="text-center">
-    <b-col></b-col>
-    <b-col cols="8">
-      <b-button pill variant="primary" style="width: 100%;" class="button-face">
-      <img src="../assets/facebook-brands.svg" class="emo-face">&nbsp;Sign up with Facebook
-      </b-button>
-    </b-col>
-    <b-col></b-col>
-  </b-row>
-  <br />
-  <b-row>
-    <b-col>
-      <div class="linea"></div>
-    </b-col>
-    <b-col>
-      <center><p>Or</p></center>
-    </b-col>
-    <b-col>
-      <div class="linea"></div>
-    </b-col>
-  </b-row>
-  <b-row>
-    <b-col></b-col>
-    <b-col cols="8">
-      <form name="form" @submit.prevent="handleRegister">
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input
-              v-model="user.username"
-              v-validate="'required|min:3|max:20'"
-              type="text"
-              class="form-control"
-              name="username"
-              placeholder="Enter username"
-            />
+  <div class = "background">
+    <b-container fluid="lg" class="sign-up">
+      <b-row class="welcome">
+        <b-col cols="12">
+          <img src="../assets/images/torch-logo.png" alt="Logo" class="img-fluid">
+        </b-col>
+        <b-col cols="12">
+          <h1 class="text-center mt-10">Welcome!</h1>
+        </b-col>
+      </b-row>
+      <div v-if="!successTrue()">
+        <b-row class="passport">
+          <div class="passport-google col-lg-6">
+            <b-col cols="12">
+              <b-button pill class="login-google">
+                <img src="../assets/images/google.png" align="left" alt=""/>
+                <p>Login with Google</p>
+              </b-button>
+            </b-col>
+          </div>
+          <div class="passport-facebook col-lg-6">
+            <b-col cols="12">
+              <b-button pill class="login-facebook">
+                <img src="../assets/images/facebook.svg" align="left" alt=""/>
+                <p>Login with Facebook</p>
+              </b-button>
+            </b-col>
+          </div>
+        </b-row>
+        <b-row class="separator" align-v="center">
+          <b-col>
+            <div class="line"></div>
+          </b-col>
+          <b-col cols="1" xl="2" class="text-center">
+            <p>or</p>
+          </b-col>
+          <b-col>
+            <div class="line"></div>
+          </b-col>
+        </b-row>
+        <div class="register-form">
+          <b-form name="form" @submit.prevent="handleRegister">
+
+            <b-form-group
+              id="input-group-username"
+              label=""
+              label-for="input-username"
+              class="input-group-username"
+            >
+              <b-form-input
+                id="input-username"
+                type="text"
+                v-model="user.username"
+                v-validate="'required|min:3|max:20'"
+                placeholder="Username"
+                name="username"
+                class="input-username border-bottom"
+              ></b-form-input>
+              <div
+                v-if="submitTrue() && errors.has('username')"
+                class="alert alert-danger"
+                role="alert"
+              >{{errors.first('username')}}</div>
+            </b-form-group>
+            <b-form-group
+              id="input-group-password"
+              label=""
+              label-for="input-password"
+              class="input-group-password"
+            >
+              <b-form-input
+                id="input-password"
+                type="password"
+                v-model="user.password"
+                v-validate="'required|min:6|max:40'"
+                placeholder="Password"
+                name="password"
+                class="input-password border-bottom"
+              ></b-form-input>
+              <div
+                v-if="submitTrue() && errors.has('password')"
+                class="alert alert-danger"
+                role="alert"
+              >{{errors.first('password')}}</div>
+            </b-form-group>
             <div
-            v-if="submitTrue() && errors.has('username')"
-            class="bg-danger"
-            >{{errors.first('username')}}</div>
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input
-              v-model="user.password"
-              v-validate="'required|min:6|max:40'"
-              type="password"
-              class="form-control"
-              name="password"
-            />
-            <div
-              v-if="submitTrue() && errors.has('password')"
-              class="alert-danger"
-            >{{errors.first('password')}}</div>
-          </div>
-          <div class="form-group text-center my-3">
-            <button type="submit" class="btn btn-success px-5">SIGN UP</button>
-          </div>
-      </form>
-      <div
-        v-if="message"
-        class="alert"
-        :class="successTrue() ? 'alert-success' : 'alert-danger'"
-      >{{message.msg}}</div>
-    </b-col>
-    <b-col></b-col>
-  </b-row>
-  <br />
-  <b-row>
-    <b-col></b-col>
-    <center>
-      <b-col>
-      </b-col>
-    </center>
-    <b-col></b-col>
-  </b-row>
-  <br />
-  <b-row class="text-center">
-    <b-col></b-col>
-    <b-col cols="8">
-      <p> Already have an account?
-          <router-link to="/sign-in">Login here</router-link></p>
-    </b-col>
-    <b-col></b-col>
-  </b-row>
+              v-if="message"
+              class="alert my-3"
+              :class="successTrue() ? 'alert-success' : 'alert-danger'"
+            >{{message.msg}}</div>
+            <div class="signup-button">
+              <b-button pill type="submit" variant="primary">SIGN UP</b-button>
+            </div>
+            <div class="login-here">
+              <p>Already have an account?&nbsp;</p>
+               <router-link to="/sign-in">Login here</router-link>
+            </div>
+          </b-form>
+        </div>
+      </div>
+      <div v-else class="text-center">
+        <h1 class="text-success text-center">Account created succesfully</h1>
+        <router-link to="/sign-in">
+          <b-button class="btn-primary m-5">Go to login</b-button>
+        </router-link>
+      </div>
+    </b-container>
   </div>
-  <div v-else class="text-center">
-    <h1 class="text-success text-center">Account created succesfully</h1>
-    <router-link to="/sign-in">
-      <b-button class="btn-primary m-5">Go to login</b-button>
-    </router-link>
-  </div>
-</b-container>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import User from '../models/user';
 
 export default {
@@ -140,9 +124,9 @@ export default {
     };
   },
   computed: {
-    loggedIn() {
-      return this.$store.state.auth.status.loggedIn;
-    },
+    ...mapGetters({
+      loggedIn: 'auth/isLoggedIn',
+    }),
   },
   mounted() {
     if (this.loggedIn) {
@@ -178,45 +162,133 @@ export default {
 </script>
 
 <style scoped>
-.bv-example-row {
-  background-color: #ffffff;
-  border-radius: 5px;
-  box-shadow: 0 0px 2px 0
-            rgba(0, 0, 0, 0.3), 0
-            2px 10px 0 rgba(0, 0, 0, 0.5);
+@media screen and (min-width: 1025px) {
+  .background {
+    position:fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0.25turn,#7B00DB, #00DBDE);
+  }
 }
 
-.btn-primary-Google {
-background: #ffffff;
-border-radius: 20px;
-}
-.background {
-  background-image: linear-gradient(to bottom right, #00DBDE, #3E006E);
-}
-
-.linea {
-  border-top: 1px solid black;
-  height: 2px;
-  padding: 0;
-  margin: 20px auto 0 auto;
+.sign-up {
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  margin-top: 55px;
+  margin-bottom: 55px;
 }
 
-.img-fluid{
+.welcome img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10px;
+  width: 120px;
+}
+
+.separator {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.separator p {
+  opacity: 0.2;
+  color: #000;
+  margin-top: 10px;
+}
+
+.separator .line {
+  flex: 1;
+  height: 1px;
+  background-color: #000;
+  opacity: 0.1;
+}
+
+.login-google {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   width: 200px;
-  height: auto;
-}
-.emo {
-  width: 25px;
-  height: 25px;
+  height: 45px;
+  background-color: #FFFFFF;
+  margin-top: 4px;
 }
 
-.emo-face {
+.login-google img {
   width: 25px;
-  height: 25px;
+}
+
+.login-google p {
+  display: inline;
+  color: #000;
+  font-size: 13px;
+}
+
+.login-facebook {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+  height: 45px;
+  background-color: #3b5998;
+  margin-top: 4px;
+}
+
+.login-facebook img {
+  width: 25px;
   filter: invert(100%) sepia(1%) saturate(7500%) hue-rotate(59deg) brightness(115%) contrast(100%);
 }
 
-.button-face{
-  background: #3b5998;
+.login-facebook p {
+  display: inline;
+  font-size: 13px;
+}
+
+.input-password {
+  border: none;
+}
+
+.input-group-username {
+  margin-bottom: 20px;
+}
+
+.input-group-password {
+  margin-bottom: 20px;
+}
+
+.input-username {
+  border: none;
+}
+
+.signup-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.signup-button button {
+  width: 200px;
+  height: 70px;
+  background-color: #00DBDE;
+  border: none;
+  font-size: 25px;
+}
+
+.login-here {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.login-here p{
+  margin-bottom: 0;
+}
+
+.login-here a{
+  color: #00DBDE;
+  text-decoration: none;
 }
 </style>
