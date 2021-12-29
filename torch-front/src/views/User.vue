@@ -2,22 +2,23 @@
   <div class="container">
     <header class="jumbotron">
       <h3>
-        <strong>{{currentUser.data.username}}'s</strong> Profile
+        <strong>{{getUserName}}'s</strong> Profile
       </h3>
     </header>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapState } from 'vuex';
+
 export default {
-  name: 'Profile',
+  name: 'User',
   computed: {
-    currentUser() {
-      return this.$store.state.auth.user;
-    },
+    ...mapState('auth', ['user']),
+    ...mapGetters('auth', ['getUserName']),
   },
   mounted() {
-    if (!this.currentUser) {
+    if (!this.user) {
       this.$router.push('/sign-in');
     }
   },

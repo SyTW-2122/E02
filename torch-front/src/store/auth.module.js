@@ -11,8 +11,16 @@ const initialState = userData
   }
   : {
     status: { loggedIn: false },
-    userData: null,
-    token: null,
+    userData: {
+      success: false,
+      msg: '',
+      token: '',
+      data: {
+        username: '',
+        password: '',
+      },
+    },
+    token: '',
   };
 
 export const auth = {
@@ -21,7 +29,8 @@ export const auth = {
   getters: {
     isLoggedIn: (state) => state.status.loggedIn,
     getToken: (state) => state.token,
-    getUser: (state) => state.userData,
+    getUser: (state) => state.user,
+    getUserName: (state) => state.user.data.username,
   },
   actions: {
     login({ commit }, user) {
