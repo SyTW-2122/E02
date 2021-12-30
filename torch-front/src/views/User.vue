@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" id="User">
     <header class="jumbotron">
       <h3>
         <strong>{{getUserName}}'s</strong> Profile

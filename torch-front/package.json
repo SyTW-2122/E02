@@ -8,7 +8,7 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-    "test": "npx cypress open",
+    "test": "(npm run serve &) && npx cypress open",
     "test:ci": "npx cypress run --spec **/*.feature",
     "test:tags": "npx cypress-tags run -e TAGS=$TAGS",
     "test-jest": "jest"
