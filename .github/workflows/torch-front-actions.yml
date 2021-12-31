@@ -49,3 +49,14 @@ jobs:
           #mention_groups_when: 'failure,warnings'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}   
+    
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd torch-front
+      - run: npm install
+      - run: npx nyc vue-cli-service test:unit
+      - uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
