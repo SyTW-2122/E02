@@ -34,7 +34,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: npm install
-      - run: npx nyc mocha --timeout 10000 --exit
+      - run: npm install -g codecov
+      - run: npx nyc --reporter lcovonly mocha --timeout 10000 --exit
+      - run: codecov --token=${{ secrets.CODECOV_TOKEN }}
       - uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          flags: unittests
