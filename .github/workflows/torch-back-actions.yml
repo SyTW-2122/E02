@@ -33,8 +33,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: cd torch-back
       - run: npm install
-      - run: npm run coverage
+      - run: npx nyc mocha --timeout 10000 --exit
       - uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
