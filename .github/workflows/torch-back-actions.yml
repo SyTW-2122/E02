@@ -33,7 +33,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: cd torch-back
       - run: npm install
       - run: npx nyc mocha --timeout 10000 --exit
       - uses: codecov/codecov-action@v1
