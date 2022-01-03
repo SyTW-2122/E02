@@ -9,6 +9,8 @@ import './assets/css/custom-variables.css';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
+  faPlusSquare,
+  faBell,
   faHistory,
   faBars,
   faPowerOff,
@@ -37,6 +39,8 @@ Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 // Font awesome icons used in the app
 library.add(
+  faPlusSquare,
+  faBell,
   faHistory,
   faBars,
   faPowerOff,

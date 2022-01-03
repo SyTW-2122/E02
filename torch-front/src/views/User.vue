@@ -146,13 +146,13 @@
         </b-tab>
         <b-tab>
           <template #title>
-            <font-awesome-icon icon="history" class="fa-2x"/>
+            <font-awesome-icon icon="plus-square" class="fa-2x"/>
           </template>
           <p>I'm the creator tab</p>
         </b-tab>
         <b-tab>
           <template #title>
-            <font-awesome-icon icon="history" class="fa-2x"/>
+            <font-awesome-icon icon="bell" class="fa-2x"/>
           </template>
           <p>I'm the notifications tab</p>
         </b-tab>
