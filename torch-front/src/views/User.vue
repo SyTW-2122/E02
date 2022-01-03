@@ -9,6 +9,7 @@
           class="px-3 py-2"
           align-content="center">
             <b-button
+            @click.prevent="logOut"
             variant="outline-danger">
               log out
               <span>
@@ -175,6 +176,12 @@ export default {
     if (!this.user) {
       this.$router.push('/sign-in');
     }
+  },
+  methods: {
+    logOut() {
+      this.$store.dispatch('auth/logout');
+      this.$router.push('/sign-in');
+    },
   },
 };
 </script>

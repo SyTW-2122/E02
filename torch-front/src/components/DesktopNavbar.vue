@@ -25,31 +25,6 @@
               PROFILE
             </b-nav-item>
           </li>
-
-          <div v-if="!currentUser" class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <router-link to="/sign-up" class="nav-link">
-                <font-awesome-icon icon="user-plus" />Sign Up
-              </router-link>
-            </li>
-            <li class="nav-item">
-              <router-link to="/sign-in" class="nav-link">
-                <font-awesome-icon icon="sign-in-alt" />Login
-              </router-link>
-            </li>
-          </div>
-
-          <div v-if="currentUser" class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <font-awesome-icon icon="user" />
-                {{currentUser.data.username}}
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href @click.prevent="logOut">
-                <font-awesome-icon icon="sign-out-alt" />LogOut
-              </a>
-            </li>
-          </div>
         </ul>
       </div>
     </nav>
