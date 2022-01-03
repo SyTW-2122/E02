@@ -23,7 +23,7 @@
             "name": "I am logged in as \"eric\"",
             "result": {
               "status": "passed",
-              "duration": 2181000000
+              "duration": 1997000000
             }
           },
           {
@@ -33,7 +33,7 @@
             "name": "I look at the view",
             "result": {
               "status": "passed",
-              "duration": 456000000
+              "duration": 592000000
             }
           },
           {
@@ -43,8 +43,8 @@
             "name": "I should see all the profile layout as espected",
             "result": {
               "status": "failed",
-              "duration": 4141000000,
-              "error_message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `#main-info`, but never found it.\n    at Context.eval (http://localhost:8080/__cypress/tests?p=tests/e2e/specs/User.feature:41766:19)\n    at Context.resolveAndRunStepDefinition (http://localhost:8080/__cypress/tests?p=tests/e2e/specs/User.feature:6935:29)\n    at Context.eval (http://localhost:8080/__cypress/tests?p=tests/e2e/specs/User.feature:6256:35)"
+              "duration": 4878000000,
+              "error_message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `#tools-tab`, but never found it.\n    at Context.eval (http://localhost:8080/__cypress/tests?p=tests/e2e/specs/User.feature:41775:19)\n    at Context.resolveAndRunStepDefinition (http://localhost:8080/__cypress/tests?p=tests/e2e/specs/User.feature:6935:29)\n    at Context.eval (http://localhost:8080/__cypress/tests?p=tests/e2e/specs/User.feature:6256:35)"
             }
           }
         ]

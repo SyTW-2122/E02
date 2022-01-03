@@ -2,7 +2,7 @@
   <div class="fluid-container">
     <MobileNavbar v-if="mobile && ['activity','explore','user'].includes($route.name)"/>
     <DesktopNavbar v-else-if="!mobile && ['activity','explore','user'].includes($route.name)"/>
-    <router-view/>
+    <router-view :mobile="mobile"/>
   </div>
 </template>
 <script>
