@@ -46,7 +46,10 @@ export const explorer = {
     getRecommendations: (state) => state.search.recommendations,
   },
   actions: {
-    loadValoration({ commit }) {
+    loadUserValoration({ commit }) {
+      commit('valuation saved');
+    },
+    loadRoutineValoration({ commit }) {
       commit('valuation saved');
     },
   },
