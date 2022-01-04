@@ -58,6 +58,7 @@
         <b-row id="buttons">
           <b-container v-if="mobile" fluid="xl" class="px-2">
             <b-button
+              to="/user/edit-profile"
               id="edit"
               size="sm"
               class="my-2 me-2 px-4">edit profile</b-button>
@@ -69,6 +70,7 @@
           <b-container v-if="!mobile" fluid="xl"
             class="px-2 text-center">
             <b-button
+              to="/edit-profile"
               id="edit"
               size="lg"
               class="my-2 me-2 px-4">edit profile</b-button>

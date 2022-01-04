@@ -1,5 +1,5 @@
 <template>
-  <b-container id="tools-tab">
+  <b-container id="tools-tab" class="px-0">
       <b-tabs content-class="mt-3" justified>
         <b-tab>
           <template #title>

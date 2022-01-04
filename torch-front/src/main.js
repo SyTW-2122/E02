@@ -2,7 +2,8 @@
 
 import './registerServiceWorker';
 
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+import { BootstrapVue, BootstrapVueIcons, IconsPlugin } from 'bootstrap-vue';
+import PortalVue from 'portal-vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import './assets/css/custom-variables.css';
@@ -35,8 +36,10 @@ import App from './App.vue';
 /// Style addons activation
 // Make BootstrapVue available throughout your project
 Vue.use(BootstrapVue);
+Vue.use(BootstrapVueIcons);
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin);
+Vue.use(PortalVue);
 // Font awesome icons used in the app
 library.add(
   faPlusSquare,

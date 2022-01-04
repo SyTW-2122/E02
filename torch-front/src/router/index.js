@@ -7,6 +7,7 @@ import User from '../views/User.vue';
 import Activity from '../views/Activity.vue';
 import SignUp from '../views/SignUp.vue';
 import SignIn from '../views/SignIn.vue';
+import EditProfile from '../components/EditProfile.vue';
 
 Vue.use(VueRouter);
 
@@ -15,6 +16,12 @@ const routes = [
     path: '/user',
     name: 'user',
     component: User,
+  },
+  {
+    path: '/user/edit-profile',
+    name: 'editProfile',
+    component: EditProfile,
+    meta: { transitionName: 'slide' },
   },
   {
     path: '/explore',
