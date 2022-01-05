@@ -1,8 +1,11 @@
 <template>
     <b-container
-      class="text-center my-4 px-0">
+      class="text-center my-4 p-2">
       <b-row id="nav-header " class="pt-4">
-        <b-col cols=4 class="ps-0">
+        <b-col
+        cols=6
+        order="0"
+        class="ps-0 text-sm-start">
           <b-button
           size="lg"
           class="b-link"
@@ -10,7 +13,8 @@
           variant="link">Cancel</b-button>
         </b-col>
         <b-col
-        cols=4
+        cols="12"
+        order="2"
         class="p-1">
           <b-img
             v-if="!hasImage"
@@ -31,7 +35,10 @@
             alt="profile picture"
           ></b-img>
         </b-col>
-        <b-col cols=4 class="pe-2">
+        <b-col
+        cols=6
+        order="1"
+        class="pe-2 text-sm-end">
           <b-button
           type="submit"
           @click="onSubmit"
@@ -161,29 +168,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.thumb-post img {
-  object-fit: none; /* Do not scale the image */
-  object-position: center; /* Center the image within the element */
-  width: 100%;
-  max-height: 250px;
-  margin-bottom: 1rem;
-}
-
-.center-cropped {
-  width: 300px;
-  height: 300px;
-  background-image: url('https://images.unsplash.com/photo-1569867037406-6b9ad775b22e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60');
-  background-position: center center;
-  background-repeat: no-repeat;
-  overflow: hidden;
-}
-
-.center-cropped img {
-  min-height: 100%;
-  min-width: 100%;
-  opacity: 0;
-}
-
-</style>

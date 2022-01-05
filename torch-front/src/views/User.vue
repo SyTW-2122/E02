@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container px-1" id="User">
+    <div class="container px-2" id="User">
       <b-row id="settings-button">
         <b-col sm="12" class="py-3" >
             <font-awesome-icon  v-b-toggle.sidebar-1 icon="bars" id="settings"  class="fa-2x"/>
