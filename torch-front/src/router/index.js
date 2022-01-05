@@ -18,22 +18,14 @@ const routes = [
     component: SignUp,
   },
   {
-    path: '/',
+    path: '/sign-in',
     name: 'sign-in',
     component: SignIn,
   },
   {
-    path: '/:name',
-    name: 'user',
-    component: User,
-    props: true,
-  },
-  {
-    path: '/:name/edit-profile',
-    name: 'editProfile',
-    props: true,
-    component: EditProfile,
-    meta: { transitionName: 'slide' },
+    path: '/',
+    name: 'sign-in',
+    component: SignIn,
   },
   {
     path: '/explore',
@@ -50,6 +42,19 @@ const routes = [
     meta: {
       requiresAuth: true,
     },
+  },
+  {
+    path: '/:name',
+    name: 'user',
+    component: User,
+    props: true,
+  },
+  {
+    path: '/:name/edit-profile',
+    name: 'editProfile',
+    props: true,
+    component: EditProfile,
+    meta: { transitionName: 'slide' },
   },
   {
     path: '*',

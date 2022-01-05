@@ -6,17 +6,22 @@
     <b-nav-item to="/explore">
       <font-awesome-icon icon="search" class="nav-icon"/>
     </b-nav-item>
-    <b-nav-item to="/user" >
+    <b-nav-item :to="{ path: `/${user.data.username}` }">
       <font-awesome-icon icon="user-circle" class="nav-icon "/>
     </b-nav-item>
   </b-nav>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'MobileNavbar',
   props: {
     msg: String,
+  },
+  computed: {
+    ...mapState('auth', ['user']),
   },
 };
 </script>

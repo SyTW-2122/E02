@@ -4,7 +4,7 @@
       <b-col align-self="center" cols="8 px-1">
         <b-row align-v="center" class="text-sm">
           <b-col class="">
-            <p class="my-0 fw-bold text-center">0
+            <p class="my-0 fw-bold text-center"> {{ 0 }}
               <span v-if="!mobile" class="text-secondary fw-md"> routines</span>
             </p>
             <p v-if="mobile" class="my-0 text-secondary  text-center">routines</p>
@@ -28,27 +28,28 @@
         class="text-end px-1">
         <b-img
           v-if="mobile"
+          fluid
           id="picture"
-          src="https://images.unsplash.com/photo-1541911087797-f89237bd95d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
           rounded="circle"
           class="img-sm-limit center-cropped"
           alt="profile picture"
-        ></b-img>
+          :src="user.data.image.dataUrl"
+        />
         <b-img
           v-else
           id="picture"
-          src="https://images.unsplash.com/photo-1541911087797-f89237bd95d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+          :src="user.data.image.dataUrl"
           rounded="circle"
           class="img-limit center-cropped"
           alt="profile picture"
-        ></b-img>
+        />
       </b-col>
     </b-row>
     <b-row id="user-text-info">
-      <b-col cols="8">Bio</b-col>
+      <b-col cols="8">{{user.data.bio}}</b-col>
       <b-col cols="4" class="text-end">
         <p class="pt-2 my-0 fw-bold text-capitalize">{{user.data.username}}</p>
-        <p class="py-0 my-0 fw-light">Pusher</p>
+        <p class="py-0 my-0 fw-light">{{user.data.subname}}</p>
       </b-col>
     </b-row>
     <!-- user profile buttons -->
@@ -93,6 +94,7 @@ export default {
     min-height: 70px;
     max-width: 80px;
     max-height: 80px;
+    overflow: hidden;
   }
   .img-limit {
     max-width: 250px;

@@ -1,12 +1,17 @@
 import axios from 'axios';
-import authHeader from './auth-header';
 
-const API_URL = 'http://localhost:5000/user/';
+const API_URL = 'http://localhost:5000/api/user/';
 
 class UserService {
-  getPublicContent = () => axios.get(`${API_URL}all`);
-
-  getUserBoard = () => axios.get(`${API_URL}user`, { headers: authHeader() });
+  edit = (user) => axios
+    .put(`${API_URL}edit/${user.urlUsername}`, {
+      username: user.username,
+      password: user.password,
+      subname: user.subname,
+      email: user.email,
+      bio: user.bio,
+      image: user.image,
+    });
 }
 
 export default new UserService();

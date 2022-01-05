@@ -21,7 +21,9 @@
             </b-nav-item>
           </li>
           <li class="nav-item mx-5 px-5" to="/activity">
-            <b-nav-item to="/user" class="mx-6">
+            <b-nav-item
+            :to="{ path: `/${user.data.username}` }"
+            class="mx-6">
               PROFILE
             </b-nav-item>
           </li>
@@ -32,8 +34,11 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   computed: {
+    ...mapState('auth', ['user']),
     currentUser() {
       return this.$store.state.auth.user;
     },

@@ -19,7 +19,7 @@
           <b-img
             v-if="!hasImage"
             id="picture"
-            src="https://images.unsplash.com/photo-1541911087797-f89237bd95d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+            :src="form.image.dataUrl"
             fluid
             rounded="circle"
             class="img-limit center-cropped"
@@ -28,7 +28,7 @@
           <b-img
             v-if="hasImage"
             id="picture"
-            :src="image.dataUrl"
+            :src="form.image.dataUrl"
             fluid
             rounded="circle"
             class="img-limit center-cropped"
@@ -47,10 +47,10 @@
         </b-col>
       </b-row>
       <b-row>
-        <!-- <image-uploader
-          v-b-modal.modal-center
-          v-model="image"
+        <image-uploader
+          v-model="form.image"
           :preview="false"
+          :quality="0.6"
           :className="['fileinput', { 'fileinput--loaded': hasImage }]"
           capture="environment"
           :debug="1"
@@ -58,13 +58,13 @@
           :autoRotate="true"
           outputFormat="verbose"
           @input="setImage"
-        > -->
+        >
         <label for="fileInput" slot="upload-label">
           <span class="upload-caption">{{
             hasImage ? "Replace" : "Click to upload"
           }}</span>
         </label>
-      <!-- </image-uploader> -->
+      </image-uploader>
       </b-row>
       <b-row class="my-5 text-start p-3">
         <b-form @submit="onSubmit" v-if="show" class="">
@@ -143,25 +143,43 @@ export default {
       hasImage: false,
       show: true,
       form: {
+        urlUsername: '',
         username: '',
+        password: '',
         subname: '',
         email: '',
         bio: '',
+        image: null,
       },
     };
   },
   methods: {
     setImage(output) {
       this.hasImage = true;
-      this.image = output;
-      console.log('Info', output.dataUrl);
-      console.log('Exif', output.exif);
+      this.form.image = output;
     },
     onSubmit(event) {
+      this.form.password = this.user.data.password;
+      this.form.urlUsername = this.user.data.username;
       event.preventDefault();
-      alert(JSON.stringify(this.form));
-      alert(JSON.stringify(this.image));
+      this.$store.dispatch('user/edit', this.form).then(
+        (data) => {
+          this.msg = data.msg;
+          this.successful = true;
+          this.$store.dispatch('auth/logout');
+          this.$router.push('/');
+        },
+        (error) => {
+          this.message = (error.response && error.response.data)
+          || error.message
+          || error.toString();
+          this.successful = false;
+        },
+      );
     },
+  },
+  created() {
+    this.form.image = this.user.data.image;
   },
   computed: {
     ...mapState('auth', ['user']),

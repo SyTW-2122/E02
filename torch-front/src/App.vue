@@ -135,19 +135,4 @@ export default {
   transform: translate(0, -10em);
 }
 
-.center-cropped {
-  width: 300px;
-  height: 300px;
-  background-image: url('https://images.unsplash.com/photo-1569867037406-6b9ad775b22e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60');
-  background-position: center center;
-  background-repeat: no-repeat;
-  overflow: hidden;
-}
-
-.center-cropped img {
-  min-height: 100%;
-  min-width: 100%;
-  opacity: 0;
-}
-
 </style>
