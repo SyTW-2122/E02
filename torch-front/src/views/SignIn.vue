@@ -48,7 +48,7 @@
               <b-form-input
                   id="input-email"
                   type="text"
-                  v-model="user.username"
+                  v-model="attemptUser.username"
                   v-validate="'required'"
                   placeholder="Enter username"
                   class="input-email border-bottom"
@@ -69,7 +69,7 @@
               <b-form-input
                   id="input-password"
                   type="password"
-                  v-model="user.password"
+                  v-model="attemptUser.password"
                   v-validate="'required'"
                   placeholder="Enter password"
                   class="input-password border-bottom"
@@ -110,26 +110,28 @@
 </template>
 
 <script>
-
+import { mapState } from 'vuex';
 import User from '../models/user';
 
 export default {
   name: 'Login',
   data() {
     return {
-      user: new User('', ''),
+      attemptUser: new User('', ''),
       loading: false,
       message: '',
     };
   },
   computed: {
+    ...mapState('auth', ['user']),
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
     },
   },
   created() {
+    console.log(this.user);
     if (this.loggedIn) {
-      this.$router.push(`/${this.user.username}`);
+      this.$router.push(`/${this.user.data.username}`);
     }
   },
   methods: {
@@ -141,10 +143,10 @@ export default {
           return;
         }
 
-        if (this.user.username && this.user.password) {
-          this.$store.dispatch('auth/login', this.user).then(
+        if (this.attemptUser.username && this.attemptUser.password) {
+          this.$store.dispatch('auth/login', this.attemptUser).then(
             () => {
-              this.$router.push(`/${this.user.username}`);
+              this.$router.push(`/${this.user.data.username}`);
             },
             (error) => {
               this.loading = false;
