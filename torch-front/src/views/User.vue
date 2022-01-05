@@ -1,4 +1,4 @@
-<template>
+<template v-if="user">
   <div>
     <div class="container px-2" id="User">
       <b-row id="settings-button">
@@ -6,7 +6,7 @@
             <font-awesome-icon  v-b-toggle.sidebar-1 icon="bars" id="settings"  class="fa-2x"/>
         </b-col>
       </b-row>
-      <ProfileHeader :user="user" :mobile="mobile" />
+      <ProfileHeader v-if="user" :user="user" :mobile="mobile" />
       <ProfileTools />
     </div>
      <b-sidebar

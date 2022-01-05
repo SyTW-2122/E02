@@ -13,6 +13,16 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    path: '/sign-up',
+    name: 'sign-up',
+    component: SignUp,
+  },
+  {
+    path: '/',
+    name: 'sign-in',
+    component: SignIn,
+  },
+  {
     path: '/:name',
     name: 'user',
     component: User,
@@ -40,16 +50,6 @@ const routes = [
     meta: {
       requiresAuth: true,
     },
-  },
-  {
-    path: '/sign-up',
-    name: 'sign-up',
-    component: SignUp,
-  },
-  {
-    path: '/',
-    name: 'sign-in',
-    component: SignIn,
   },
   {
     path: '*',

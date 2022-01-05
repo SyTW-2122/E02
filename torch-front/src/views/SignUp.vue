@@ -110,7 +110,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 import User from '../models/user';
 
 export default {
@@ -124,6 +124,7 @@ export default {
     };
   },
   computed: {
+    ...mapState('auth', ['user']),
     ...mapGetters({
       loggedIn: 'auth/isLoggedIn',
     }),
@@ -144,6 +145,17 @@ export default {
             (data) => {
               this.message = data.message;
               this.successful = true;
+              this.$store.dispatch('auth/login', this.newUser).then(
+                () => {
+                  this.$router.push(`/${this.user.data.username}`);
+                },
+                (error) => {
+                  this.loading = false;
+                  this.message = (error.response && error.response.data)
+                    || error.message
+                    || error.toString();
+                },
+              );
             },
             (error) => {
               this.message = (error.response && error.response.data)

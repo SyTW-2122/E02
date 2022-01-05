@@ -47,24 +47,24 @@
         </b-col>
       </b-row>
       <b-row>
-        <image-uploader
-        v-b-modal.modal-center
-        v-model="image"
-        :preview="false"
-        :className="['fileinput', { 'fileinput--loaded': hasImage }]"
-        capture="environment"
-        :debug="1"
-        doNotResize="gif"
-        :autoRotate="true"
-        outputFormat="verbose"
-        @input="setImage"
-      >
+        <!-- <image-uploader
+          v-b-modal.modal-center
+          v-model="image"
+          :preview="false"
+          :className="['fileinput', { 'fileinput--loaded': hasImage }]"
+          capture="environment"
+          :debug="1"
+          doNotResize="gif"
+          :autoRotate="true"
+          outputFormat="verbose"
+          @input="setImage"
+        > -->
         <label for="fileInput" slot="upload-label">
           <span class="upload-caption">{{
             hasImage ? "Replace" : "Click to upload"
           }}</span>
         </label>
-      </image-uploader>
+      <!-- </image-uploader> -->
       </b-row>
       <b-row class="my-5 text-start p-3">
         <b-form @submit="onSubmit" v-if="show" class="">
