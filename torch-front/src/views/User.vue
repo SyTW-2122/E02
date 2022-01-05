@@ -70,15 +70,14 @@ export default {
     ...mapGetters('auth', ['getUserName']),
   },
   mounted() {
-    console.log(this.isMobile);
     if (!this.user) {
-      this.$router.push('/sign-in');
+      this.$router.push('/');
     }
   },
   methods: {
     logOut() {
       this.$store.dispatch('auth/logout');
-      this.$router.push('/sign-in');
+      this.$router.push('/');
     },
   },
 };

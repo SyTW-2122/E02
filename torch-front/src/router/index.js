@@ -52,11 +52,6 @@ const routes = [
     component: SignIn,
   },
   {
-    path: '/sign-in',
-    name: 'sign-in',
-    component: SignIn,
-  },
-  {
     path: '*',
     component: Errors,
     meta: { layout: 'none' },

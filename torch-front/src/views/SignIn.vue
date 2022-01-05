@@ -128,9 +128,8 @@ export default {
     },
   },
   created() {
-    console.log(this.user.name);
     if (this.loggedIn) {
-      this.$router.push(`/user/${this.user.username}`);
+      this.$router.push(`/${this.user.username}`);
     }
   },
   methods: {
@@ -145,7 +144,7 @@ export default {
         if (this.user.username && this.user.password) {
           this.$store.dispatch('auth/login', this.user).then(
             () => {
-              this.$router.push(`/user/${this.user.name}`);
+              this.$router.push(`/${this.user.username}`);
             },
             (error) => {
               this.loading = false;

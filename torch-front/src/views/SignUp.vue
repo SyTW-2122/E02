@@ -51,7 +51,7 @@
               <b-form-input
                 id="input-username"
                 type="text"
-                v-model="user.username"
+                v-model="newUser.username"
                 v-validate="'required|min:3|max:20'"
                 placeholder="Username"
                 name="username"
@@ -72,7 +72,7 @@
               <b-form-input
                 id="input-password"
                 type="password"
-                v-model="user.password"
+                v-model="newUser.password"
                 v-validate="'required|min:6|max:40'"
                 placeholder="Password"
                 name="password"
@@ -101,7 +101,7 @@
       </div>
       <div v-else class="text-center">
         <h1 class="text-success text-center">Account created succesfully</h1>
-        <router-link to="/sign-in">
+        <router-link to="/">
           <b-button class="btn-primary m-5">Go to login</b-button>
         </router-link>
       </div>
@@ -110,7 +110,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 import User from '../models/user';
 
 export default {
@@ -124,12 +124,12 @@ export default {
     };
   },
   computed: {
-    ...mapState('auth', ['user']),
     ...mapGetters({
       loggedIn: 'auth/isLoggedIn',
     }),
   },
   mounted() {
+    console.log(this.loggedIn);
     if (this.loggedIn) {
       this.$router.push(`/${this.user.data.username}`);
     }
@@ -144,17 +144,6 @@ export default {
             (data) => {
               this.message = data.message;
               this.successful = true;
-              this.$store.dispatch('auth/login', this.user).then(
-                () => {
-                  this.$router.push(`/user/${this.user.name}`);
-                },
-                (error) => {
-                  this.loading = false;
-                  this.message = (error.response && error.response.data)
-                    || error.message
-                    || error.toString();
-                },
-              );
             },
             (error) => {
               this.message = (error.response && error.response.data)

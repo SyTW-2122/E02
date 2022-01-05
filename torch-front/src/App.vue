@@ -5,9 +5,7 @@
     <transition
       :name="transitionName"
       mode="out-in">
-      <router-view :mobile="mobile" v-slot="{ View }">
-          <component :is="View"/>
-      </router-view>
+      <router-view :mobile="mobile"/>
     </transition>
   </div>
 </template>
