@@ -2,6 +2,7 @@
 
 import './registerServiceWorker';
 
+import VueCropper from 'vue-cropperjs';
 import { BootstrapVue, BootstrapVueIcons, IconsPlugin } from 'bootstrap-vue';
 import PortalVue from 'portal-vue';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -29,9 +30,13 @@ import {
 import Vue from 'vue';
 import Vuex from 'vuex';
 import VeeValidate from 'vee-validate';
+import ImageUploader from 'vue-image-upload-resize';
 import storeConfig from './store/index';
 import router from './router';
 import App from './App.vue';
+
+Vue.use(VueCropper);
+Vue.use(ImageUploader);
 
 /// Style addons activation
 // Make BootstrapVue available throughout your project

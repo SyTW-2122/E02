@@ -110,7 +110,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 import User from '../models/user';
 
 export default {
@@ -120,30 +120,41 @@ export default {
       submitted: false,
       successful: false,
       message: '',
-      user: new User('', ''),
+      newUser: new User('', ''),
     };
   },
   computed: {
+    ...mapState('auth', ['user']),
     ...mapGetters({
       loggedIn: 'auth/isLoggedIn',
     }),
   },
   mounted() {
     if (this.loggedIn) {
-      this.$router.push('/user');
+      this.$router.push(`/${this.user.data.username}`);
     }
   },
   methods: {
     handleRegister() {
       this.message = '';
       this.submitted = true;
-      console.log(this.user);
       this.$validator.validate().then((isValid) => {
         if (isValid) {
-          this.$store.dispatch('auth/register', this.user).then(
+          this.$store.dispatch('auth/register', this.newUser).then(
             (data) => {
               this.message = data.message;
               this.successful = true;
+              this.$store.dispatch('auth/login', this.user).then(
+                () => {
+                  this.$router.push(`/user/${this.user.name}`);
+                },
+                (error) => {
+                  this.loading = false;
+                  this.message = (error.response && error.response.data)
+                    || error.message
+                    || error.toString();
+                },
+              );
             },
             (error) => {
               this.message = (error.response && error.response.data)

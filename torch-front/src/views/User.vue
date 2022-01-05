@@ -64,7 +64,7 @@ export default {
     ProfileHeader,
     ProfileTools,
   },
-  props: ['mobile'],
+  props: ['mobile', 'name'],
   computed: {
     ...mapState('auth', ['user']),
     ...mapGetters('auth', ['getUserName']),

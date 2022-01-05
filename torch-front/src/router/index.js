@@ -13,13 +13,15 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/user',
+    path: '/:name',
     name: 'user',
     component: User,
+    props: true,
   },
   {
-    path: '/user/edit-profile',
+    path: '/:name/edit-profile',
     name: 'editProfile',
+    props: true,
     component: EditProfile,
     meta: { transitionName: 'slide' },
   },

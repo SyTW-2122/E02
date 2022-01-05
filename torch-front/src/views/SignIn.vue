@@ -110,6 +110,7 @@
 </template>
 
 <script>
+
 import User from '../models/user';
 
 export default {
@@ -127,8 +128,9 @@ export default {
     },
   },
   created() {
+    console.log(this.user.name);
     if (this.loggedIn) {
-      this.$router.push('/user');
+      this.$router.push(`/user/${this.user.username}`);
     }
   },
   methods: {
@@ -143,7 +145,7 @@ export default {
         if (this.user.username && this.user.password) {
           this.$store.dispatch('auth/login', this.user).then(
             () => {
-              this.$router.push('/user');
+              this.$router.push(`/user/${this.user.name}`);
             },
             (error) => {
               this.loading = false;
