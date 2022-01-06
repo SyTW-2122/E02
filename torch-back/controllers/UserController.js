@@ -16,6 +16,67 @@ module.exports = {
       }
     });
   },
+  getUserByUsername: (req, res) => {
+    User.findOne({
+      username: req.params.username,
+    }, (err, user) => {
+      if (err) throw err;
+      if (!user) {
+        res.status(401).send({ success: false, msg: 'Update failed. User not found.' });
+      }
+      else {
+        res.status(200).json(user);
+      }
+    });
+  },
+  toggleFollow: (req, res) => {
+    User.findOne({
+      username: req.params.username,
+    }, (err, userToFollow) => {
+      if (err) throw err;
+      if (!userToFollow) {
+        res.status(401).send({ success: false, msg: 'Update failed. User not found.' });
+      }
+      else {
+        User.findOne({
+          username: req.body.username,
+        }, (err, currentUser) => {
+          if (err) throw err;
+          if (!currentUser) {
+            res.status(401).send({ success: false, msg: 'Update failed. User not found.' });
+          } else {
+            if (currentUser.following === undefined) {
+              currentUser.following = [];
+              currentUser.save();
+            }
+            if (userToFollow.followers === undefined) {
+              userToFollow.followers = [];
+              userToFollow.save();
+            }
+            const isFollowing = currentUser.following
+              .map((el) => el === userToFollow.username).length >= 1;
+
+            if (isFollowing) {
+              currentUser.following = currentUser.following
+                .filter((el) => el !== userToFollow.username);
+              userToFollow.followers = userToFollow.following
+                .filter((el) => el !== currentUser.username);
+            }
+            else {
+              currentUser.following.push(userToFollow.username);
+              userToFollow.followers.push(currentUser.username);
+            }
+            currentUser.save();
+            userToFollow.save();
+            res.status(200).json({
+              followers: currentUser.followers,
+              following: currentUser.following,
+            });
+          }
+        });
+      }
+    });
+  },
   updateUserInfo: (req, res) => {
     User.findOne({
       username: req.params.username,

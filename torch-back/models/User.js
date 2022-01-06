@@ -22,6 +22,12 @@ const userSchema = new Schema({
     type: Schema.Types.String,
     required: true,
   },
+  followers: {
+    type: Schema.Types.Array,
+  },
+  following: {
+    type: Schema.Types.Array,
+  },
 }, { timestamps: true });
 
 userSchema.pre('save', function(next) {

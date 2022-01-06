@@ -4,5 +4,7 @@ const UserController = require('../controllers/UserController');
 const router = express.Router();
 router.get('/', UserController.allUsers);
 router.put('/edit/:username', UserController.updateUserInfo);
+router.get('/get/:username', UserController.getUserByUsername);
+router.post('/follow/:username', UserController.toggleFollow);
 
 module.exports = router;
