@@ -129,7 +129,6 @@ export default {
     },
   },
   created() {
-    console.log(this.user);
     if (this.loggedIn) {
       this.$router.push(`/${this.user.data.username}`);
     }

@@ -4,20 +4,20 @@
       <b-col align-self="center" cols="8 px-1">
         <b-row align-v="center" class="text-sm">
           <b-col class="">
-            <p class="my-0 fw-bold text-center"> {{ 0 }}
+            <p class="my-0 fw-bold text-center"> 0
               <span v-if="!mobile" class="text-secondary fw-md"> routines</span>
             </p>
             <p v-if="mobile" class="my-0 text-secondary  text-center">routines</p>
           </b-col>
           <b-col class="">
-            <p class="my-0 text-center fw-bold">0
-              <span v-if="!mobile" class="text-secondary fw-md"> followers</span>
+            <p class="my-0 text-center fw-bold"> {{ user.followers.length }}
+              <span v-if="!mobile" class="text-secondary fw-md"> followers  </span>
             </p>
             <p v-if="mobile" class="my-0 text-center text-secondary">followers</p>
           </b-col>
           <b-col class="">
-            <p class="my-0 text-center fw-bold">0
-              <span v-if="!mobile" class="text-secondary fw-md"> following</span>
+            <p class="my-0 text-center fw-bold">{{ user.following.length }}
+              <span v-if="!mobile" class="text-secondary fw-md"> following </span>
             </p>
             <p v-if="mobile" class="my-0 text-center text-secondary">following</p>
           </b-col>
@@ -33,12 +33,14 @@
           rounded="circle"
           class="img-sm-limit center-cropped"
           alt="profile picture"
-          :src="user.data.image.dataUrl"
+          :src="imageUrlUpdate"
+          @error="imageError = true"
         />
         <b-img
           v-else
           id="picture"
-          :src="user.data.image.dataUrl"
+          :src="imageUrlUpdate"
+          @error="imageError = true"
           rounded="circle"
           class="img-limit center-cropped"
           alt="profile picture"
@@ -46,17 +48,17 @@
       </b-col>
     </b-row>
     <b-row id="user-text-info">
-      <b-col cols="8">{{user.data.bio}}</b-col>
+      <b-col cols="8">{{user.bio}}</b-col>
       <b-col cols="4" class="text-end">
-        <p class="pt-2 my-0 fw-bold text-capitalize">{{user.data.username}}</p>
-        <p class="py-0 my-0 fw-light">{{user.data.subname}}</p>
+        <p class="pt-2 my-0 fw-bold text-capitalize">{{user.username}}</p>
+        <p class="py-0 my-0 fw-light">{{user.subname}}</p>
       </b-col>
     </b-row>
     <!-- user profile buttons -->
-    <b-row order-md="3" id="buttons" class="py-3">
+    <b-row order-md="3" id="buttons" class="py-3" v-if="isPersonal">
       <b-container v-if="mobile" fluid="xl" class="px-2">
         <b-button
-          :to="{path: `/${user.data.username}/edit-profile` }"
+          :to="{path: `/${user.username}/edit-profile` }"
           id="edit"
           size="sm"
           class="my-2 me-2 px-4">edit profile</b-button>
@@ -68,7 +70,7 @@
       <b-container v-if="!mobile" fluid="xl"
         class="px-5 text-start">
         <b-button
-          :to="{path: `/${user.data.username}/edit-profile` }"
+          :to="{path: `/${user.username}/edit-profile` }"
           id="edit"
           size="lg"
           class="my-2 me-2 px-4">edit profile</b-button>
@@ -78,13 +80,80 @@
           class="my-2 px-5">stats</b-button>
       </b-container>
     </b-row>
+    <b-row order-md="3" id="buttons" class="py-3" v-if="!isPersonal">
+      <b-container v-if="mobile" fluid="xl" class="px-2">
+        <b-button
+          id="stats"
+          :variant=" followed && !aux ? 'outline-secondary' : 'primary'"
+          size="sm"
+          @click="handleFollow"
+          class="my-2 px-5">{{followed && !aux  ? 'unfollow': 'follow' }}</b-button>
+      </b-container>
+      <b-container v-if="!mobile" fluid="xl"
+        class="px-5 text-start">
+        <b-button
+          id="stats"
+          :variant="followed && !aux ? 'outline-secondary' : 'primary' "
+          size="lg"
+          @click="handleFollow"
+          class="my-2 px-5">{{followed && !aux ? 'unfollow' : 'follow'}}</b-button>
+      </b-container>
+    </b-row>
   </div>
 </template>
 
 <script>
+const defaultImg = require('@/assets/images/torch-logo-black.png');
+
 export default {
   name: 'ProfileHeader',
-  props: ['user', 'mobile'],
+  props: ['user', 'authUser', 'mobile'],
+  data() {
+    return {
+      aux: false,
+      imageError: false,
+      defaultImage: defaultImg,
+    };
+  },
+  mounted() {
+    this.aux = this.user.followers
+      .map((el) => el === this.authUser.data.username)
+      .length > 0;
+  },
+  computed: {
+    followed() {
+      return this.user.followers
+        .map((el) => el === this.authUser.data.username)
+        .length > 0;
+    },
+    imageUrlUpdate() {
+      if (this.user.image === undefined) {
+        return this.defaultImage;
+      }
+      return this.user.image.dataUrl;
+    },
+    isPersonal() {
+      return this.user.username === this.authUser.data.username;
+    },
+  },
+  methods: {
+    handleFollow() {
+      const namesObj = {
+        current: this.authUser.data.username,
+        toFollow: this.$route.params.name,
+      };
+      this.$store.dispatch('user/toggleFollow', namesObj).then(
+
+        (error) => {
+          this.loading = false;
+          this.message = (error.response && error.response.data)
+            || error.message
+            || error.toString();
+        },
+      );
+      this.aux = !this.aux;
+    },
+  },
 };
 </script>
 

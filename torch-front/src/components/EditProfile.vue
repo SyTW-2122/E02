@@ -19,7 +19,7 @@
           <b-img
             v-if="!hasImage"
             id="picture"
-            :src="form.image.dataUrl"
+            :src="imageUrlUpdate"
             fluid
             rounded="circle"
             class="img-limit center-cropped"
@@ -28,7 +28,7 @@
           <b-img
             v-if="hasImage"
             id="picture"
-            :src="form.image.dataUrl"
+            :src="imageUrlUpdate"
             fluid
             rounded="circle"
             class="img-limit center-cropped"
@@ -50,7 +50,7 @@
         <image-uploader
           v-model="form.image"
           :preview="false"
-          :quality="0.6"
+          :quality="0.3"
           :className="['fileinput', { 'fileinput--loaded': hasImage }]"
           capture="environment"
           :debug="1"
@@ -136,10 +136,13 @@
 <script>
 import { mapState } from 'vuex';
 
+const defaultImg = require('@/assets/images/torch-logo-black.png');
+
 export default {
   data() {
     return {
-      image: null,
+      imageUrl: '',
+      defaultImage: defaultImg,
       hasImage: false,
       show: true,
       form: {
@@ -179,10 +182,19 @@ export default {
     },
   },
   created() {
-    this.form.image = this.user.data.image;
+    this.imageUrl = this.imageUrlUpdate;
   },
   computed: {
     ...mapState('auth', ['user']),
+    imageUrlUpdate() {
+      if (this.form.image === null) {
+        if (this.user.data.image === null) {
+          return this.defaultImage;
+        }
+        return this.user.data.image.dataUrl;
+      }
+      return this.form.image.dataUrl;
+    },
   },
 };
 </script>

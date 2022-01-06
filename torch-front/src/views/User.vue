@@ -6,7 +6,7 @@
             <font-awesome-icon  v-b-toggle.sidebar-1 icon="bars" id="settings"  class="fa-2x"/>
         </b-col>
       </b-row>
-      <ProfileHeader v-if="user" :user="user" :mobile="mobile" />
+      <ProfileHeader v-if="user" :user="urlUser" :authUser="authUser" :mobile="mobile" />
       <ProfileTools />
     </div>
      <b-sidebar
@@ -48,13 +48,23 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex';
+import { mapState } from 'vuex';
 
 import ProfileHeader from '@/components/ProfileHeader.vue';
 import ProfileTools from '@/components/ProfileTools.vue';
 
 export default {
   name: 'User',
+  data() {
+    return {
+      urlUser: {},
+      authUser: {},
+    };
+  },
+  beforeRouteUpdate(to, next) {
+    this.fetchUser(to.params.name);
+    next();
+  },
   components: {
     ProfileHeader,
     ProfileTools,
@@ -62,10 +72,20 @@ export default {
   props: ['mobile', 'name'],
   computed: {
     ...mapState('auth', ['user']),
-    ...mapGetters('auth', ['getUserName']),
+  },
+  created() {
+    this.authUser = this.user;
+    this.$store.dispatch('user/getByUsername', this.$route.params.name).then(
+      (data) => {
+        this.urlUser = data;
+      },
+      (error) => {
+        console.log(`failed: ${error}`);
+      },
+    );
   },
   mounted() {
-    if (!this.user) {
+    if (!this.authUser) {
       this.$router.push('/');
     }
   },
@@ -73,6 +93,16 @@ export default {
     logOut() {
       this.$store.dispatch('auth/logout');
       this.$router.push('/');
+    },
+    fetchUser(username) {
+      this.$store.dispatch('user/getByUsername', username).then(
+        (data) => {
+          this.urlUser = data;
+        },
+        (error) => {
+          console.log(`failed: ${error}`);
+        },
+      );
     },
   },
 };
