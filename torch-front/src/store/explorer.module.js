@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import ExplorerService from '../services/explorer.service';
 
 const explorerData = JSON.parse(localStorage.getItem('explorer'));
 const explorerState = explorerData
