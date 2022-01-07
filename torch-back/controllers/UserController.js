@@ -54,8 +54,9 @@ module.exports = {
               userToFollow.followers = [];
               userToFollow.save();
             }
+
             const isFollowing = currentUser.following
-              .map((el) => el === userToFollow.username).length >= 1;
+              .find((el) => el === userToFollow.username);
 
             if (isFollowing) {
               currentUser.following = currentUser.following
