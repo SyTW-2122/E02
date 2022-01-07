@@ -1,4 +1,5 @@
 import UserService from '../services/user.service';
+import { auth } from './auth.module';
 
 // const token = JSON.parse(localStorage.getItem('token'));
 
@@ -58,6 +59,8 @@ export const user = {
     updateFollowers(state, followData) {
       state.user.followers = followData.toFollow.followers;
       state.user.following = followData.toFollow.following;
+      auth.state.userData.followers = followData.current.followers;
+      auth.state.userData.following = followData.current.following;
     },
   },
 };

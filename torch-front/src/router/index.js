@@ -8,6 +8,8 @@ import Activity from '../views/Activity.vue';
 import SignUp from '../views/SignUp.vue';
 import SignIn from '../views/SignIn.vue';
 import EditProfile from '../components/EditProfile.vue';
+import FollowersList from '../components/FollowersList.vue';
+import FollowingList from '../components/FollowingList.vue';
 
 Vue.use(VueRouter);
 
@@ -54,6 +56,20 @@ const routes = [
     name: 'editProfile',
     props: true,
     component: EditProfile,
+    meta: { transitionName: 'slide' },
+  },
+  {
+    path: '/:name/followers',
+    name: 'followersList',
+    props: true,
+    component: FollowersList,
+    meta: { transitionName: 'slide' },
+  },
+  {
+    path: '/:name/following',
+    name: 'followingList',
+    props: true,
+    component: FollowingList,
     meta: { transitionName: 'slide' },
   },
   {

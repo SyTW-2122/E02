@@ -10,16 +10,20 @@
             <p v-if="mobile" class="my-0 text-secondary  text-center">routines</p>
           </b-col>
           <b-col class="">
-            <p class="my-0 text-center fw-bold"> {{ user.followers.length }}
-              <span v-if="!mobile" class="text-secondary fw-md"> followers  </span>
-            </p>
-            <p v-if="mobile" class="my-0 text-center text-secondary">followers</p>
+            <router-link :to="{path: `/${user.username}/followers`}" tag="div">
+              <p class="my-0 text-center fw-bold"> {{ user.followers.length }}
+                <span v-if="!mobile" class="text-secondary fw-md"> followers  </span>
+              </p>
+              <p v-if="mobile" class="my-0 text-center text-secondary">followers</p>
+            </router-link>
           </b-col>
           <b-col class="">
-            <p class="my-0 text-center fw-bold">{{ user.following.length }}
-              <span v-if="!mobile" class="text-secondary fw-md"> following </span>
-            </p>
-            <p v-if="mobile" class="my-0 text-center text-secondary">following</p>
+            <router-link :to="{path: `/${user.username}/following`}" tag="div">
+              <p class="my-0 text-center fw-bold">{{ user.following.length }}
+                <span v-if="!mobile" class="text-secondary fw-md"> following </span>
+              </p>
+              <p v-if="mobile" class="my-0 text-center text-secondary">following</p>
+            </router-link>
           </b-col>
         </b-row>
       </b-col>
@@ -152,7 +156,6 @@ export default {
         toFollow: this.$route.params.name,
       };
       this.$store.dispatch('user/toggleFollow', namesObj).then(
-
         (error) => {
           this.loading = false;
           this.message = (error.response && error.response.data)

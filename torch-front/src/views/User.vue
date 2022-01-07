@@ -5,7 +5,7 @@
         <b-col
         sm="2" class="pt-3 ps-4 text-start"
         v-if="urlUser.username !== authUser.data.username" >
-          <router-link :to="{ path: `/${authUser.data.username}` }">
+          <router-link tag="div" :to="{ path: `/${authUser.data.username}` }">
             <font-awesome-icon
               icon="chevron-left" id="settings"  class="fa-2x"/>
           </router-link>
