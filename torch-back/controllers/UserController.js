@@ -44,7 +44,8 @@ module.exports = {
           if (err) throw err;
           if (!currentUser) {
             res.status(401).send({ success: false, msg: 'Update failed. User not found.' });
-          } else {
+          }
+          else {
             if (currentUser.following === undefined) {
               currentUser.following = [];
               currentUser.save();
@@ -69,8 +70,14 @@ module.exports = {
             currentUser.save();
             userToFollow.save();
             res.status(200).json({
-              followers: currentUser.followers,
-              following: currentUser.following,
+              current: {
+                followers: currentUser.followers,
+                following: currentUser.following,
+              },
+              toFollow: {
+                followers: userToFollow.followers,
+                following: userToFollow.following,
+              },
             });
           }
         });
@@ -103,12 +110,11 @@ module.exports = {
         }
         user.save()
           .then(() => {
-            res.status(200).json({ message: 'Update complete' });
+            res.status(200).json(user);
           })
           .catch((error) => {
             res.status(400).json({ success: false, msg: error.msg });
           });
-        res.json(user);
       }
     });
   },
