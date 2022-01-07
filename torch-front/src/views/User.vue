@@ -1,9 +1,27 @@
 <template>
   <div>
-    <div class="container px-2" id="User">
-      <b-row id="settings-button">
+    <div class="container" id="User">
+      <b-row id="settings-button" >
+        <b-col
+        sm="2" class="pt-3 ps-4 text-start"
+        v-if="urlUser.username !== authUser.data.username" >
+          <router-link :to="{ path: `/${authUser.data.username}` }">
+            <font-awesome-icon
+              icon="chevron-left" id="settings"  class="fa-2x"/>
+          </router-link>
+        </b-col>
+        <b-col sm="12" class="py-3 ps-4 text-end" >
+            <font-awesome-icon
+            v-if="urlUser.username === authUser.data.username"
+            v-b-toggle.sidebar-1 icon="bars" id="settings"  class="fa-2x"/>
+            <font-awesome-icon
+            v-if="urlUser.username !== authUser.data.username"
+            v-b-toggle.sidebar-2 icon="ellipsis-h" id="options"
+            class="fa-2x"/>
+        </b-col>
+      </b-row>
+      <b-row id="options-button" v-if="this.urlUser.username !== this.authUser.data.username">
         <b-col sm="12" class="py-3" >
-            <font-awesome-icon  v-b-toggle.sidebar-1 icon="bars" id="settings"  class="fa-2x"/>
         </b-col>
       </b-row>
       <ProfileHeader v-if="user" :user="urlUser" :authUser="authUser" :mobile="mobile" />
@@ -44,6 +62,35 @@
       <div class="px-3 py-2">
       </div>
     </b-sidebar>
+    <b-sidebar
+      id="sidebar-2"
+      aria-label="Sidebar with custom footer"
+      no-header
+      backdrop
+      shadow>
+      <template #footer="{ hide }">
+        <b-row class="text-center">
+          <b-col cols="12" class="">
+            <b-button
+            @click.prevent=""
+            size="mg"
+            class="px-5"
+            block
+            variant="outline-secondary">
+              report {{ urlUser.username }}
+            </b-button>
+          </b-col>
+          <b-col>
+            <b-button
+              class="mt-4 mb-3 py-1"
+              size="lg" @click="hide">Close
+            </b-button>
+          </b-col>
+        </b-row>
+      </template>
+      <div class="px-3 py-2">
+      </div>
+    </b-sidebar>
   </div>
 </template>
 
@@ -61,7 +108,7 @@ export default {
       authUser: {},
     };
   },
-  beforeRouteUpdate(to, next) {
+  beforeRouteUpdate(to, from, next) {
     this.fetchUser(to.params.name);
     next();
   },
@@ -88,6 +135,7 @@ export default {
     if (!this.authUser) {
       this.$router.push('/');
     }
+    this.fetchUser(this.$route.params.name);
   },
   methods: {
     logOut() {

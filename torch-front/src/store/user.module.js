@@ -37,13 +37,15 @@ export const user = {
       );
     },
     toggleFollow({ commit }, namesObj) {
-      return UserService.toggleFollow(namesObj.current, namesObj.toFollow).then(
-        (res) => {
-          commit('updateFollowers', res.data);
-          return Promise.resolve(res);
-        },
-        (error) => Promise.reject(error),
-      );
+      return UserService
+        .toggleFollow(namesObj.current, namesObj.toFollow)
+        .then(
+          (res) => {
+            commit('updateFollowers', res);
+            return Promise.resolve(res);
+          },
+          (error) => Promise.reject(error),
+        );
     },
   },
   mutations: {
@@ -54,8 +56,8 @@ export const user = {
       state.user = userInfo;
     },
     updateFollowers(state, followData) {
-      state.user.followers = followData.followers;
-      state.user.following = followData.following;
+      state.user.followers = followData.toFollow.followers;
+      state.user.following = followData.toFollow.following;
     },
   },
 };

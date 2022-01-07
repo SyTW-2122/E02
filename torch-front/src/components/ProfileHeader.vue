@@ -115,16 +115,25 @@ export default {
       defaultImage: defaultImg,
     };
   },
+  created() {
+    this.user.followers = [];
+    this.user.following = [];
+  },
   mounted() {
-    this.aux = this.user.followers
-      .map((el) => el === this.authUser.data.username)
-      .length > 0;
+    if (this.user.followers !== undefined) {
+      this.aux = this.user.followers
+        .map((el) => el === this.authUser.data.username)
+        .length > 0;
+    }
   },
   computed: {
     followed() {
-      return this.user.followers
-        .map((el) => el === this.authUser.data.username)
-        .length > 0;
+      if (this.user.followers !== undefined) {
+        return this.user.followers
+          .map((el) => el === this.authUser.data.username)
+          .length > 0;
+      }
+      return null;
     },
     imageUrlUpdate() {
       if (this.user.image === undefined) {

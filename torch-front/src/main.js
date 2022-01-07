@@ -12,6 +12,8 @@ import './assets/css/custom-variables.css';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
+  faChevronLeft,
+  faEllipsisH,
   faPlusSquare,
   faBell,
   faHistory,
@@ -48,6 +50,8 @@ Vue.use(IconsPlugin);
 Vue.use(PortalVue);
 // Font awesome icons used in the app
 library.add(
+  faChevronLeft,
+  faEllipsisH,
   faPlusSquare,
   faBell,
   faHistory,

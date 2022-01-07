@@ -164,12 +164,14 @@ export default {
     onSubmit(event) {
       this.form.password = this.user.data.password;
       this.form.urlUsername = this.user.data.username;
+      if (!this.hasImage) {
+        this.form.image = this.user.data.image;
+      }
       event.preventDefault();
       this.$store.dispatch('user/edit', this.form).then(
         (data) => {
           this.msg = data.msg;
           this.successful = true;
-          this.$store.dispatch('auth/logout');
           this.$router.push('/');
         },
         (error) => {

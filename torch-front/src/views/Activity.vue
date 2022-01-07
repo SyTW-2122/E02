@@ -9,13 +9,12 @@
 </template>
 
 <script>
-import UserService from '../services/user.service';
 
 export default {
   name: 'Home',
   data() {
     return {
-      content: '',
+      content: 'Content for activity page',
     };
   },
   computed: {
@@ -27,16 +26,6 @@ export default {
     if (!this.currentUser) {
       this.$router.push('/sign-in');
     }
-    UserService.getPublicContent().then(
-      (response) => {
-        this.content = response.data;
-      },
-      (error) => {
-        this.content = (error.response && error.response.data)
-        || error.message
-        || error.toString();
-      },
-    );
   },
 };
 </script>
