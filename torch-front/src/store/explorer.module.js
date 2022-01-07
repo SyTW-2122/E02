@@ -1,65 +1,53 @@
-import Axios from 'axios';
 import ExplorerService from '../services/explorer.service';
 
-const explorerData = JSON.parse(localStorage.getItem('explorer'));
-const explorerState = explorerData
-  ? {
-    routineData: {
-      valoration,
-      sportName,
-      description,
-    },
-    user: {
-      username,
-      valoration,
-    },
-    search: {
-      userPreferences,
-      recommendations,
-    },
-  }
-  : {
-    routineData: {
-      valoration: null,
-      sportName: null,
-      description: null,
-    },
-    user: {
-      username: null,
-      valoration: null,
-    },
-    search: {
-      userPreferences: null,
-      recommendations:null,
-    },
-  };
-
 export const explorer = {
-  namespaced = true,
-  state: explorerState,
+  namespaced: true,
+  state: {
+    explorer: {
+      routines: [
+        description = "",
+        sportName = "",
+        valoration = Number,
+      ],
+      users: [
+        username = "",
+        valoration = Number,
+      ],
+    },
+  },
   getters: {
-    getUserName: (state) => state.user.username,
-    getUserValoration: (state) => state.user.valoration,
-    getDescription: (state) => state.routineData.description,
-    getSportName: (state) => state.routineData.sportName,
-    getRoutineValoration: (state) => state.routineData.valoration,
-    getUserPreferences: (state) => state.search.userPreferences,
-    getRecommendations: (state) => state.search.recommendations,
+    getUserName: (state) => state.explorer.users.username,
+    getUserValoration: (state) => state.explorer.users.valoration,
+    getDescription: (state) => state.explorer.routines.description,
+    getSportName: (state) => state.explorer.routines.sportName,
+    getRoutineValoration: (state) => state.explorer.routines.valoration,
   },
   actions: {
-    loadUserValoration({ commit }) {
-      commit('valuation saved');
+    loadUserValoration({ commit }, explorerData, valoration) {
+      return ExplorerService.loadUserValoration(explorerData, valoration).then(
+        (res) => {
+          commit('valoration saved', res.data);
+          return Promise.resolve(res.data);
+        },
+        (error) => Promise.reject(error),
+      );
     },
-    loadRoutineValoration({ commit }) {
-      commit('valuation saved');
+    loadRoutineValoration({ commit }, explorerData, valoration) {
+      return ExplorerService.loadRoutineValoration(explorerData, valoration).then(
+        (res) => {
+          commit('valoration saved', res.data);
+          return Promise.resolve(res.data);
+        },
+        (error) => Promise.reject(error),
+      );
     },
   },
   mutations: {
-    setUserValoration(state, newValoration) {
-      state.user.valoration = newValoration;
+    updateUserValoration(state, newValoration) {
+      state.explorer.users.valoration = newValoration;
     },
-    setRoutineValoration(state, newValoration) {
-      state.routineData.valoration = newValoration;
+    updateRoutineValoration(state, newValoration) {
+      state.explorer.routines.valoration = newValoration;
     },
   },
 };
