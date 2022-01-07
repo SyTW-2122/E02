@@ -7,7 +7,7 @@
           icon="chevron-left" id="settings"  class="fa-2x"/>
           </router-link>
       </b-row>
-      <h1 class="text-center">Following</h1>
+      <h1 class="text-center">Followers</h1>
       <b-row align-h="center">
         <b-col
         v-for="(username, index) in urlUser.followers" :key="index"
