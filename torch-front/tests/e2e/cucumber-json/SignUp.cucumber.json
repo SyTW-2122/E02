@@ -22,11 +22,7 @@
             "name": "User is at the sign up page",
             "result": {
               "status": "passed",
-<<<<<<< HEAD
-              "duration": 2131000000
-=======
               "duration": 4186000000
->>>>>>> dd62119ca44f6d1c8b18d43c7da8bd84d1328c04
             }
           },
           {
@@ -36,25 +32,13 @@
             "name": "User enters username as \"usu1\" and password as \"usu1\"",
             "result": {
               "status": "passed",
-<<<<<<< HEAD
-              "duration": 735000000
-=======
-              "duration": 1283000000
->>>>>>> dd62119ca44f6d1c8b18d43c7da8bd84d1328c04
             }
-          },
-          {
-            "arguments": [],
             "keyword": "And ",
             "line": 5,
             "name": "User clicks on sign up button",
             "result": {
               "status": "passed",
-<<<<<<< HEAD
-              "duration": 145000000
-=======
               "duration": 123000000
->>>>>>> dd62119ca44f6d1c8b18d43c7da8bd84d1328c04
             }
           },
           {
@@ -64,11 +48,7 @@
             "name": "User is fully registered and able to successfully login",
             "result": {
               "status": "passed",
-<<<<<<< HEAD
-              "duration": 171000000
-=======
               "duration": 172000000
->>>>>>> dd62119ca44f6d1c8b18d43c7da8bd84d1328c04
             }
           }
         ]
