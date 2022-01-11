@@ -16,9 +16,10 @@ const initialState = userData
       msg: '',
       token: '',
       data: {
-        username: '',
-        password: '',
       },
+      routines: [],
+      following: [],
+      followers: [],
     },
     token: '',
   };

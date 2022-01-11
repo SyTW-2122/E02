@@ -1,12 +1,30 @@
-<template v-if="user">
+<template>
   <div>
-    <div class="container px-2" id="User">
-      <b-row id="settings-button">
-        <b-col sm="12" class="py-3" >
-            <font-awesome-icon  v-b-toggle.sidebar-1 icon="bars" id="settings"  class="fa-2x"/>
+    <div class="container" id="User">
+      <b-row id="settings-button" >
+        <b-col
+        sm="2" class="pt-3 ps-4 text-start"
+        v-if="urlUser.username !== authUser.data.username" >
+          <router-link tag="div" :to="{ path: `/${authUser.data.username}` }">
+            <font-awesome-icon
+              icon="chevron-left" id="settings"  class="fa-2x"/>
+          </router-link>
+        </b-col>
+        <b-col sm="12" class="py-3 ps-4 text-end" >
+            <font-awesome-icon
+            v-if="urlUser.username === authUser.data.username"
+            v-b-toggle.sidebar-1 icon="bars" id="settings"  class="fa-2x"/>
+            <font-awesome-icon
+            v-if="urlUser.username !== authUser.data.username"
+            v-b-toggle.sidebar-2 icon="ellipsis-h" id="options"
+            class="fa-2x"/>
         </b-col>
       </b-row>
-      <ProfileHeader v-if="user" :user="user" :mobile="mobile" />
+      <b-row id="options-button" v-if="this.urlUser.username !== this.authUser.data.username">
+        <b-col sm="12" class="py-3" >
+        </b-col>
+      </b-row>
+      <ProfileHeader v-if="user" :user="urlUser" :authUser="authUser" :mobile="mobile" />
       <ProfileTools />
     </div>
      <b-sidebar
@@ -42,24 +60,58 @@
         </b-row>
       </template>
       <div class="px-3 py-2">
-        <p>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
-          in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-        </p>
-        <b-img src="https://picsum.photos/500/500/?image=54" fluid thumbnail></b-img>
+      </div>
+    </b-sidebar>
+    <b-sidebar
+      id="sidebar-2"
+      aria-label="Sidebar with custom footer"
+      no-header
+      backdrop
+      shadow>
+      <template #footer="{ hide }">
+        <b-row class="text-center">
+          <b-col cols="12" class="">
+            <b-button
+            @click.prevent=""
+            size="mg"
+            class="px-5"
+            block
+            variant="outline-secondary">
+              report {{ urlUser.username }}
+            </b-button>
+          </b-col>
+          <b-col>
+            <b-button
+              class="mt-4 mb-3 py-1"
+              size="lg" @click="hide">Close
+            </b-button>
+          </b-col>
+        </b-row>
+      </template>
+      <div class="px-3 py-2">
       </div>
     </b-sidebar>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex';
+import { mapState } from 'vuex';
 
 import ProfileHeader from '@/components/ProfileHeader.vue';
 import ProfileTools from '@/components/ProfileTools.vue';
 
 export default {
   name: 'User',
+  data() {
+    return {
+      urlUser: {},
+      authUser: {},
+    };
+  },
+  beforeRouteUpdate(to, from, next) {
+    this.fetchUser(to.params.name);
+    next();
+  },
   components: {
     ProfileHeader,
     ProfileTools,
@@ -67,17 +119,38 @@ export default {
   props: ['mobile', 'name'],
   computed: {
     ...mapState('auth', ['user']),
-    ...mapGetters('auth', ['getUserName']),
+  },
+  created() {
+    this.authUser = this.user;
+    this.$store.dispatch('user/getByUsername', this.$route.params.name).then(
+      (data) => {
+        this.urlUser = data;
+      },
+      (error) => {
+        console.log(`failed: ${error}`);
+      },
+    );
   },
   mounted() {
-    if (!this.user) {
+    if (!this.authUser) {
       this.$router.push('/');
     }
+    this.fetchUser(this.$route.params.name);
   },
   methods: {
     logOut() {
       this.$store.dispatch('auth/logout');
       this.$router.push('/');
+    },
+    fetchUser(username) {
+      this.$store.dispatch('user/getByUsername', username).then(
+        (data) => {
+          this.urlUser = data;
+        },
+        (error) => {
+          console.log(`failed: ${error}`);
+        },
+      );
     },
   },
 };

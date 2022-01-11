@@ -9,7 +9,7 @@
           <b-button
           size="lg"
           class="b-link"
-          :to="{ path: `/${user.data.username}` }"
+          :to="{ path: `/${authUser.username}` }"
           variant="link">Cancel</b-button>
         </b-col>
         <b-col
@@ -19,7 +19,7 @@
           <b-img
             v-if="!hasImage"
             id="picture"
-            src="https://images.unsplash.com/photo-1541911087797-f89237bd95d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+            :src="imageUrlUpdate"
             fluid
             rounded="circle"
             class="img-limit center-cropped"
@@ -28,7 +28,7 @@
           <b-img
             v-if="hasImage"
             id="picture"
-            :src="image.dataUrl"
+            :src="imageUrlUpdate"
             fluid
             rounded="circle"
             class="img-limit center-cropped"
@@ -46,25 +46,26 @@
           variant="primary">Done</b-button>
         </b-col>
       </b-row>
-      <b-row>
-        <!-- <image-uploader
-          v-b-modal.modal-center
-          v-model="image"
+      <b-row class=" bg-info mx-5 my-3 py-2 fs-5 text-white rounded">
+        <label for="fileInput" slot="upload-label">
+        <image-uploader
+        class="file-upload p-0 m-0"
+          :show="false"
+          v-model="form.image"
           :preview="false"
-          :className="['fileinput', { 'fileinput--loaded': hasImage }]"
+          :quality="0.9"
           capture="environment"
           :debug="1"
           doNotResize="gif"
           :autoRotate="true"
           outputFormat="verbose"
           @input="setImage"
-        > -->
-        <label for="fileInput" slot="upload-label">
+        >
+      </image-uploader>
           <span class="upload-caption">{{
             hasImage ? "Replace" : "Click to upload"
           }}</span>
-        </label>
-      <!-- </image-uploader> -->
+      </label>
       </b-row>
       <b-row class="my-5 text-start p-3">
         <b-form @submit="onSubmit" v-if="show" class="">
@@ -79,7 +80,7 @@
               v-model="form.username"
               class="text-capitalize"
               type="text"
-              :placeholder="user.data.username"
+              :placeholder="authUser.username"
               required
             ></b-form-input>
           </b-form-group>
@@ -94,7 +95,7 @@
               v-model="form.subname"
               class="text-capitalize"
               type="text"
-              :placeholder="user.data.username"
+              :placeholder="authUser.subname"
               required
             ></b-form-input>
           </b-form-group>
@@ -109,7 +110,7 @@
               id="input-1"
               v-model="form.email"
               type="email"
-              placeholder="Enter email"
+              :placeholder="authUser.email"
               required
             ></b-form-input>
           </b-form-group>
@@ -122,7 +123,7 @@
             <b-form-textarea
               id="textarea"
               v-model="form.bio"
-              placeholder="Enter something..."
+              :placeholder="authUser.bio"
               rows="3"
               max-rows="6"
             ></b-form-textarea>
@@ -136,35 +137,79 @@
 <script>
 import { mapState } from 'vuex';
 
+const defaultImg = require('@/assets/images/torch-logo-black.png');
+
 export default {
   data() {
     return {
-      image: null,
+      authUser: null,
+      imageUrl: '',
+      defaultImage: defaultImg,
       hasImage: false,
       show: true,
       form: {
+        urlUsername: '',
         username: '',
+        password: '',
         subname: '',
         email: '',
         bio: '',
+        image: null,
       },
     };
   },
   methods: {
     setImage(output) {
       this.hasImage = true;
-      this.image = output;
-      console.log('Info', output.dataUrl);
-      console.log('Exif', output.exif);
+      this.form.image = output;
     },
     onSubmit(event) {
+      this.form.password = this.user.data.password;
+      this.form.urlUsername = this.user.data.username;
+      if (!this.hasImage) {
+        this.form.image = this.user.data.image;
+      }
       event.preventDefault();
-      alert(JSON.stringify(this.form));
-      alert(JSON.stringify(this.image));
+      this.$store.dispatch('user/edit', this.form).then(
+        (data) => {
+          this.msg = data.msg;
+          this.successful = true;
+          this.$router.push('/');
+        },
+        (error) => {
+          this.message = (error.response && error.response.data)
+          || error.message
+          || error.toString();
+          this.successful = false;
+        },
+      );
     },
+  },
+  created() {
+    this.$store.dispatch('user/getByUsername', this.$route.params.name).then(
+      async (data) => {
+        this.authUser = data;
+      },
+      (error) => {
+        console.log(`failed: ${error}`);
+      },
+    );
+    this.imageUrl = this.imageUrlUpdate;
+  },
+  mounted() {
+    this.imageUrl = this.user.data.image.dataUrl;
   },
   computed: {
     ...mapState('auth', ['user']),
+    imageUrlUpdate() {
+      if (this.form.image === null) {
+        if (this.user.data.image === null) {
+          return this.defaultImage;
+        }
+        return this.authUser.image.dataUrl;
+      }
+      return this.form.image.dataUrl;
+    },
   },
 };
 </script>

@@ -32,11 +32,7 @@
             "name": "User enters username as \"usu1\" and password as \"usu1\"",
             "result": {
               "status": "passed",
-              "duration": 1283000000
             }
-          },
-          {
-            "arguments": [],
             "keyword": "And ",
             "line": 5,
             "name": "User clicks on sign up button",

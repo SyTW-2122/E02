@@ -31,7 +31,7 @@ module.exports = {
               success: true,
               msg: `Welcome ${req.body.username}!`,
               token: `JWT ${token}`,
-              data: req.body,
+              data: user,
             });
           }
           else {

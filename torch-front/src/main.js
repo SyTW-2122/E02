@@ -2,7 +2,6 @@
 
 import './registerServiceWorker';
 
-import VueCropper from 'vue-cropperjs';
 import { BootstrapVue, BootstrapVueIcons, IconsPlugin } from 'bootstrap-vue';
 import PortalVue from 'portal-vue';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -12,6 +11,8 @@ import './assets/css/custom-variables.css';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
+  faChevronLeft,
+  faEllipsisH,
   faPlusSquare,
   faBell,
   faHistory,
@@ -36,7 +37,6 @@ import storeConfig from './store/index';
 import router from './router';
 import App from './App.vue';
 
-Vue.use(VueCropper);
 Vue.use(ImageUploader);
 
 /// Style addons activation
@@ -48,6 +48,8 @@ Vue.use(IconsPlugin);
 Vue.use(PortalVue);
 // Font awesome icons used in the app
 library.add(
+  faChevronLeft,
+  faEllipsisH,
   faPlusSquare,
   faBell,
   faHistory,
