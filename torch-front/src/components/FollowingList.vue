@@ -8,31 +8,55 @@
           </router-link>
       </b-row>
       <h1 class="text-center">Following</h1>
-      <b-row align-h="center">
-        <b-col
-        v-for="(username, index) in urlUser.following" :key="index"
-        cols=10
-        class="text-end pe-5  fs-4  text-white py-3 my-1 bg-secondary rounded" >
-          <router-link tag="div" :to="{ path: `/${username}` }">
-            {{ username }}
-          </router-link>
-        </b-col>
+      <b-row
+        class="bg-light py-2 mt-3 shadow rounded"
+        align-h="center" v-for="(pair, index) in images" :key="index">
+        <router-link tag="div" :to="{ path: `/${pair.username}` }">
+          <b-col
+          cols=5
+          class="text-start px-5" >
+            <b-img
+            fluid
+            id="picture"
+            rounded="circle"
+            class="img-sm-limit center-sm-cropped"
+            alt="profile picture"
+            :src="pair.url === undefined ? defaultImage : pair.url"
+            />
+          </b-col>
+          <b-col
+          cols=5
+          align-h="center"
+          class="px-5 fs-4" >
+              {{ pair.username }}
+          </b-col>
+        </router-link>
       </b-row>
     </b-container>
 </template>
 
 <script>
+const defaultImg = require('@/assets/images/torch-logo-black.png');
 
 export default {
   data() {
     return {
       urlUser: {},
+      images: [],
+      defaultImage: defaultImg,
     };
   },
-  created() {
-    this.$store.dispatch('user/getByUsername', this.$route.params.name).then(
-      (data) => {
+  async created() {
+    await this.$store.dispatch('user/getByUsername', this.$route.params.name).then(
+      async (data) => {
         this.urlUser = data;
+        for (let i = 0; i < data.following.length; i += 1) {
+          this.$store.dispatch('user/getUserImage', data.following[i]).then(
+            (image) => {
+              this.images.push({ username: data.following[i], url: image.dataUrl });
+            },
+          );
+        }
       },
       (error) => {
         console.log(`failed: ${error}`);

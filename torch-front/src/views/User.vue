@@ -5,7 +5,7 @@
         <b-col
         sm="2" class="pt-3 ps-4 text-start"
         v-if="urlUser.username !== authUser.data.username" >
-          <router-link tag="div" :to="{ path: `/${authUser.data.username}` }">
+          <router-link tag="div" :to="{ path: `${prevRoute.path}` }">
             <font-awesome-icon
               icon="chevron-left" id="settings"  class="fa-2x"/>
           </router-link>
@@ -104,6 +104,7 @@ export default {
   name: 'User',
   data() {
     return {
+      prevRoute: null,
       urlUser: {},
       authUser: {},
     };
@@ -111,6 +112,12 @@ export default {
   beforeRouteUpdate(to, from, next) {
     this.fetchUser(to.params.name);
     next();
+  },
+  beforeRouteEnter(to, from, next) {
+    next((vm) => {
+      /* eslint-disable */
+      vm.prevRoute = from;
+    });
   },
   components: {
     ProfileHeader,

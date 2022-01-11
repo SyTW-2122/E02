@@ -2,6 +2,7 @@
   max-width: 50px;
   max-height: 50px;
 }
+
 .file-upload {
   display: none;
 }
@@ -14,6 +15,19 @@
 }
 
 .center-cropped img {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.center-sm-cropped {
+  object-fit: cover; /* Do not scale the image */
+  object-position: center; /* Center the image within the element */
+  height: 60px;
+  width: 60px;
+}
+
+.center-sm-cropped img {
   width: 100%;
   height: 100%;
   opacity: 0;
