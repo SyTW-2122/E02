@@ -46,12 +46,14 @@
           variant="primary">Done</b-button>
         </b-col>
       </b-row>
-      <b-row>
+      <b-row class=" bg-info mx-5 my-3 py-2 fs-5 text-white rounded">
+        <label for="fileInput" slot="upload-label">
         <image-uploader
+        class="file-upload p-0 m-0"
+          :show="false"
           v-model="form.image"
           :preview="false"
-          :quality="0.3"
-          :className="['fileinput', { 'fileinput--loaded': hasImage }]"
+          :quality="0.9"
           capture="environment"
           :debug="1"
           doNotResize="gif"
@@ -59,12 +61,11 @@
           outputFormat="verbose"
           @input="setImage"
         >
-        <label for="fileInput" slot="upload-label">
+      </image-uploader>
           <span class="upload-caption">{{
             hasImage ? "Replace" : "Click to upload"
           }}</span>
-        </label>
-      </image-uploader>
+      </label>
       </b-row>
       <b-row class="my-5 text-start p-3">
         <b-form @submit="onSubmit" v-if="show" class="">
@@ -141,6 +142,7 @@ const defaultImg = require('@/assets/images/torch-logo-black.png');
 export default {
   data() {
     return {
+      myCroppa: null,
       imageUrl: '',
       defaultImage: defaultImg,
       hasImage: false,
@@ -158,6 +160,7 @@ export default {
   },
   methods: {
     setImage(output) {
+      console.log(output);
       this.hasImage = true;
       this.form.image = output;
     },
@@ -185,6 +188,9 @@ export default {
   },
   created() {
     this.imageUrl = this.imageUrlUpdate;
+  },
+  mounted() {
+    this.imageUrl = this.user.data.image.dataUrl;
   },
   computed: {
     ...mapState('auth', ['user']),

@@ -6,7 +6,7 @@
     <b-nav-item to="/explore">
       <font-awesome-icon icon="search" class="fa-md"/>
     </b-nav-item>
-    <b-nav-item @click="changeRoute">
+    <b-nav-item :to="`/${this.user.data.username}`">
       <font-awesome-icon icon="user-circle" class="fa-md"/>
     </b-nav-item>
   </b-nav>
