@@ -1,7 +1,5 @@
 // Style imports
 
-import './registerServiceWorker';
-
 import { BootstrapVue, BootstrapVueIcons, IconsPlugin } from 'bootstrap-vue';
 import PortalVue from 'portal-vue';
 import 'bootstrap/dist/css/bootstrap.css';

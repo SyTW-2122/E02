@@ -9,7 +9,7 @@
           <b-button
           size="lg"
           class="b-link"
-          :to="{ path: `/${authUser.username}` }"
+          :to="{ path: `/${user.data.username}` }"
           variant="link">Cancel</b-button>
         </b-col>
         <b-col
@@ -80,7 +80,7 @@
               v-model="form.username"
               class="text-capitalize"
               type="text"
-              :placeholder="authUser.username"
+              :placeholder="user.data.username"
               required
             ></b-form-input>
           </b-form-group>
@@ -95,7 +95,7 @@
               v-model="form.subname"
               class="text-capitalize"
               type="text"
-              :placeholder="authUser.subname"
+              :placeholder="user.data.subname"
               required
             ></b-form-input>
           </b-form-group>
@@ -110,7 +110,7 @@
               id="input-1"
               v-model="form.email"
               type="email"
-              :placeholder="authUser.email"
+              :placeholder="user.data.email"
               required
             ></b-form-input>
           </b-form-group>
@@ -123,7 +123,7 @@
             <b-form-textarea
               id="textarea"
               v-model="form.bio"
-              :placeholder="authUser.bio"
+              :placeholder="user.data.bio"
               rows="3"
               max-rows="6"
             ></b-form-textarea>
@@ -185,9 +185,9 @@ export default {
       );
     },
   },
-  created() {
-    this.$store.dispatch('user/getByUsername', this.$route.params.name).then(
-      async (data) => {
+  async created() {
+    await this.$store.dispatch('user/getByUsername', this.$route.params.name).then(
+      (data) => {
         this.authUser = data;
       },
       (error) => {
@@ -197,16 +197,18 @@ export default {
     this.imageUrl = this.imageUrlUpdate;
   },
   mounted() {
-    this.imageUrl = this.user.data.image.dataUrl;
+    this.imageUrl = this.user.data.image === undefined
+      ? this.defaultImage
+      : this.user.data.image.dataUrl;
   },
   computed: {
     ...mapState('auth', ['user']),
     imageUrlUpdate() {
       if (this.form.image === null) {
-        if (this.user.data.image === null) {
+        if (this.user.data.image === undefined) {
           return this.defaultImage;
         }
-        return this.authUser.image.dataUrl;
+        return this.user.data.image.dataUrl;
       }
       return this.form.image.dataUrl;
     },
