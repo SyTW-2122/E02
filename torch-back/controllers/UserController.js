@@ -29,6 +29,19 @@ module.exports = {
       }
     });
   },
+  getUserImage: (req, res) => {
+    User.findOne({
+      username: req.params.username,
+    }, (err, user) => {
+      if (err) throw err;
+      if (!user) {
+        res.status(401).send({ success: false, msg: 'Update failed. User not found.' });
+      }
+      else {
+        res.status(200).json(user.image);
+      }
+    });
+  },
   toggleFollow: (req, res) => {
     User.findOne({
       username: req.params.username,
