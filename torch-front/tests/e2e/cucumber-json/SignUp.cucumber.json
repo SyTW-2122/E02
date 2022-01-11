@@ -22,7 +22,7 @@
             "name": "User is at the sign up page",
             "result": {
               "status": "passed",
-              "duration": 2131000000
+              "duration": 4186000000
             }
           },
           {
@@ -32,7 +32,7 @@
             "name": "User enters username as \"usu1\" and password as \"usu1\"",
             "result": {
               "status": "passed",
-              "duration": 735000000
+              "duration": 1283000000
             }
           },
           {
@@ -42,7 +42,7 @@
             "name": "User clicks on sign up button",
             "result": {
               "status": "passed",
-              "duration": 145000000
+              "duration": 123000000
             }
           },
           {
@@ -52,7 +52,7 @@
             "name": "User is fully registered and able to successfully login",
             "result": {
               "status": "passed",
-              "duration": 171000000
+              "duration": 172000000
             }
           }
         ]
