@@ -14,6 +14,10 @@ class UserService {
     .get(`${API_URL}get/${username}`)
     .then((response) => response.data);
 
+  getUserImage = (username) => axios
+    .get(`${API_URL}get/${username}/image`)
+    .then((response) => response.data);
+
   toggleFollow = (currentUser, username) => axios
     .post(`${API_URL}follow/${username}`, {
       username: currentUser,

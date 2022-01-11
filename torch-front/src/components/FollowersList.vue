@@ -14,6 +14,14 @@
         cols=10
         class="text-end pe-5  fs-4  text-white py-3 my-1 bg-secondary rounded" >
           <router-link tag="div" :to="{ path: `/${username}` }">
+           <b-img
+          fluid
+          id="picture"
+          rounded="circle"
+          class="img-sm-limit center-cropped"
+          alt="profile picture"
+          :src="defaultImage"
+          />
             {{ username }}
           </router-link>
         </b-col>
@@ -22,11 +30,14 @@
 </template>
 
 <script>
+const defaultImg = require('@/assets/images/torch-logo-black.png');
 
 export default {
   data() {
     return {
       urlUser: {},
+      images: [],
+      defaultImage: defaultImg,
     };
   },
   created() {
@@ -38,6 +49,17 @@ export default {
         console.log(`failed: ${error}`);
       },
     );
+  },
+  methods: {
+    userImage(username) {
+      this.$store.dispatch('user/getUserImage', username).then(
+        (data) => data.dataUrl,
+        (error) => {
+          console.log(`failed: ${error}`);
+        },
+      );
+      return this.defaultImg;
+    },
   },
 };
 </script>

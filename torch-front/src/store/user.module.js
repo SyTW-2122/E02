@@ -28,6 +28,14 @@ export const user = {
         },
       );
     },
+    getUserImage({ commit }, username) {
+      return UserService.getUserImage(username).then(
+        (res) => {
+          commit('fetchSuccess', res);
+          return Promise.resolve(res);
+        },
+      );
+    },
     edit({ commit }, userInfo, username) {
       return UserService.edit(userInfo, username).then(
         (res) => {
@@ -52,6 +60,9 @@ export const user = {
   mutations: {
     fetchSuccess(state, userInfo) {
       state.user = userInfo;
+    },
+    imgSearchSuccess(state, info) {
+      console.log(info);
     },
     editSuccess(state, userInfo) {
       state.user = userInfo;
