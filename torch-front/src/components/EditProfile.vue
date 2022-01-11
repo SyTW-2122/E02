@@ -9,7 +9,7 @@
           <b-button
           size="lg"
           class="b-link"
-          :to="{ path: `/${user.data.username}` }"
+          :to="{ path: `/${authUser.username}` }"
           variant="link">Cancel</b-button>
         </b-col>
         <b-col
@@ -80,7 +80,7 @@
               v-model="form.username"
               class="text-capitalize"
               type="text"
-              :placeholder="user.data.username"
+              :placeholder="authUser.username"
               required
             ></b-form-input>
           </b-form-group>
@@ -95,7 +95,7 @@
               v-model="form.subname"
               class="text-capitalize"
               type="text"
-              :placeholder="user.data.username"
+              :placeholder="authUser.subname"
               required
             ></b-form-input>
           </b-form-group>
@@ -110,7 +110,7 @@
               id="input-1"
               v-model="form.email"
               type="email"
-              placeholder="Enter email"
+              :placeholder="authUser.email"
               required
             ></b-form-input>
           </b-form-group>
@@ -123,7 +123,7 @@
             <b-form-textarea
               id="textarea"
               v-model="form.bio"
-              placeholder="Enter something..."
+              :placeholder="authUser.bio"
               rows="3"
               max-rows="6"
             ></b-form-textarea>
@@ -142,7 +142,7 @@ const defaultImg = require('@/assets/images/torch-logo-black.png');
 export default {
   data() {
     return {
-      myCroppa: null,
+      authUser: null,
       imageUrl: '',
       defaultImage: defaultImg,
       hasImage: false,
@@ -160,7 +160,6 @@ export default {
   },
   methods: {
     setImage(output) {
-      console.log(output);
       this.hasImage = true;
       this.form.image = output;
     },
@@ -187,6 +186,14 @@ export default {
     },
   },
   created() {
+    this.$store.dispatch('user/getByUsername', this.$route.params.name).then(
+      async (data) => {
+        this.authUser = data;
+      },
+      (error) => {
+        console.log(`failed: ${error}`);
+      },
+    );
     this.imageUrl = this.imageUrlUpdate;
   },
   mounted() {
@@ -199,7 +206,7 @@ export default {
         if (this.user.data.image === null) {
           return this.defaultImage;
         }
-        return this.user.data.image.dataUrl;
+        return this.authUser.image.dataUrl;
       }
       return this.form.image.dataUrl;
     },

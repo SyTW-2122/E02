@@ -27,7 +27,6 @@ import {
   faSignInAlt,
   faSignOutAlt,
 } from '@fortawesome/free-solid-svg-icons';
-import VueCoreImageUpload from 'vue-core-image-upload';
 
 // Framework imports
 import Vue from 'vue';
@@ -38,7 +37,6 @@ import storeConfig from './store/index';
 import router from './router';
 import App from './App.vue';
 
-Vue.use(VueCoreImageUpload);
 Vue.use(ImageUploader);
 
 /// Style addons activation

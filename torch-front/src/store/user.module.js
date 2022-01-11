@@ -54,7 +54,6 @@ export const user = {
       state.user = userInfo;
     },
     editSuccess(state, userInfo) {
-      console.log(userInfo);
       state.user = userInfo;
     },
     updateFollowers(state, followData) {
