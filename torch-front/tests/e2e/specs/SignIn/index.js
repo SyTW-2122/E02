@@ -2,7 +2,7 @@ import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps';
 const { visit } = cy;
 
 Given ('User is at the login page', () => {
-    cy.visit('/sign-in', {timeout: 10000});
+    cy.visit('/', {timeout: 10000});
     cy.viewport(375, 812);
 })
 
@@ -17,7 +17,7 @@ And ('User clicks on login button', () => {
 
 // Se debe comprobar la ruta actual, no visitarla
 Then ('User is at the user page', () => {
-    // cy.visit('/user', {timeout: 10000});
+    cy.url().should('include', `/${username}`) 
 })
 
 
@@ -37,13 +37,13 @@ And ('User clicks on button', () => {
 
 // NOTE: username-alert must be visible here, but is not.
 Then ('User is not able to login', () => {
-    cy.get('.form-group').get('.alert.alert-danger').contains('Authentication failed. User not found.')
+    cy.get('.alert.alert-danger').contains('Authentication failed. User not found.')
 })
 
 When ('User clicks on register link', () => {
-    cy.get('.forgot-password').click()
+    cy.get('.create-account').click()
 })
 
 Then ('User is at the register page', () => {
-    cy.visit('/sign-up', {timeout: 10000})
+    cy.url().should('include', '/sign-up') 
 })
