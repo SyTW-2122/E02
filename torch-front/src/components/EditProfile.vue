@@ -9,7 +9,7 @@
           <b-button
           size="lg"
           class="b-link"
-          :to="{ path: `/${user.data.username}` }"
+          :to="{ path: `/${authUser.username}` }"
           variant="link">Cancel</b-button>
         </b-col>
         <b-col
@@ -185,16 +185,16 @@ export default {
       );
     },
   },
-  async created() {
-    await this.$store.dispatch('user/getByUsername', this.$route.params.name).then(
+  created() {
+    this.$store.dispatch('user/getByUsername', this.$route.params.name).then(
       (data) => {
         this.authUser = data;
+        this.imageUrl = this.imageUrlUpdate;
       },
       (error) => {
         console.log(`failed: ${error}`);
       },
     );
-    this.imageUrl = this.imageUrlUpdate;
   },
   mounted() {
     this.imageUrl = this.user.data.image === undefined
@@ -205,10 +205,10 @@ export default {
     ...mapState('auth', ['user']),
     imageUrlUpdate() {
       if (this.form.image === null) {
-        if (this.user.data.image === undefined) {
+        if (this.authUser.image === undefined) {
           return this.defaultImage;
         }
-        return this.user.data.image.dataUrl;
+        return this.authUser.image.dataUrl;
       }
       return this.form.image.dataUrl;
     },
