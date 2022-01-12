@@ -33,6 +33,11 @@ class UserService {
       bio: user.bio,
       image: user.image,
     });
+
+  changePassword = (obj) => axios
+    .put(`${API_URL}edit/${obj.u.username}/password`, {
+      password: obj.p,
+    });
 }
 
 export default new UserService();

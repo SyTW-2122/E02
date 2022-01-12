@@ -104,7 +104,7 @@ export default {
   name: 'User',
   data() {
     return {
-      prevRoute: null,
+      prevRoute: '',
       urlUser: {},
       authUser: {},
     };

@@ -9,6 +9,7 @@ import './assets/css/custom-variables.css';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
+  faExclamationCircle,
   faChevronLeft,
   faEllipsisH,
   faPlusSquare,
@@ -46,6 +47,7 @@ Vue.use(IconsPlugin);
 Vue.use(PortalVue);
 // Font awesome icons used in the app
 library.add(
+  faExclamationCircle,
   faChevronLeft,
   faEllipsisH,
   faPlusSquare,

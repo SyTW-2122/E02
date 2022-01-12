@@ -45,6 +45,15 @@ export const user = {
         (error) => Promise.reject(error),
       );
     },
+    changePassword({ commit }, obj) {
+      return UserService.changePassword(obj).then(
+        (res) => {
+          commit('imgSearchSuccess', res.data);
+          return Promise.resolve(res.data);
+        },
+        (error) => Promise.reject(error),
+      );
+    },
     toggleFollow({ commit }, namesObj) {
       return UserService
         .toggleFollow(namesObj.current, namesObj.toFollow)

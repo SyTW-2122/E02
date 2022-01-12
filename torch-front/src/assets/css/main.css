@@ -7,6 +7,11 @@
   display: none;
 }
 
+.fill {
+  min-height: 100vh;
+  height: 100vh;
+}
+
 .center-cropped {
   object-fit: cover; /* Do not scale the image */
   object-position: center; /* Center the image within the element */

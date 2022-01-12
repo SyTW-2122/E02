@@ -8,6 +8,7 @@ import Activity from '../views/Activity.vue';
 import SignUp from '../views/SignUp.vue';
 import SignIn from '../views/SignIn.vue';
 import EditProfile from '../components/EditProfile.vue';
+import ChangePassword from '../components/ChangePassword.vue';
 import FollowersList from '../components/FollowersList.vue';
 import FollowingList from '../components/FollowingList.vue';
 
@@ -56,6 +57,13 @@ const routes = [
     name: 'editProfile',
     props: true,
     component: EditProfile,
+    meta: { transitionName: 'slide' },
+  },
+  {
+    path: '/:name/edit-profile/password',
+    name: 'editPassword',
+    props: true,
+    component: ChangePassword,
     meta: { transitionName: 'slide' },
   },
   {

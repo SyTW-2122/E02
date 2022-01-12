@@ -46,26 +46,30 @@
           variant="primary">Done</b-button>
         </b-col>
       </b-row>
-      <b-row class=" bg-info mx-5 my-3 py-2 fs-5 text-white rounded">
-        <label for="fileInput" slot="upload-label">
-        <image-uploader
-        class="file-upload p-0 m-0"
-          :show="false"
-          v-model="form.image"
-          :preview="false"
-          :quality="0.9"
-          capture="environment"
-          :debug="1"
-          doNotResize="gif"
-          :autoRotate="true"
-          outputFormat="verbose"
-          @input="setImage"
-        >
-      </image-uploader>
-          <span class="upload-caption">{{
-            hasImage ? "Replace" : "Click to upload"
-          }}</span>
-      </label>
+      <b-row class=" mx-5 my-3 py-2 px-5 fs-5 text-white rounded">
+        <b-col>
+          <b-button variant="info" class="text-white" pill>
+          <label for="fileInput" slot="upload-label">
+            <image-uploader
+            class="file-upload p-0 m-0"
+              :show="false"
+              v-model="form.image"
+              :preview="false"
+              :quality="0.9"
+              capture="environment"
+              :debug="1"
+              doNotResize="gif"
+              :autoRotate="true"
+              outputFormat="verbose"
+              @input="setImage"
+            >
+            </image-uploader>
+                <span class="upload-caption">{{
+                  hasImage ? "Replace" : "Click to upload"
+                }}</span>
+          </label>
+        </b-button>
+        </b-col>
       </b-row>
       <b-row class="my-5 text-start p-3">
         <b-form @submit="onSubmit" v-if="show" class="">
@@ -131,6 +135,17 @@
 
         </b-form>
       </b-row>
+      <b-row class="my-3 text-start p-2">
+        <b-button :to="`/${authUser.username}/edit-profile/password`" variant="outline-danger">
+          change password
+          <span>
+            <font-awesome-icon
+            icon="exclamation-circle"
+            id="settings"
+            class="fa-lg mx-2"/>
+          </span>
+        </b-button>
+      </b-row>
     </b-container>
 </template>
 
@@ -142,7 +157,7 @@ const defaultImg = require('@/assets/images/torch-logo-black.png');
 export default {
   data() {
     return {
-      authUser: null,
+      authUser: {},
       imageUrl: '',
       defaultImage: defaultImg,
       hasImage: false,
