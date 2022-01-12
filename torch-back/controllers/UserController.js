@@ -132,5 +132,25 @@ module.exports = {
       }
     });
   },
+  updateUserPassword: (req, res) => {
+    User.findOne({
+      username: req.params.username,
+    }, (err, user) => {
+      if (err) throw err;
+      if (!user) {
+        res.status(401).send({ success: false, msg: 'Update failed. User not found.' });
+      }
+      else {
+        user.password = req.body.password;
+        user.save()
+          .then(() => {
+            res.status(200).json(user);
+          })
+          .catch((error) => {
+            res.status(400).json({ success: false, msg: error.msg });
+          });
+      }
+    });
+  },
 };
 // Here goes user controller
