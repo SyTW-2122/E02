@@ -94,7 +94,7 @@
             </div>
             <div class="login-here">
               <p>Already have an account?&nbsp;</p>
-               <router-link to="/sign-in">Login here</router-link>
+               <router-link to="/">Login here</router-link>
             </div>
           </b-form>
         </div>

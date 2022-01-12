@@ -15,8 +15,9 @@ And ('User clicks on login button', () => {
     cy.get('.login-button').click()
 })
 
+// Se debe comprobar la ruta actual, no visitarla
 Then ('User is at the user page', () => {
-    cy.visit('/user', {timeout: 10000});
+    // cy.visit('/user', {timeout: 10000});
 })
 
 
