@@ -130,7 +130,6 @@ export default {
     }),
   },
   mounted() {
-    console.log(this.loggedIn);
     if (this.loggedIn) {
       this.$router.push(`/${this.user.data.username}`);
     }

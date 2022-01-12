@@ -37,7 +37,7 @@ And ('User clicks on button', () => {
 
 // NOTE: username-alert must be visible here, but is not.
 Then ('User is not able to login', () => {
-    cy.get('.alert.alert-danger').contains('Authentication failed. User not found.')
+    cy.get('.form-group').get('.alert.alert-danger').contains('Authentication failed. User not found.')
 })
 
 When ('User clicks on register link', () => {
