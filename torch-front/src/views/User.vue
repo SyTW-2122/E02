@@ -24,7 +24,9 @@
         <b-col sm="12" class="py-3" >
         </b-col>
       </b-row>
-      <ProfileHeader v-if="user" :user="urlUser" :authUser="authUser" :mobile="mobile" />
+      <ProfileHeader
+        id="profile-header"
+        v-if="user" :user="urlUser" :authUser="authUser" :mobile="mobile" />
       <ProfileTools />
     </div>
      <b-sidebar
