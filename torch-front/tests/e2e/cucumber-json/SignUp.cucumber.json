@@ -22,7 +22,7 @@
             "name": "User is at the sign up page",
             "result": {
               "status": "passed",
-              "duration": 4186000000
+              "duration": 4796000000
             }
           },
           {
@@ -32,13 +32,17 @@
             "name": "User enters username as \"usu1\" and password as \"usu1\"",
             "result": {
               "status": "passed",
+              "duration": 1554000000
             }
+          },
+          {
+            "arguments": [],
             "keyword": "And ",
             "line": 5,
             "name": "User clicks on sign up button",
             "result": {
               "status": "passed",
-              "duration": 123000000
+              "duration": 183000000
             }
           },
           {
@@ -48,7 +52,7 @@
             "name": "User is fully registered and able to successfully login",
             "result": {
               "status": "passed",
-              "duration": 172000000
+              "duration": 241000000
             }
           }
         ]
