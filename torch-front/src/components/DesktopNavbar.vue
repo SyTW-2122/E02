@@ -21,35 +21,12 @@
             </b-nav-item>
           </li>
           <li class="nav-item mx-5 px-5" to="/activity">
-            <b-nav-item to="/user" class="mx-6">
+            <b-nav-item
+            :to="{ path: `/${user.data.username}` }"
+            class="mx-6">
               PROFILE
             </b-nav-item>
           </li>
-
-          <div v-if="!currentUser" class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <router-link to="/sign-up" class="nav-link">
-                <font-awesome-icon icon="user-plus" />Sign Up
-              </router-link>
-            </li>
-            <li class="nav-item">
-              <router-link to="/sign-in" class="nav-link">
-                <font-awesome-icon icon="sign-in-alt" />Login
-              </router-link>
-            </li>
-          </div>
-
-          <div v-if="currentUser" class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <font-awesome-icon icon="user" />
-                {{currentUser.data.username}}
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href @click.prevent="logOut">
-                <font-awesome-icon icon="sign-out-alt" />LogOut
-              </a>
-            </li>
-          </div>
         </ul>
       </div>
     </nav>
@@ -57,10 +34,12 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   computed: {
+    ...mapState('auth', ['user']),
     currentUser() {
-      console.log(this.$store.state.auth.user);
       return this.$store.state.auth.user;
     },
     showAdminBoard() {
@@ -81,7 +60,7 @@ export default {
   methods: {
     logOut() {
       this.$store.dispatch('auth/logout');
-      this.$router.push('/sign-in');
+      this.$router.push('/');
     },
   },
 };

@@ -1,22 +1,33 @@
 <template>
   <b-nav class="navbar">
     <b-nav-item to="/activity" >
-      <font-awesome-icon icon="home" class="nav-icon "/>
+      <font-awesome-icon icon="home" class="fa-md"/>
     </b-nav-item>
     <b-nav-item to="/explore">
-      <font-awesome-icon icon="search" class="nav-icon"/>
+      <font-awesome-icon icon="search" class="fa-md"/>
     </b-nav-item>
-    <b-nav-item to="/user" >
-      <font-awesome-icon icon="user-circle" class="nav-icon "/>
+    <b-nav-item :to="`/${this.user.data.username}`">
+      <font-awesome-icon icon="user-circle" class="fa-md"/>
     </b-nav-item>
   </b-nav>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'MobileNavbar',
+
   props: {
     msg: String,
+  },
+  computed: {
+    ...mapState('auth', ['user']),
+  },
+  methods: {
+    changeRoute() {
+      this.$router.push(`/${this.user.data.username}`);
+    },
   },
 };
 </script>
