@@ -32,6 +32,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: cd ../torch-back
+      - run: npm install
+      - run: npm run dev &
+      - run: cd ../torch-front
       - run: npm install
       - run: npm run serve &
       - run: npm run test:ci

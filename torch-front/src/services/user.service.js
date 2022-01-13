@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/user/';
-
+const API_URL = process.env.VUE_APP_USERAPIURL;
 class UserService {
   all = () => axios
     .get(`${API_URL}`)

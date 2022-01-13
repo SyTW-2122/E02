@@ -1,13 +1,13 @@
 {
-  "name": "torch-front",
+  "name": "torch",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e",
-    "test": "(npm run serve &) && npx cypress open",
+    "serve": "vue-cli-service serve --mode development",
+    "build": "vue-cli-service build --mode production",
+    "test:unit": "vue-cli-service test:unit --mode development",
+    "test:e2e": "vue-cli-service test:e2e --mode development",
+    "test": "npm run test:e2e",
     "test:ci": "npx cypress run --spec **/*.feature",
     "test:tags": "npx cypress-tags run -e TAGS=$TAGS",
     "test-jest": "jest"
@@ -23,6 +23,7 @@
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
     "core-util-is": "^1.0.3",
+    "dotenv-webpack": "^7.0.3",
     "nodejs": "^0.0.0",
     "portal-vue": "^2.1.7",
     "register-service-worker": "^1.7.1",

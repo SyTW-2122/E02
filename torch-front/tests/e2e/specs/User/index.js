@@ -10,7 +10,7 @@ Given ('I am logged in as "eric"', () => {
 });
 
 When ('I look at the view', () => {
-  // cy.url().should('include', '/Eric')
+  cy.url().should('include', '/Eric')
 });
 Then ('I should see all the profile layout as espected', () => {
   // User settings button row

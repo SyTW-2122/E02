@@ -129,6 +129,7 @@ export default {
     },
   },
   created() {
+    console.log(process.env.VUE_APP_USERAPIURL);
     if (this.loggedIn) {
       this.$router.push(`/${this.user.data.username}`);
     }
