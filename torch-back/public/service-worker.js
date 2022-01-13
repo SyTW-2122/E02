@@ -14,10 +14,10 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.18229d033f02b9dd022a02152c843855.js"
+  "/precache-manifest.084e114f32bde6f2c0b8e583af4cc040.js"
 );
 
-workbox.core.setCacheNameDetails({prefix: "torch-front"});
+workbox.core.setCacheNameDetails({prefix: "torch"});
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
