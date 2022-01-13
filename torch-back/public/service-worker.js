@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.084e114f32bde6f2c0b8e583af4cc040.js"
+  "/precache-manifest.2b7a5a02a5dd6dfba8b61cd62c1c6f3e.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "torch"});
