@@ -32,11 +32,8 @@ export const explorer = {
     },
   },
   mutations: {
-    fetchUsername(state, username) {
-      state.explorer = username;
-    },
-    fetchRoutine(state, routine) {
-      state.explorer = routine;
+    fetchSuccess(state, explorerInfo) {
+      state.explorer = explorerInfo;
     },
   },
 };
