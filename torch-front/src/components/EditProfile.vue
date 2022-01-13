@@ -84,7 +84,7 @@
               v-model="form.username"
               class="text-capitalize"
               type="text"
-              :placeholder="user.data.username"
+              :placeholder="user.username"
               required
             ></b-form-input>
           </b-form-group>
@@ -99,7 +99,7 @@
               v-model="form.subname"
               class="text-capitalize"
               type="text"
-              :placeholder="user.data.subname"
+              :placeholder="user.subname"
               required
             ></b-form-input>
           </b-form-group>
@@ -114,7 +114,7 @@
               id="input-1"
               v-model="form.email"
               type="email"
-              :placeholder="user.data.email"
+              :placeholder="user.email"
               required
             ></b-form-input>
           </b-form-group>
@@ -127,7 +127,7 @@
             <b-form-textarea
               id="textarea"
               v-model="form.bio"
-              :placeholder="user.data.bio"
+              :placeholder="user.bio"
               rows="3"
               max-rows="6"
             ></b-form-textarea>
@@ -179,17 +179,17 @@ export default {
       this.form.image = output;
     },
     onSubmit(event) {
-      this.form.password = this.user.data.password;
-      this.form.urlUsername = this.user.data.username;
+      this.form.password = this.user.password;
+      this.form.urlUsername = this.user.username;
       if (!this.hasImage) {
-        this.form.image = this.user.data.image;
+        this.form.image = this.user.image;
       }
       event.preventDefault();
       this.$store.dispatch('user/edit', this.form).then(
         (data) => {
           this.msg = data.msg;
           this.successful = true;
-          this.$router.push('/');
+          this.$router.push(`/${this.form.username}`);
         },
         (error) => {
           this.message = (error.response && error.response.data)
@@ -212,12 +212,12 @@ export default {
     );
   },
   mounted() {
-    this.imageUrl = this.user.data.image === undefined
+    this.imageUrl = this.user.image === undefined
       ? this.defaultImage
-      : this.user.data.image.dataUrl;
+      : this.user.image.dataUrl;
   },
   computed: {
-    ...mapState('auth', ['user']),
+    ...mapState('user', ['user']),
     imageUrlUpdate() {
       if (this.form.image === null) {
         if (this.authUser.image === undefined) {

@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 const defaultImg = require('@/assets/images/torch-logo-black.png');
 
 export default {
@@ -46,14 +48,22 @@ export default {
       defaultImage: defaultImg,
     };
   },
+  computed: {
+    ...mapState('auth', ['user']),
+  },
   async created() {
-    await this.$store.dispatch('user/getByUsername', this.$route.params.name).then(
+    await this.$store.dispatch('user/getByName', this.$route.params.name).then( // eslint-disable-line
       async (data) => {
         this.urlUser = data;
         for (let i = 0; i < data.followers.length; i += 1) {
           this.$store.dispatch('user/getUserImage', data.followers[i]).then(
             (image) => {
-              this.images.push({ username: data.followers[i], url: image.dataUrl });
+              this.$store.dispatch('user/getById', data.followers[i]).then(
+                (userName) => {
+                  console.log(userName);
+                  this.images.push({ username: userName.username, url: image.dataUrl });
+                },
+              );
             },
           );
         }

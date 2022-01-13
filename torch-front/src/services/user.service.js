@@ -13,8 +13,12 @@ class UserService {
     .get(`${API_URL}get/${username}`)
     .then((response) => response.data);
 
-  getUserImage = (username) => axios
-    .get(`${API_URL}get/${username}/image`)
+  fetchById = (id) => axios
+    .get(`${API_URL}get/user/${id}`)
+    .then((response) => response.data);
+
+  getUserImage = (id) => axios
+    .get(`${API_URL}get/${id}/image`)
     .then((response) => response.data);
 
   toggleFollow = (currentUser, username) => axios

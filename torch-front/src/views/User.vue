@@ -4,7 +4,7 @@
       <b-row id="settings-button" >
         <b-col
         sm="2" class="pt-3 ps-4 text-start"
-        v-if="urlUser.username !== authUser.data.username" >
+        v-if="urlUser._id !== authUser.data._id" >
           <router-link tag="div" :to="{ path: `${prevRoute.path}` }">
             <font-awesome-icon
               icon="chevron-left" id="settings"  class="fa-2x"/>
@@ -12,10 +12,10 @@
         </b-col>
         <b-col sm="12" class="py-3 ps-4 text-end" >
             <font-awesome-icon
-            v-if="urlUser.username === authUser.data.username"
+            v-if="urlUser._id === authUser.data._id"
             v-b-toggle.sidebar-1 icon="bars" id="settings"  class="fa-2x"/>
             <font-awesome-icon
-            v-if="urlUser.username !== authUser.data.username"
+            v-if="urlUser._id !== authUser.data._id"
             v-b-toggle.sidebar-2 icon="ellipsis-h" id="options"
             class="fa-2x"/>
         </b-col>

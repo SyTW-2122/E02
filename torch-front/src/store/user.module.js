@@ -28,8 +28,24 @@ export const user = {
         },
       );
     },
-    getUserImage({ commit }, username) {
-      return UserService.getUserImage(username).then(
+    getByName({ commit }, username) {
+      return UserService.fetchByName(username).then(
+        (res) => {
+          commit('fetchSuccess', res);
+          return Promise.resolve(res);
+        },
+      );
+    },
+    getById({ commit }, id) {
+      return UserService.fetchById(id).then(
+        (res) => {
+          commit('fetchSuccess', res);
+          return Promise.resolve(res);
+        },
+      );
+    },
+    getUserImage({ commit }, id) {
+      return UserService.getUserImage(id).then(
         (res) => {
           commit('fetchSuccess', res);
           return Promise.resolve(res);

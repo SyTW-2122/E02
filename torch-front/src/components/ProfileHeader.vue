@@ -146,7 +146,7 @@ export default {
       return this.user.image.dataUrl;
     },
     isPersonal() {
-      return this.user.username === this.authUser.data.username;
+      return this.user._id === this.authUser.data._id; // eslint-disable-line
     },
   },
   methods: {
