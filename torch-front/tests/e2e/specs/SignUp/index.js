@@ -2,7 +2,7 @@ import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps';
 const { visit } = cy;
 
 Given ('User is at the sign up page', () => {
-    cy.visit('/');
+    cy.visit('/sign-up');
 })
 
 When ('User enters username as {string} and password as {string}', (username, password) => {

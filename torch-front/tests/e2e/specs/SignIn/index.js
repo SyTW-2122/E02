@@ -16,7 +16,7 @@ And ('User clicks on login button', () => {
 })
 
 // Se debe comprobar la ruta actual, no visitarla
-Then ('User is at the user page', () => {
+Then ('User is at the user page', (username) => {
     cy.url().should('include', `/${username}`) 
 })
 
