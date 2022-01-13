@@ -17,6 +17,7 @@ And ('User clicks on login button', () => {
 
 // Se debe comprobar la ruta actual, no visitarla
 Then ('User is at the user page', () => {
+    cy.visit('/Eric', {timeout: 10000});
     cy.url().should('include', `/Eric`) 
 })
 
