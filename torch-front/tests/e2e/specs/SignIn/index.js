@@ -22,7 +22,7 @@ Then ('User is at the user page', (username) => {
 
 
 Given ('User is at the login main page', () => {
-    cy.visit('/sign-in', {timeout: 10000});
+    cy.visit('/', {timeout: 10000});
     cy.viewport(375, 812);
 })
 

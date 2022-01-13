@@ -4,10 +4,10 @@ Feature: User sign in
     When User enters username as "<username>" and password as "<password>"
     And User clicks on login button
     Then User is at the user page
-    
+
     Examples:
       | username | password |
-      |     Ale  |   123456 |
+      | Eric     | 123456   |
 
   Scenario: User without an account created can not login and taps on register link
     Given User is at the login main page
