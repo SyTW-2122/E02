@@ -29,9 +29,22 @@ module.exports = {
       }
     });
   },
+  getUserById: (req, res) => {
+    User.findOne({
+      _id: req.params.id,
+    }, (err, user) => {
+      if (err) throw err;
+      if (!user) {
+        res.status(401).send({ success: false, msg: 'Update failed. User not found.' });
+      }
+      else {
+        res.status(200).json(user);
+      }
+    });
+  },
   getUserImage: (req, res) => {
     User.findOne({
-      username: req.params.username,
+      _id: req.params.id,
     }, (err, user) => {
       if (err) throw err;
       if (!user) {
@@ -68,18 +81,19 @@ module.exports = {
               userToFollow.save();
             }
 
+            console.log(currentUser.id);
             const isFollowing = currentUser.following
-              .find((el) => el === userToFollow.username);
+              .find((el) => el === userToFollow.id);
 
             if (isFollowing) {
               currentUser.following = currentUser.following
-                .filter((el) => el !== userToFollow.username);
+                .filter((el) => el !== userToFollow.id);
               userToFollow.followers = userToFollow.following
-                .filter((el) => el !== currentUser.username);
+                .filter((el) => el !== currentUser.id);
             }
             else {
-              currentUser.following.push(userToFollow.username);
-              userToFollow.followers.push(currentUser.username);
+              currentUser.following.push(userToFollow.id);
+              userToFollow.followers.push(currentUser.id);
             }
             currentUser.save();
             userToFollow.save();
@@ -153,4 +167,3 @@ module.exports = {
     });
   },
 };
-// Here goes user controller
