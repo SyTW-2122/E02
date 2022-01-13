@@ -3,14 +3,19 @@ import axios from 'axios';
 const API_URL = 'http://localhost:5000/api/explore/';
 
 class ExplorerService {
-  loadUserValoration = (explorer) => axios
-    .put(`${API_URL}`, {
-      userValoration: user.valoration,
-    });
+  fetchByRoutine = (routine) => axios
+    .get(`${API_URL}get/${routine}`)
+    .then((response) => response.data);
 
-  loadRoutineValoration = (explorer) => axios
-    .put(`${API_URL}`, {
-      routineValoration: routine.valoration,
+  fetchByUsername = (username) => axios
+    .get(`${API_URL}get/${username}`)
+    .then((response) => response.data);
+
+  all = () => axios
+    .get(`${API_URL}`)
+    .then((response) => {
+      console.log(response.data);
+      return response.data;
     });
 }
 
