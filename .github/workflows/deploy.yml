@@ -12,6 +12,8 @@ jobs:
       - run: cd torch-front && npm install
       - run: cd torch-front && npx vue-cli-service build --dest ../torch-back/public
       - run: git add .
+      - run: git config --global user.email "actions@mail.com"
+      - run: git config --global user.name "Github Actions"
       - run: git commit -m "update"
       - run: git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
       - run: git push --force heroku `git subtree split --prefix torch-back`:main
