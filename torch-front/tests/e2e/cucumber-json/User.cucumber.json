@@ -23,7 +23,7 @@
             "name": "I am logged in as \"eric\"",
             "result": {
               "status": "passed",
-              "duration": 5555000000
+              "duration": 5779000000
             }
           },
           {
@@ -33,7 +33,7 @@
             "name": "I look at the view",
             "result": {
               "status": "passed",
-              "duration": 747000000
+              "duration": 770000000
             }
           },
           {
@@ -43,7 +43,7 @@
             "name": "I should see all the profile layout as espected",
             "result": {
               "status": "passed",
-              "duration": 370000000
+              "duration": 309000000
             }
           }
         ]

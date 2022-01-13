@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve --mode development",
     "build": "vue-cli-service build --mode production",
-    "test:unit": "vue-cli-service test:unit --mode development",
+    "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e --mode development",
     "test": "npm run test:e2e",
     "test:ci": "npx cypress run --spec **/*.feature",
