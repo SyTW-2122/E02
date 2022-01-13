@@ -14,7 +14,7 @@ export default {
   name: 'Home',
   data() {
     return {
-      content: 'Content for activity page',
+      content: 'Content for activity page!',
     };
   },
   computed: {
