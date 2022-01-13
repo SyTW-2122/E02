@@ -3,6 +3,10 @@ on:
   pull_request:
     branches: [main]
 
+defaults:
+  run:
+    working-directory: torch-front
+
 jobs:
   unit-tests:
     runs-on: ubuntu-latest
@@ -28,13 +32,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: cd torch-back
-      - run: npm install
-      - run: npm run dev &
-      - run: cd ../torch-front
-      - run: npm install
-      - run: npm run serve &
-      - run: npm run test:ci
+      - run: cd ../torch-back && npm install && (npm run dev &) 
+      - run: npm install 
+      - run: (npm run dev &) && npm run test:ci
         if: always()
       - uses: ravsamhq/notify-slack-action@v1
         with:
