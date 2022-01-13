@@ -6,6 +6,7 @@ const express = require('express'),
   userAPI = require('./route/user'),
   indexAPI = require('./route/staticIndex'),
   auth = require('./route/auth');
+  explorer = require('./route/explorer')
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexAPI);
 app.use('/api/user', userAPI);
 app.use('/api/auth', auth);
+app.use('/api/explorer', explorer);
 
 app.use(require('connect-history-api-fallback')());
 
