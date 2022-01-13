@@ -4,50 +4,39 @@ export const explorer = {
   namespaced: true,
   state: {
     explorer: {
-      routines: [
-        description = "",
-        sportName = "",
-        valoration = Number,
-      ],
-      users: [
-        username = "",
-        valoration = Number,
-      ],
+      routines: [],
+      users: [],
     },
-  },
-  getters: {
-    getUserName: (state) => state.explorer.users.username,
-    getUserValoration: (state) => state.explorer.users.valoration,
-    getDescription: (state) => state.explorer.routines.description,
-    getSportName: (state) => state.explorer.routines.sportName,
-    getRoutineValoration: (state) => state.explorer.routines.valoration,
   },
   actions: {
-    loadUserValoration({ commit }, explorerData, valoration) {
-      return ExplorerService.loadUserValoration(explorerData, valoration).then(
-        (res) => {
-          commit('valoration saved', res.data);
-          return Promise.resolve(res.data);
-        },
-        (error) => Promise.reject(error),
+    getAll() {
+      return ExplorerService.all().then(
+        (res) => Promise.resolve(res),
       );
     },
-    loadRoutineValoration({ commit }, explorerData, valoration) {
-      return ExplorerService.loadRoutineValoration(explorerData, valoration).then(
+    getByUsername({ commit }, username) {
+      return ExplorerService.fetchByUsername(username).then(
         (res) => {
-          commit('valoration saved', res.data);
-          return Promise.resolve(res.data);
+          commit('fetchSuccess', res);
+          return Promise.resolve(res);
         },
-        (error) => Promise.reject(error),
+      );
+    },
+    getByRoutine({ commit }, routine) {
+      return ExplorerService.fetchByRoutine(routine).then(
+        (res) => {
+          commit('fetchSuccess', res);
+          return Promise.resolve(res);
+        },
       );
     },
   },
   mutations: {
-    updateUserValoration(state, newValoration) {
-      state.explorer.users.valoration = newValoration;
+    fetchUsername(state, username) {
+      state.explorer = username;
     },
-    updateRoutineValoration(state, newValoration) {
-      state.explorer.routines.valoration = newValoration;
+    fetchRoutine(state, routine) {
+      state.explorer = routine;
     },
   },
 };
