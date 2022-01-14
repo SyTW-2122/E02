@@ -2,7 +2,7 @@
   <b-container class="sign-in">
     <b-row class="welcome">
       <b-col cols="12">
-        <img src="../assets/images/torch-logo.png" alt="">
+        <img cols=1 src="../assets/images/torch-logo.png" alt="">
       </b-col>
       <b-col class="h-100" cols="12">
       <h1>Welcome</h1>
