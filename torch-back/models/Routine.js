@@ -12,10 +12,7 @@ const routineSchema = new Schema({
     type: Schema.Types.String,
     required: true,
   },
-  publicationDate: {
-    type: Schema.Types.Date,
-  },
-  userWhoDiIt: {
+  author: {
     type: Schema.Types.String,
     required: true,
   },
@@ -28,6 +25,9 @@ const routineSchema = new Schema({
   },
   done: {
     type: Schema.Types.Boolean,
+  },
+  tags: {
+    type: Schema.Types.String,
   },
 }, { timestamps: true });
 
