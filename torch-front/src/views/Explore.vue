@@ -1,15 +1,23 @@
 <template>
-  <div class = "background">
-    <b-container fluid="lg" class="explorer">
-      <b-row class="search">
-        <b-col cols="10">
-          <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
-        </b-col>
-        <b-col cols="2">
-          <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
+  <div>
+    <div class="container" id="Explorer">
+      <b-row id="search-bar">
+        <b-col>
+          <div class="search-bar">
+            <b-form-input
+              @input="search_text()"
+              v-model="search.text"
+              type="text"
+              placeholder="Search"
+              id="input-default"
+            ></b-form-input>
+            <span class="search-icon">
+              <i class="fas fa-search"></i>
+            </span>
+          </div>
         </b-col>
       </b-row>
-    </b-container>
+    </div>
   </div>
 </template>
 
@@ -30,11 +38,17 @@ export default {
 </script>
 
 <style scoped>
-.background {
-    position:fixed;
-    width: 100%;
-    height: 100%;
-    background-color: #ffffff;
-}
+  .search-bar {
+    position: relative;
+  }
 
+  .input-default {
+    padding-left: 30px;
+  }
+
+  .search-icon {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+  }
 </style>
