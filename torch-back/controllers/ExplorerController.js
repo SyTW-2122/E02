@@ -1,20 +1,31 @@
 const passport = require('passport');
 require('../config/passport')(passport);
-const Explorer = require('../models/Explorer');
+const Routine = require('../models/Routine');
+const User = require('../models/User');
 
 module.exports = {
-  allExplorer: (req, res) => {
-    Explorer.find((err, explorer) => {
+  allRoutines: (req, res) => {
+    Routine.find((err, routines) => {
       if (err) {
         res.json(err);
       }
       else {
-        res.json(explorer);
+        res.json(routines);
+      }
+    });
+  },
+  allUsers: (req, res) => {
+    User.find((err, users) => {
+      if (err) {
+        res.json(err);
+      }
+      else {
+        res.json(users);
       }
     });
   },
   getUserByUsername: (req, res) => {
-    Explorer.findOne({
+    User.findOne({
       username: req.params.username,
     }, (err, user) => {
       if (err) throw err;
@@ -27,7 +38,7 @@ module.exports = {
     });
   },
   getRoutineBySportName: (req, res) => {
-    Explorer.findOne({
+    Routine.findOne({
       sportName: req.params.sportName,
     }, (err, routine) => {
       if (err) throw err;
