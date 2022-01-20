@@ -5,9 +5,12 @@
         <b-card-img src="https://picsum.photos/400/400/?image=20" alt="Image" class="rounded-0"></b-card-img>
       </b-col>
       <b-col md="6">
-        <b-card-body title="Nombre usuario">
+        <b-card-body>
+          <title>
+            {{user.username}}
+          </title>
           <b-card-text>
-            Valoración.
+            {{user.valoration}}
           </b-card-text>
         </b-card-body>
       </b-col>
@@ -18,7 +21,6 @@
 <script>
 export default {
   name: 'UserCard',
-  props: ['user'],
 };
 </script>
 
