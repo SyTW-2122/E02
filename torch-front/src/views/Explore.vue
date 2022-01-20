@@ -9,22 +9,42 @@
           <b-form-input id="input-default" placeholder="Search"></b-form-input>
         </b-col>
       </b-row>
+      <div class="mb-5 pb-5 text-center">
+        <b-row class="Cards pt-1">
+          <b-col class="col-12 mb-2 col-md-6 col-lg-4">
+            <RoutineCard />
+          </b-col>
+          <b-col class="col-12 mb-2 col-md-6 col-lg-4">
+            <UserCard />
+          </b-col>
+          <b-col class="col-12 mb-2 col-md-6 col-lg-4">
+            <UserCard />
+          </b-col>
+          <b-col class="col-12 mb-2 col-md-6 col-lg-4">
+            <RoutineCard />
+          </b-col>
+          <b-col class="col-12 mb-2 col-md-6 col-lg-4">
+            <RoutineCard />
+          </b-col>
+          <b-col class="col-12 mb-2 col-md-6 col-lg-4">
+            <UserCard />
+          </b-col>
+        </b-row>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+
+import RoutineCard from '@/components/RoutineCard.vue';
+import UserCard from '@/components/UserCard.vue';
+
 export default {
   name: 'Explore',
-  computed: {
-    currentUser() {
-      return this.$store.state.auth.user;
-    },
-  },
-  mounted() {
-    if (!this.currentUser) {
-      this.$router.push('/sign-in');
-    }
+  components: {
+    RoutineCard,
+    UserCard,
   },
 };
 </script>
