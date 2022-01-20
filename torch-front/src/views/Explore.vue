@@ -1,20 +1,12 @@
 <template>
   <div>
     <div class="container" id="Explorer">
-      <b-row id="search-bar">
-        <b-col>
-          <div class="search-bar">
-            <b-form-input
-              @input="search_text()"
-              v-model="search.text"
-              type="text"
-              placeholder="Search"
-              id="input-default"
-            ></b-form-input>
-            <span class="search-icon">
-              <i class="fas fa-search"></i>
-            </span>
-          </div>
+      <b-row class="search-bar">
+        <b-col cols="2">
+          <font-awesome-icon icon="search" class="fa-2x"/>
+        </b-col>
+        <b-col cols="10">
+          <b-form-input id="input-default" placeholder="Search"></b-form-input>
         </b-col>
       </b-row>
     </div>
@@ -38,17 +30,7 @@ export default {
 </script>
 
 <style scoped>
-  .search-bar {
-    position: relative;
-  }
-
-  .input-default {
-    padding-left: 30px;
-  }
-
-  .search-icon {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-  }
+.search-bar {
+  padding: 40px 35px;
+}
 </style>
