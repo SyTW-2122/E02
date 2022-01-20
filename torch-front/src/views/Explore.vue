@@ -14,7 +14,7 @@ export default {
   },
   mounted() {
     if (!this.currentUser) {
-      this.$router.push('/sign-in');
+      this.$router.push('/');
     }
   },
 };

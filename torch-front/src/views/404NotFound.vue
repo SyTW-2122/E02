@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <router-link to="/sign-in">
+    <router-link to="/">
 
       <!--dust particel-->
       <div>

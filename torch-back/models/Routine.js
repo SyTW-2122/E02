@@ -27,7 +27,7 @@ const routineSchema = new Schema({
     type: Schema.Types.Boolean,
   },
   tags: {
-    type: Schema.Types.String,
+    type: Schema.Types.Array,
   },
 }, { timestamps: true });
 

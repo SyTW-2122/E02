@@ -1,14 +1,22 @@
 // Style imports
 
-import './registerServiceWorker';
-
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+import { BootstrapVue, BootstrapVueIcons, IconsPlugin } from 'bootstrap-vue';
+import PortalVue from 'portal-vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
+import './assets/css/main.css';
 import './assets/css/custom-variables.css';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
+  faExclamationCircle,
+  faChevronLeft,
+  faEllipsisH,
+  faPlusSquare,
+  faBell,
+  faHistory,
+  faBars,
+  faPowerOff,
   faUserSecret,
   faHome,
   faSearch,
@@ -23,17 +31,30 @@ import {
 import Vue from 'vue';
 import Vuex from 'vuex';
 import VeeValidate from 'vee-validate';
+import ImageUploader from 'vue-image-upload-resize';
 import storeConfig from './store/index';
 import router from './router';
 import App from './App.vue';
 
+Vue.use(ImageUploader);
+
 /// Style addons activation
 // Make BootstrapVue available throughout your project
 Vue.use(BootstrapVue);
+Vue.use(BootstrapVueIcons);
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin);
+Vue.use(PortalVue);
 // Font awesome icons used in the app
 library.add(
+  faExclamationCircle,
+  faChevronLeft,
+  faEllipsisH,
+  faPlusSquare,
+  faBell,
+  faHistory,
+  faBars,
+  faPowerOff,
   faUserSecret,
   faHome,
   faSearch,

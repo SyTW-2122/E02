@@ -22,7 +22,7 @@ jobs:
           notification_title: '{workflow} has {status_message}'
           message_format: '{emoji} *{workflow}* {status_message} in <{repo_url}|{repo}>'
           footer: 'Linked to Repo <{repo_url}|{repo}>'
-          mention_users: 'Alejando Martín de León'
+          mention_users: 'Alejandro Martín de León'
           mention_users_when: 'failure,warnings'
           #mention_groups: 'SAZ94GDB8'0
           #mention_groups_when: 'failure,warnings'
@@ -32,9 +32,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: npm install
-      - run: npm run serve &
-      - run: npm run test:ci
+      - run: cd ../torch-back && npm install && (npm run dev &) 
+      - run: npm install 
+      - run: (npm run serve &) && npm run test:ci
         if: always()
       - uses: ravsamhq/notify-slack-action@v1
         with:
@@ -49,3 +49,16 @@ jobs:
           #mention_groups_when: 'failure,warnings'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}   
+    
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install
+      - run: npm install -g codecov
+      - run: npx nyc --reporter lcovonly vue-cli-service test:unit
+      - run: codecov --token=${{ secrets.CODECOV_TOKEN }}
+      - uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flags: unittests

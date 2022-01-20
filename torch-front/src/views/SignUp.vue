@@ -51,7 +51,7 @@
               <b-form-input
                 id="input-username"
                 type="text"
-                v-model="user.username"
+                v-model="newUser.username"
                 v-validate="'required|min:3|max:20'"
                 placeholder="Username"
                 name="username"
@@ -72,7 +72,7 @@
               <b-form-input
                 id="input-password"
                 type="password"
-                v-model="user.password"
+                v-model="newUser.password"
                 v-validate="'required|min:6|max:40'"
                 placeholder="Password"
                 name="password"
@@ -94,14 +94,14 @@
             </div>
             <div class="login-here">
               <p>Already have an account?&nbsp;</p>
-               <router-link to="/sign-in">Login here</router-link>
+               <router-link to="/">Login here</router-link>
             </div>
           </b-form>
         </div>
       </div>
       <div v-else class="text-center">
         <h1 class="text-success text-center">Account created succesfully</h1>
-        <router-link to="/sign-in">
+        <router-link to="/">
           <b-button class="btn-primary m-5">Go to login</b-button>
         </router-link>
       </div>
@@ -110,7 +110,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 import User from '../models/user';
 
 export default {
@@ -120,30 +120,41 @@ export default {
       submitted: false,
       successful: false,
       message: '',
-      user: new User('', ''),
+      newUser: new User('', ''),
     };
   },
   computed: {
+    ...mapState('auth', ['user']),
     ...mapGetters({
       loggedIn: 'auth/isLoggedIn',
     }),
   },
   mounted() {
     if (this.loggedIn) {
-      this.$router.push('/user');
+      this.$router.push(`/${this.user.data.username}`);
     }
   },
   methods: {
     handleRegister() {
       this.message = '';
       this.submitted = true;
-      console.log(this.user);
       this.$validator.validate().then((isValid) => {
         if (isValid) {
-          this.$store.dispatch('auth/register', this.user).then(
+          this.$store.dispatch('auth/register', this.newUser).then(
             (data) => {
               this.message = data.message;
               this.successful = true;
+              this.$store.dispatch('auth/login', this.newUser).then(
+                () => {
+                  this.$router.push(`/${this.user.data.username}`);
+                },
+                (error) => {
+                  this.loading = false;
+                  this.message = (error.response && error.response.data)
+                    || error.message
+                    || error.toString();
+                },
+              );
             },
             (error) => {
               this.message = (error.response && error.response.data)
