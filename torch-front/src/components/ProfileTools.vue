@@ -18,9 +18,14 @@
         <b-tab>
           <template #title>
             <span
-              v-if="isPersonal"
+              v-if="isPersonal && (user.newNotifications.length > 0)"
               class="fa-stack fa-2x has-badge"
               :data-count="user.newNotifications.length">
+              <font-awesome-icon  icon="bell"/>
+            </span>
+            <span
+              v-else-if="isPersonal && (user.newNotifications.length === 0)"
+              class="fa-stack fa-2x has-badge">
               <font-awesome-icon  icon="bell"/>
             </span>
             <font-awesome-icon v-else icon="star-half-alt" class="fa-2x"/>
