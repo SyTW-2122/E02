@@ -158,6 +158,7 @@ export default {
         },
         (error) => {
           console.log(`failed: ${error}`);
+          this.$router.push('/');
         },
       );
     },
