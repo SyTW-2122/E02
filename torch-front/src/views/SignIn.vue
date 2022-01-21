@@ -10,17 +10,17 @@
           <h1>Welcome</h1>
           </b-col>
         </b-row>
-        <b-row class="passport-google">
+        <b-row class="passport-google pb-1" align="center">
             <b-col cols="12">
-              <b-button pill class="login-google">
+              <b-button pill class="h-100 login-google">
                 <img src="../assets/images/google.png" align="left" alt=""/>
                 <p>Login with Google</p>
               </b-button>
             </b-col>
         </b-row>
-        <b-row class="passport-facebook">
-            <b-col cols="12">
-              <b-button pill class="login-facebook">
+        <b-row class="passport-facebook pt-0" align="center">
+            <b-col cols="12" xs="3">
+              <b-button pill class="h-100 login-facebook">
                 <img src="../assets/images/facebook.svg" align="left" alt=""/>
                 <p>Login with Facebook</p>
               </b-button>
@@ -202,8 +202,8 @@ export default {
   margin-left: auto;
   margin-right: auto;
   margin-top: 5vh;
-  width: 25vw;
-  height: 15vh;
+  width: 22vw;
+  height: 12vh;
   object-fit: contain;
 }
 h1 {
@@ -234,18 +234,17 @@ h1 {
 }
 .passport-google {
   padding: 0 0;
-}
-
+}/*
 .login-google {
   display: block;
   margin-left: auto;
   margin-right: auto;
     width: 50%;
-  height: 70%;
+  height: 60%;
   margin-top: 3vh;
   background-color: #FFF;
   object-fit: contain;
-}
+}*/
 .login-google img {
   width: 25px;
 }
@@ -254,16 +253,16 @@ h1 {
   color: #000;
   font-size: 13px;
 }
-.login-facebook {
+/* .login-facebook {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
-  height: 80%;
+  height: 70%;
   background-color: #3b5998;
   margin-top: 1vh;
   object-fit: contain;
-}
+} */
 .login-facebook img {
   width: 25px;
   filter: invert(100%) sepia(1%) saturate(7500%) hue-rotate(59deg) brightness(115%) contrast(100%);
