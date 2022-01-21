@@ -112,7 +112,8 @@ export const user = {
       auth.state.userData.following = followData.current.following;
     },
     viewNotification(state, res) {
-      state.user.newNotifications = res.newNotifications;
+      state.user.newNotifications = res.data.nn;
+      auth.state.userData.newNotifications = res.data.nn;
     },
   },
 };

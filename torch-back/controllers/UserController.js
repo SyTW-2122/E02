@@ -156,22 +156,18 @@ module.exports = {
   updateUserNotification: (req, res) => {
     User.findOne({
       username: req.params.username,
-    }, (err, user) => {
+    }, async (err, user) => {
       if (err) throw err;
       if (!user) {
         res.status(401).send({ success: false, msg: 'Update failed. User not found.' });
       }
       else {
         user.newNotifications = user.newNotifications
-          .map((el) => {
-            if (el.id === req.body.id) {
-              el.viewed = true;
-            }
-            return el;
-          });
+          .filter((el) => el.if !== req.body.id);
+        console.log(user.newNotifications);
         user.save()
           .then(() => {
-            res.status(200).json(user);
+            res.status(200).json({ nn: user.newNotifications });
           })
           .catch((error) => {
             res.status(400).json({ success: false, msg: error.msg });
