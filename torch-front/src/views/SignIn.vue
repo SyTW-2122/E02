@@ -80,7 +80,7 @@
                 class="alert alert-danger"
                 role="alert"
               >Password is required!</div>
-              <b-row class="bottom-form mx-3" align-h="between">
+              <b-row class="h-5 bottom-form mx-3" align-h="between">
                 <b-col cols="6">
                   <b-form-checkbox class="remember-me">&nbsp;Remember me</b-form-checkbox>
                 </b-col>
@@ -225,6 +225,8 @@ h1 {
   opacity: 0.2;
   color: #000;
   margin-top: 10px;
+  height: 5vh;
+  margin: auto;
 }
 .separator .line {
   flex: 1;
@@ -291,7 +293,8 @@ h1 {
 .remember-me{
   display: inline-block;
   height: 100%;
-  margin-top: 10px;
+  margin-top: 15px;
+  font-size: 12px;
 }
 .bottom-form a{
   color: #00DBDE;
@@ -306,7 +309,7 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 5%;
 }
 .login-button button {
   width: 200px;
@@ -329,5 +332,7 @@ h1 {
   color: #00DBDE;
   text-decoration: none;
 }
-
+.forgot-password {
+  font-size: 12px;
+}
 </style>
