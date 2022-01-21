@@ -17,7 +17,12 @@
         </b-tab>
         <b-tab>
           <template #title>
-            <font-awesome-icon v-if="isPersonal" icon="bell" class="fa-2x"/>
+            <span
+              v-if="isPersonal"
+              class="fa-stack fa-2x has-badge"
+              :data-count="user.newNotifications.length">
+              <font-awesome-icon  icon="bell"/>
+            </span>
             <font-awesome-icon v-else icon="star-half-alt" class="fa-2x"/>
           </template>
           <NotificationsTab v-if="isPersonal"
@@ -45,3 +50,43 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  .badge-notification{
+    width: 100px;
+      display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+  }
+.badge-notification .badge:after {
+  content: "100";
+  position: absolute;
+  background: blue;
+  height: 2rem;
+  top: 1rem;
+  right: 1.5rem;
+  width: 2rem;
+  text-align: center;
+  line-height: 2rem;
+  font-size: 1rem;
+  border-radius: 50%;
+  color: white;
+  border: 1px solid blue;
+}
+.fa-stack[data-count]:after {
+  position: absolute;
+  right: 0%;
+  top: 1%;
+  content: attr(data-count);
+  font-size: 30%;
+  padding: .6em;
+  border-radius: 999px;
+  line-height: .75em;
+  color: white;
+  background: rgba(255, 0, 0, 0.85);
+  text-align: center;
+  min-width: 2em;
+  font-weight: bold;
+}
+</style>

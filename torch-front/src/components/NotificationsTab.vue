@@ -8,7 +8,7 @@
             <span class="me-5 pe-5">{{notification.text}}</span>
             <span class="ms-5 ps-5">
               <b-button variant="primary" @click="view(notification.if)">
-                <font-awesome-icon icon="trash" class="fa-1x"/>
+                <font-awesome-icon icon="trash" class="fa-1x "/>
               </b-button>
             </span>
           </b-card-text>
@@ -44,3 +44,6 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+</style>
