@@ -218,7 +218,7 @@ h1 {
   align-items: center;
   margin-left: 50px;
   margin-right: 50px;
-  margin-top: 20px;
+  margin-top: 3vh;
 }
 .separator p {
   padding: 0 0px;
@@ -232,15 +232,19 @@ h1 {
   background-color: #000;
   opacity: 0.1;
 }
+.passport-google {
+  padding: 0 0;
+}
+
 .login-google {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 5px;
-  width: 200px;
-  height: 45px;
+    width: 50%;
+  height: 70%;
+  margin-top: 3vh;
   background-color: #FFF;
-  margin-top: 40px;
+  object-fit: contain;
 }
 .login-google img {
   width: 25px;
@@ -254,9 +258,11 @@ h1 {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 200px;
-  height: 45px;
+  width: 50%;
+  height: 80%;
   background-color: #3b5998;
+  margin-top: 1vh;
+  object-fit: contain;
 }
 .login-facebook img {
   width: 25px;
@@ -264,7 +270,7 @@ h1 {
 }
 .login-facebook p {
   display: inline;
-  font-size: 13px;
+  font-size: 11px;
 }
 .login-form {
   margin-left: 40px;
