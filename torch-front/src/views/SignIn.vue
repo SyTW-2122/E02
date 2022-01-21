@@ -1,7 +1,7 @@
 <template class="">
   <b-container fluid class="background">
-    <b-row class="sign-in">
-      <b-col cols="12">
+    <b-row fluid class="h-100 w-100">
+      <b-col class="sign-in" offset="1" cols="4">
         <b-row class="welcome">
           <b-col cols="12">
             <img src="../assets/images/torch-logo.png" alt="">
@@ -81,10 +81,10 @@
                 role="alert"
               >Password is required!</div>
               <b-row class="h-5 bottom-form mx-3" align-h="between">
-                <b-col cols="6">
+                <b-col cols="12">
                   <b-form-checkbox class="remember-me word-size">&nbsp;Remember me</b-form-checkbox>
                 </b-col>
-                <b-col cols="6">
+                <b-col cols="12">
                   <p><a href="" class="forgot-password word-size">Forgot password?</a></p>
                 </b-col>
               </b-row>
@@ -105,10 +105,21 @@
           </b-form>
         </b-form-row>
       </b-col>
+      <b-col cols="7" class="pt-5">
+        <b-row align="center">
+          <b-col align="center" class="mockup pt-5" cols="12" v-if="!mobile">
+            <img class="mockup-img pt-5" src="../assets/images/mockup-1.png" alt="">
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col align="center" cols="12">
+            <p>TEXT GOES HERE</p>
+          </b-col>
+        </b-row>
+      </b-col>
     </b-row>
   </b-container>
 </template>
-
 <script>
 
 import User from '../models/user';
@@ -264,11 +275,11 @@ h1 {
   margin-top: 5%;
 }
 .login-button button {
-  width: 200px;
-  height: 70px;
+  width: 170px;
+  height: 60px;
   background-color: #00DBDE;
   border: none;
-  font-size: 25px;
+  font-size: 20px;
 }
 .create-account {
   display: flex;
@@ -300,18 +311,23 @@ h1 {
     background: linear-gradient(0.25turn,#7B00DB, #00DBDE);
   }
     .sign-in {
-    padding:0;
-    margin:0;
+    /* padding:0;
+    margin:0; */
     background-color: #FFF;
-    height: 96%;
+    /* height: 96%;
     width: 35%;
-    margin-left: 1%;
+    margin-left: 1%; */
     margin-top: 1%;
     margin-bottom: 1%;
     border-radius: 40px;
   }
   .word-size {
     font-size: 16px;
+  }
+  .mockup-img {
+    width: 35vw;
+    height: auto;
+    vertical-align: middle;
   }
 }
 @media screen and (max-width: 1025px) {
