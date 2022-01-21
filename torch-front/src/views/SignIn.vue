@@ -105,7 +105,7 @@
           </b-form>
         </b-form-row>
       </b-col>
-      <b-col cols="8" class="pt-5">
+      <b-col cols="8" class="pt-5" v-if="!mobile">
         <b-row align="center">
           <b-col align="center" class="mockup pt-5" cols="12" >
             <img class="mockup-img pt-5" src="../assets/images/mockup-1.png" alt="">
@@ -133,6 +133,7 @@ export default {
       message: '',
     };
   },
+  props: ['mobile'],
   computed: {
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
