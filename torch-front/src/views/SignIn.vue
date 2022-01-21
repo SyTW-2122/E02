@@ -1,7 +1,7 @@
 <template class="">
-  <b-container fluid class="background">
+  <b-container fluid class="background px-5">
     <b-row fluid class="h-100 w-100">
-      <b-col class="sign-in" offset="1" cols="4">
+      <b-col class="sign-in" cols="4">
         <b-row class="welcome">
           <b-col cols="12">
             <img src="../assets/images/torch-logo.png" alt="">
@@ -105,9 +105,9 @@
           </b-form>
         </b-form-row>
       </b-col>
-      <b-col cols="7" class="pt-5">
+      <b-col cols="8" class="pt-5">
         <b-row align="center">
-          <b-col align="center" class="mockup pt-5" cols="12" v-if="!mobile">
+          <b-col align="center" class="mockup pt-5" cols="12" >
             <img class="mockup-img pt-5" src="../assets/images/mockup-1.png" alt="">
           </b-col>
         </b-row>
@@ -311,15 +311,11 @@ h1 {
     background: linear-gradient(0.25turn,#7B00DB, #00DBDE);
   }
     .sign-in {
-    /* padding:0;
-    margin:0; */
     background-color: #FFF;
-    /* height: 96%;
-    width: 35%;
-    margin-left: 1%; */
     margin-top: 1%;
     margin-bottom: 1%;
     border-radius: 40px;
+    filter: drop-shadow(30px 10px 4px #55525244);
   }
   .word-size {
     font-size: 16px;
@@ -328,6 +324,7 @@ h1 {
     width: 35vw;
     height: auto;
     vertical-align: middle;
+    filter: drop-shadow(30px 10px 3px #433f3f79);
   }
 }
 @media screen and (max-width: 1025px) {
