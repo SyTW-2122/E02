@@ -236,17 +236,10 @@ h1 {
 }
 .passport-google {
   padding: 0 0;
-}/*
+}
 .login-google {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-    width: 50%;
-  height: 60%;
-  margin-top: 3vh;
   background-color: #FFF;
-  object-fit: contain;
-}*/
+}
 .login-google img {
   width: 25px;
 }
@@ -255,16 +248,9 @@ h1 {
   color: #000;
   font-size: 13px;
 }
-/* .login-facebook {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-  height: 70%;
+.login-facebook {
   background-color: #3b5998;
-  margin-top: 1vh;
-  object-fit: contain;
-} */
+}
 .login-facebook img {
   width: 25px;
   filter: invert(100%) sepia(1%) saturate(7500%) hue-rotate(59deg) brightness(115%) contrast(100%);
