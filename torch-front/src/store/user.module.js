@@ -12,6 +12,7 @@ export const user = {
       routines: [],
       following: [],
       followers: [],
+      newNotifications: [],
     },
   },
   actions: {
@@ -81,6 +82,17 @@ export const user = {
           (error) => Promise.reject(error),
         );
     },
+    viewNotification({ commit }, obj) {
+      return UserService
+        .viewNotification(obj)
+        .then(
+          (res) => {
+            commit('viewNotification', res);
+            return Promise.resolve(res);
+          },
+          (error) => Promise.reject(error),
+        );
+    },
   },
   mutations: {
     fetchSuccess(state, userInfo) {
@@ -95,8 +107,12 @@ export const user = {
     updateFollowers(state, followData) {
       state.user.followers = followData.toFollow.followers;
       state.user.following = followData.toFollow.following;
+      state.user.newNotifications = followData.toFollow.notifications;
       auth.state.userData.followers = followData.current.followers;
       auth.state.userData.following = followData.current.following;
+    },
+    viewNotification(state, res) {
+      state.user.newNotifications = res.newNotifications;
     },
   },
 };

@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const ObjectIDObj = require('mongoose').ObjectID;
 const settings = require('../config/SecretToken');
 const User = require('../models/User');
+const u = require('ulid');
 
 module.exports = {
   allUsers: (req, res) => {
@@ -81,7 +82,6 @@ module.exports = {
               userToFollow.save();
             }
 
-            console.log(currentUser.id);
             const isFollowing = currentUser.following
               .find((el) => el === userToFollow.id);
 
@@ -94,6 +94,12 @@ module.exports = {
             else {
               currentUser.following.push(userToFollow.id);
               userToFollow.followers.push(currentUser.id);
+              userToFollow.newNotifications
+                .push({
+                  text: `${currentUser.username} is now following You`,
+                  if: u.ulid(),
+                  viewed: false,
+                });
             }
             currentUser.save();
             userToFollow.save();
@@ -105,6 +111,7 @@ module.exports = {
               toFollow: {
                 followers: userToFollow.followers,
                 following: userToFollow.following,
+                notifications: userToFollow.notifications,
               },
             });
           }
@@ -136,6 +143,32 @@ module.exports = {
         if (req.body.image !== null) {
           user.image = req.body.image;
         }
+        user.save()
+          .then(() => {
+            res.status(200).json(user);
+          })
+          .catch((error) => {
+            res.status(400).json({ success: false, msg: error.msg });
+          });
+      }
+    });
+  },
+  updateUserNotification: (req, res) => {
+    User.findOne({
+      username: req.params.username,
+    }, (err, user) => {
+      if (err) throw err;
+      if (!user) {
+        res.status(401).send({ success: false, msg: 'Update failed. User not found.' });
+      }
+      else {
+        user.newNotifications = user.newNotifications
+          .map((el) => {
+            if (el.id === req.body.id) {
+              el.viewed = true;
+            }
+            return el;
+          });
         user.save()
           .then(() => {
             res.status(200).json(user);

@@ -3,28 +3,45 @@
       <b-tabs content-class="mt-3" justified>
         <b-tab>
           <template #title>
-            <font-awesome-icon icon="history" class="fa-2x"/>
+            <font-awesome-icon v-if="isPersonal" icon="history" class="fa-2x"/>
+            <font-awesome-icon v-else icon="stream" class="fa-2x"/>
           </template>
           <p>I'm the history tab</p>
         </b-tab>
         <b-tab>
           <template #title>
-            <font-awesome-icon icon="plus-square" class="fa-2x"/>
+            <font-awesome-icon v-if="isPersonal" icon="plus-square" class="fa-2x"/>
+            <font-awesome-icon v-else icon="newspaper" class="fa-2x"/>
           </template>
           <p>I'm the creator tab</p>
         </b-tab>
         <b-tab>
           <template #title>
-            <font-awesome-icon icon="bell" class="fa-2x"/>
+            <font-awesome-icon v-if="isPersonal" icon="bell" class="fa-2x"/>
+            <font-awesome-icon v-else icon="star-half-alt" class="fa-2x"/>
           </template>
-          <p>I'm the notifications tab</p>
+          <NotificationsTab v-if="isPersonal"
+            :user="user"
+            :authUser="authUser"
+            :mobile="mobile"/>
         </b-tab>
       </b-tabs>
     </b-container>
 </template>
 
 <script>
+import NotificationsTab from '@/components/NotificationsTab.vue';
+
 export default {
   name: 'ProfileTools',
+  props: ['user', 'authUser', 'mobile'],
+  components: {
+    NotificationsTab,
+  },
+  computed: {
+    isPersonal() {
+      return this.user._id === this.authUser.data._id; // eslint-disable-line
+    },
+  },
 };
 </script>
