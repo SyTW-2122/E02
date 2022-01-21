@@ -51,7 +51,7 @@
                   v-model="user.username"
                   v-validate="'required'"
                   placeholder="Enter username"
-                  class="input-email border-bottom"
+                  class="input-email border-bottom word-size"
                   name="username"
               ></b-form-input>
               <div
@@ -72,7 +72,7 @@
                   v-model="user.password"
                   v-validate="'required'"
                   placeholder="Enter password"
-                  class="input-password border-bottom"
+                  class="input-password border-bottom word-size"
                   name="password"
               ></b-form-input>
               <div
@@ -82,10 +82,10 @@
               >Password is required!</div>
               <b-row class="h-5 bottom-form mx-3" align-h="between">
                 <b-col cols="6">
-                  <b-form-checkbox class="remember-me">&nbsp;Remember me</b-form-checkbox>
+                  <b-form-checkbox class="remember-me word-size">&nbsp;Remember me</b-form-checkbox>
                 </b-col>
                 <b-col cols="6">
-                  <p><a href="" class="forgot-password">Forgot password?</a></p>
+                  <p><a href="" class="forgot-password word-size">Forgot password?</a></p>
                 </b-col>
               </b-row>
             </b-form-group>
@@ -98,7 +98,7 @@
                 <span>Login</span>
               </b-button>
             </div>
-            <div class="create-account mb-3">
+            <div class="create-account mb-3 word-size">
               <p class="mx-2">Don't have an account?&nbsp;</p>
               <router-link to="/sign-up">Create a torch account</router-link>
             </div>
@@ -161,42 +161,6 @@ export default {
 
 <style scoped>
 
-@media screen and (min-width: 1025px) {
-  .background {
-    position:fixed;
-    padding:0;
-    margin:0;
-    top:0;
-    left:0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(0.25turn,#7B00DB, #00DBDE);
-  }
-    .sign-in {
-    padding:0;
-    margin:0;
-    background-color: #FFF;
-    height: 96%;
-    width: 35%;
-    margin-left: 1%;
-    margin-top: 1%;
-    margin-bottom: 1%;
-    border-radius: 40px;
-  }
-}
-@media screen and (max-width: 1025px) {
-  .sign-in {
-    position:fixed;
-    padding:0;
-    margin:0;
-    top:0;
-    left:0;
-    width: 100%;
-    height: 100%;
-    background-color: #FFF;
-  }
-}
-
 .welcome img {
   display: block;
   margin-left: auto;
@@ -246,7 +210,7 @@ h1 {
 .login-google p {
   display: inline;
   color: #000;
-  font-size: 13px;
+  font-size: 12px;
 }
 .login-facebook {
   background-color: #3b5998;
@@ -269,12 +233,14 @@ h1 {
 }
 .input-email {
   border: none;
+  font-size: 12px;
 }
 .input-group-password {
   margin-bottom: 20px;
 }
 .input-password {
   border: none;
+  font-size: 12px;
 }
 .remember-me{
   display: inline-block;
@@ -321,4 +287,44 @@ h1 {
 .forgot-password {
   font-size: 12px;
 }
+
+@media screen and (min-width: 1025px) {
+  .background {
+    position:fixed;
+    padding:0;
+    margin:0;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0.25turn,#7B00DB, #00DBDE);
+  }
+    .sign-in {
+    padding:0;
+    margin:0;
+    background-color: #FFF;
+    height: 96%;
+    width: 35%;
+    margin-left: 1%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    border-radius: 40px;
+  }
+  .word-size {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 1025px) {
+  .sign-in {
+    position:fixed;
+    padding:0;
+    margin:0;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: #FFF;
+  }
+}
+
 </style>
