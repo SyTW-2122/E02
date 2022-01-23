@@ -1,30 +1,13 @@
 const express = require('express');
-const userRoute = express.Router();
-const passport = require('passport');
-// User model
-const UserModel = require('../models/User');
-require('../config/passport')(passport);
+const UserController = require('../controllers/UserController');
 
-const getToken = (headers) => {
-  if (headers && headers.authorization) {
-    const parted = headers.authorization.split(' ');
-    if (parted.length === 2) {
-      return parted[1];
-    }
-    return null;
-  }
-  return null;
-};
+const router = express.Router();
+router.get('/', UserController.allUsers);
+router.put('/edit/:username', UserController.updateUserInfo);
+router.put('/edit/:username/password', UserController.updateUserPassword);
+router.get('/get/:username', UserController.getUserByUsername);
+router.get('/get/user/:id', UserController.getUserById);
+router.get('/get/:id/image', UserController.getUserImage);
+router.post('/follow/:username', UserController.toggleFollow);
 
-userRoute.route('/get-usr').get((req, res) => {
-  res.json(
-    {
-      username: 'Usuario1',
-      password: '1234',
-      name: 'Antonio',
-      email: 'fake@mail.com'
-    },
-  );
-});
-
-module.exports = userRoute;
+module.exports = router;

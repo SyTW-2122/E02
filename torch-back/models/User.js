@@ -7,11 +7,28 @@ const userSchema = new Schema({
     type: Schema.Types.String,
     required: true,
   },
+  subname: {
+    type: Schema.Types.String,
+  },
+  email: {
+    type: Schema.Types.String,
+  },
+  bio: {
+    type: Schema.Types.String,
+  },
+  image: {
+  },
   password: {
     type: Schema.Types.String,
     required: true,
   },
-}, { timestamps: true })
+  followers: {
+    type: Schema.Types.Array,
+  },
+  following: {
+    type: Schema.Types.Array,
+  },
+}, { timestamps: true });
 
 userSchema.pre('save', function(next) {
   var user = this;

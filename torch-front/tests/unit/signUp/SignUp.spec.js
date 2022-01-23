@@ -31,6 +31,7 @@ describe('SignUp', () => {
       isLoggedIn: jest.fn(),
       getToken: jest.fn(),
       getUser: jest.fn(),
+      getUserName: jest.fn(),
     }
     actions = {
       login: jest.fn(),
