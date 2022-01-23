@@ -81,10 +81,10 @@
                 role="alert"
               >Password is required!</div>
               <b-row class="h-5 bottom-form mx-3" align-h="between">
-                <b-col cols="12">
+                <b-col cols="6">
                   <b-form-checkbox class="remember-me word-size">&nbsp;Remember me</b-form-checkbox>
                 </b-col>
-                <b-col cols="12">
+                <b-col cols="6">
                   <p><a href="" class="forgot-password word-size">Forgot password?</a></p>
                 </b-col>
               </b-row>
@@ -113,7 +113,7 @@
         </b-row>
         <b-row>
           <b-col align="center" cols="12">
-            <p>TEXT GOES HERE</p>
+            <p>Text</p>
           </b-col>
         </b-row>
       </b-col>
