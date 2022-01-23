@@ -3,8 +3,8 @@ import axios from 'axios';
 const API_URL = 'http://localhost:5000/api/explore/';
 
 class ExplorerService {
-  fetchByRoutine = (routine) => axios
-    .get(`${API_URL}get/${routine}`)
+  fetchBySportName = (sportName) => axios
+    .get(`${API_URL}get/${sportName}`)
     .then((response) => response.data);
 
   fetchByUsername = (username) => axios
