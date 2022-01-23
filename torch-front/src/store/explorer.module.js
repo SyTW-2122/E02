@@ -22,8 +22,8 @@ export const explorer = {
         },
       );
     },
-    getByRoutine({ commit }, routine) {
-      return ExplorerService.fetchByRoutine(routine).then(
+    getBySportName({ commit }, sportName) {
+      return ExplorerService.fetchBySportName(sportName).then(
         (res) => {
           commit('fetchSuccess', res);
           return Promise.resolve(res);
