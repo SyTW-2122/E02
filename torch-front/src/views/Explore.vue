@@ -46,6 +46,34 @@ export default {
     RoutineCard,
     UserCard,
   },
+  data() {
+    return {
+      urlRoutine: {},
+      urlUser: {},
+    };
+  },
+  methods: {
+    fetchUser(username) {
+      this.$store.dispatch('user/getByUsername', username).then(
+        (data) => {
+          this.urlUser = data;
+        },
+        (error) => {
+          console.log(`failed: ${error}`);
+        },
+      );
+    },
+    fetchRoutine(sportName) {
+      this.$store.dispatch('routine/getBySportName', sportName).then(
+        (data) => {
+          this.urlRoutine = data;
+        },
+        (error) => {
+          console.log(`failed: ${error}`);
+        },
+      );
+    },
+  },
 };
 </script>
 
