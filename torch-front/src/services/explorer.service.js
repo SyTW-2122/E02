@@ -17,6 +17,20 @@ class ExplorerService {
       console.log(response.data);
       return response.data;
     });
+
+  getUsers = () => axios
+    .get(`${API_URL}get/users`)
+    .then((response) => {
+      console.log(response.data);
+      return response.data;
+    });
+
+  getRoutines = () => axios
+    .get(`${API_URL}get/routines`)
+    .then((response) => {
+      console.log(response.data);
+      return response.data;
+    });
 }
 
 export default new ExplorerService();
