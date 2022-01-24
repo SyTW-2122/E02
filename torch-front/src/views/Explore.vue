@@ -21,13 +21,13 @@
             <UserCard />
           </b-col>
           <b-col class="col-12 mb-2 col-md-6 col-lg-4">
-            <RoutineCard />
+            <RoutineCard/>
           </b-col>
           <b-col class="col-12 mb-2 col-md-6 col-lg-4">
-            <RoutineCard />
+            <RoutineCard/>
           </b-col>
           <b-col class="col-12 mb-2 col-md-6 col-lg-4">
-            <UserCard />
+            <UserCard/>
           </b-col>
         </b-row>
       </div>
@@ -48,9 +48,33 @@ export default {
   },
   data() {
     return {
+      users: [],
+      routines: [],
       urlRoutine: {},
       urlUser: {},
     };
+  },
+  created() {
+    this.$store.dispatch('user/getByUsername', this.$route.params.name).then(
+      (data) => {
+        this.urlUser = data;
+      },
+      (error) => {
+        console.log(`failed: ${error}`);
+      },
+    );
+
+    this.$store.dispatch('user/getBySportName', this.$route.params.name).then(
+      (data) => {
+        this.urlRoutine = data;
+      },
+      (error) => {
+        console.log(`failed: ${error}`);
+      },
+    );
+
+    this.getUsers();
+    this.getRoutines();
   },
   methods: {
     fetchUser(username) {
@@ -72,6 +96,14 @@ export default {
           console.log(`failed: ${error}`);
         },
       );
+    },
+    getUsers() {
+      const res = this.get(`${this.urlUser}/users`);
+      this.users = res.data.users;
+    },
+    getRoutines() {
+      const res = this.get(`${this.urlRoutine}/routines`);
+      this.routines = res.data.routines;
     },
   },
 };
