@@ -9,9 +9,12 @@ export const explorer = {
     },
   },
   actions: {
-    getAll() {
+    getAll({ commit }) {
       return ExplorerService.all().then(
-        (res) => Promise.resolve(res),
+        (res) => {
+          commit('fetchSuccess', res);
+          return Promise.resolve(res);
+        },
       );
     },
     getByUsername({ commit }, username) {

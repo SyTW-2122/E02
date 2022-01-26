@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/explore/';
+const API_URL = process.VUE_APP_EXPLORERAPIURL;
 
 class ExplorerService {
   fetchBySportName = (sportName) => axios

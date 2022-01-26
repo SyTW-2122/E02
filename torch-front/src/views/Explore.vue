@@ -9,28 +9,26 @@
           <b-form-input id="search-text" v-model="search" placeholder="Search"></b-form-input>
         </b-col>
       </b-row>
-      <div class="mb-5 pb-5 text-center">
-        <b-row class="Cards pt-1">
-          <b-col class="col-12 mb-2 col-md-6 col-lg-4">
-            <RoutineCard />
-          </b-col>
-          <b-col class="col-12 mb-2 col-md-6 col-lg-4">
-            <UserCard />
-          </b-col>
-          <b-col class="col-12 mb-2 col-md-6 col-lg-4">
-            <UserCard />
-          </b-col>
-          <b-col class="col-12 mb-2 col-md-6 col-lg-4">
-            <RoutineCard/>
-          </b-col>
-          <b-col class="col-12 mb-2 col-md-6 col-lg-4">
-            <RoutineCard/>
-          </b-col>
-          <b-col class="col-12 mb-2 col-md-6 col-lg-4">
-            <UserCard/>
-          </b-col>
-        </b-row>
-      </div>
+      <b-row class="Cards pt-1 mb-5 pb-5 text-center">
+        <b-col class="col-12 mb-2 col-md-6 col-lg-4">
+          <RoutineCard />
+        </b-col>
+        <b-col class="col-12 mb-2 col-md-6 col-lg-4">
+          <UserCard />
+        </b-col>
+        <b-col class="col-12 mb-2 col-md-6 col-lg-4">
+          <UserCard />
+        </b-col>
+        <b-col class="col-12 mb-2 col-md-6 col-lg-4">
+          <RoutineCard/>
+        </b-col>
+        <b-col class="col-12 mb-2 col-md-6 col-lg-4">
+          <RoutineCard/>
+        </b-col>
+        <b-col class="col-12 mb-2 col-md-6 col-lg-4">
+          <UserCard/>
+        </b-col>
+      </b-row>
     </div>
   </div>
 </template>
