@@ -119,7 +119,7 @@
   </b-container>
 </template>
 <script>
-
+import { mapState } from 'vuex';
 import User from '../models/user';
 
 export default {
@@ -133,13 +133,14 @@ export default {
   },
   props: ['mobile'],
   computed: {
+    ...mapState('auth', ['user']),
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
     },
   },
   created() {
     if (this.loggedIn) {
-      this.$router.push('/user');
+      this.$router.push(`/${this.user.data.username}`);
     }
   },
   methods: {
@@ -150,10 +151,11 @@ export default {
           this.loading = false;
           return;
         }
-        if (this.user.username && this.user.password) {
-          this.$store.dispatch('auth/login', this.user).then(
+
+        if (this.attemptUser.username && this.attemptUser.password) {
+          this.$store.dispatch('auth/login', this.attemptUser).then(
             () => {
-              this.$router.push('/user');
+              this.$router.push(`/${this.user.data.username}`);
             },
             (error) => {
               this.loading = false;
