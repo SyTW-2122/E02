@@ -1,0 +1,53 @@
+[
+  {
+    "description": "  The user profile page must be a complete\n  layout with all th tools and information\n  about routines, history and personal blog\n  with notifications and social feedback.",
+    "keyword": "Feature",
+    "name": "User profile page view",
+    "line": 1,
+    "id": "user-profile-page-view",
+    "tags": [],
+    "uri": "User.feature",
+    "elements": [
+      {
+        "id": "user-profile-page-view;user-is-at-his-own-profile",
+        "keyword": "Scenario",
+        "line": 7,
+        "name": "User is at his own profile",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 8,
+            "name": "I am logged in as \"eric\"",
+            "result": {
+              "status": "passed",
+              "duration": 5779000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 9,
+            "name": "I look at the view",
+            "result": {
+              "status": "passed",
+              "duration": 770000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 10,
+            "name": "I should see all the profile layout as espected",
+            "result": {
+              "status": "passed",
+              "duration": 309000000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
