@@ -251,14 +251,24 @@ module.exports = {
       }
       else {
         user.routines = user.routines.filter((el) => el !== req.params.routines);
-        save.user()
+        user.save()
           .then(() => {
-            Routine.remove({id: req.params.routines} , (err, result) => {
-              if (err) throw err;
-              else {
-                res.status(200).json(result);
+            Routine.findOne({
+              routine: req.params.routine,
+            }, (err, routine) => {
+              if(err) throw err;
+              if (!routine) {
+                res.status(401).send({ success: false, msg: 'Delete failed. Routine not found.' });
               }
-            })
+              else {
+                Routine.deleteOne({id: req.params.routines} , (err, result) => {
+                  if (err) throw err;
+                  else {
+                    res.status(200).json(result);
+                  }
+                })
+              }
+            }) 
           })
           .catch((error) => {
             res.status(401).json({ success: false, msg: error.msg});
