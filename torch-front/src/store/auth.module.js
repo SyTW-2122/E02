@@ -20,6 +20,7 @@ const initialState = userData
       routines: [],
       following: [],
       followers: [],
+      newNotifications: [],
     },
     token: '',
   };

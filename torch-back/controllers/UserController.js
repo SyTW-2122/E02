@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const ObjectIDObj = require('mongoose').ObjectID;
 const settings = require('../config/SecretToken');
 const User = require('../models/User');
+const u = require('ulid');
 
 module.exports = {
   allUsers: (req, res) => {
@@ -81,7 +82,6 @@ module.exports = {
               userToFollow.save();
             }
 
-            console.log(currentUser.id);
             const isFollowing = currentUser.following
               .find((el) => el === userToFollow.id);
 
@@ -94,6 +94,12 @@ module.exports = {
             else {
               currentUser.following.push(userToFollow.id);
               userToFollow.followers.push(currentUser.id);
+              userToFollow.newNotifications
+                .push({
+                  text: `${currentUser.username} is now following You`,
+                  if: u.ulid(),
+                  viewed: false,
+                });
             }
             currentUser.save();
             userToFollow.save();
@@ -105,6 +111,7 @@ module.exports = {
               toFollow: {
                 followers: userToFollow.followers,
                 following: userToFollow.following,
+                notifications: userToFollow.notifications,
               },
             });
           }
@@ -139,6 +146,28 @@ module.exports = {
         user.save()
           .then(() => {
             res.status(200).json(user);
+          })
+          .catch((error) => {
+            res.status(400).json({ success: false, msg: error.msg });
+          });
+      }
+    });
+  },
+  updateUserNotification: (req, res) => {
+    User.findOne({
+      username: req.params.username,
+    }, async (err, user) => {
+      if (err) throw err;
+      if (!user) {
+        res.status(401).send({ success: false, msg: 'Update failed. User not found.' });
+      }
+      else {
+        user.newNotifications = user.newNotifications
+          .filter((el) => el.if !== req.body.id);
+        console.log(user.newNotifications);
+        user.save()
+          .then(() => {
+            res.status(200).json({ nn: user.newNotifications });
           })
           .catch((error) => {
             res.status(400).json({ success: false, msg: error.msg });

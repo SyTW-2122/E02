@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose'); // eslint-disable-line
+const Schema = mongoose.Schema; // eslint-disable-line
 const bcrypt = require('bcrypt-nodejs');
 
 const userSchema = new Schema({
@@ -28,16 +28,19 @@ const userSchema = new Schema({
   following: {
     type: Schema.Types.Array,
   },
+  newNotifications: {
+    type: Schema.Types.Array,
+  },
 }, { timestamps: true });
 
-userSchema.pre('save', function(next) {
+userSchema.pre('save', function(next) { // eslint-disable-line 
   var user = this;
   if (this.isModified('password') || this.isNew) {
-    bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.genSalt(10, (err, salt) => { // eslint-disable-line
       if (err) {
         return next(err);
       }
-      bcrypt.hash(user.password, salt, null, (err, hash) => {
+      bcrypt.hash(user.password, salt, null, (err, hash) => { // eslint-disable-line
         if (err) {
           return next(err);
         }
