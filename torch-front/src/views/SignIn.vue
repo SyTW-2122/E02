@@ -48,7 +48,7 @@
               <b-form-input
                   id="input-email"
                   type="text"
-                  v-model="user.username"
+                  v-model="attemptUser.username"
                   v-validate="'required'"
                   placeholder="Enter username"
                   class="input-email border-bottom word-size"
@@ -69,7 +69,7 @@
               <b-form-input
                   id="input-password"
                   type="password"
-                  v-model="user.password"
+                  v-model="attemptUser.password"
                   v-validate="'required'"
                   placeholder="Enter password"
                   class="input-password border-bottom word-size"
@@ -126,7 +126,7 @@ export default {
   name: 'Login',
   data() {
     return {
-      user: new User('', ''),
+      attemptUser: new User('', ''),
       loading: false,
       message: '',
     };
