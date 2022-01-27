@@ -22,7 +22,7 @@
             "name": "User is at the login page",
             "result": {
               "status": "passed",
-              "duration": 2667000000
+              "duration": 1447000000
             }
           },
           {
@@ -32,7 +32,7 @@
             "name": "User enters username as \"Eric\" and password as \"123456\"",
             "result": {
               "status": "passed",
-              "duration": 1111000000
+              "duration": 805000000
             }
           },
           {
@@ -42,7 +42,7 @@
             "name": "User clicks on login button",
             "result": {
               "status": "passed",
-              "duration": 148000000
+              "duration": 177000000
             }
           },
           {
@@ -51,9 +51,8 @@
             "line": 6,
             "name": "User is at the user page",
             "result": {
-              "status": "failed",
-              "duration": 4065000000,
-              "error_message": "AssertionError: Timed out retrying after 4000ms: [object Object]: expected 'http://localhost:8080/' to include '/Eric'\n    at Context.eval (http://localhost:8080/__cypress/tests?p=tests/e2e/specs/SignIn.feature:41765:12)\n    at Context.resolveAndRunStepDefinition (http://localhost:8080/__cypress/tests?p=tests/e2e/specs/SignIn.feature:6935:29)\n    at Context.eval (http://localhost:8080/__cypress/tests?p=tests/e2e/specs/SignIn.feature:6256:35)"
+              "status": "passed",
+              "duration": 611000000
             }
           }
         ]
