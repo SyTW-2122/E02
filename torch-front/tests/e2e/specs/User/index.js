@@ -5,7 +5,7 @@ Given ('I am logged in as "eric"', () => {
   cy.visit('/', {timeout: 10000});
   cy.viewport(375, 812);
   cy.get('#input-email').type('Eric');
-  cy.get('#input-password').type('123456');
+  cy.get('#input-password').type('123456789');
   cy.get('.login-button').click();
 });
 
