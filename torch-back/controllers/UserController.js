@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const ObjectIDObj = require('mongoose').ObjectID;
 const settings = require('../config/SecretToken');
 const User = require('../models/User');
+const Routine = require('../models/Routine');
 const u = require('ulid');
 
 module.exports = {
@@ -195,4 +196,74 @@ module.exports = {
       }
     });
   },
+  addUserRoutine: (req, res) => {
+    User.findOne({ 
+      username: req.params.username,
+    }, (err, user) => {
+      if (err) throw err;
+      if (!user) {
+        res.status(401).send({ success: false, msg: 'Routine creation failed. User not found'});
+      }
+      else {
+        const newRoutine = new Routine({
+          name: req.body.name,
+          author: req.params.username,
+          authorid: user.id,
+          ratings: [],
+          comments: [],
+          likes: [],
+          exercises: [],
+        });
+        
+        if (req.body.description !== '') {
+          newRoutine.description = req.body.description;
+        }
+        if (req.body.image !== null) {
+          newRoutine.image = req.body.image;
+        }
+
+        if (user.routines === undefined) {
+          user.routines = [];
+          user.save();
+        }
+        user.routines.push(newRoutine.id);
+        user.save();
+        newRoutine.save()
+          .then(() => {
+            res.status(200).json({
+              routine: newRoutine,
+              user: user,
+            });
+          })
+          .catch((error) => {
+            res.status(401).json({ success: false, msg: error.msg});
+          });
+      }
+    })
+  },
+  deleteUserRoutine: (req, res) => {
+    User.findOne({
+      username: req.params.username,
+    }, (err, user) => {
+      if(err) throw err;
+      if (!user) {
+        res.status(401).send({ success: false, msg: 'Delete failed. User not found.' });
+      }
+      else {
+        user.routines = user.routines.filter((el) => el !== req.params.routines);
+        save.user()
+          .then(() => {
+            Routine.remove({id: req.params.routines} , (err, result) => {
+              if (err) throw err;
+              else {
+                res.status(200).json(result);
+              }
+            })
+          })
+          .catch((error) => {
+            res.status(401).json({ success: false, msg: error.msg});
+          });
+      }
+    })
+  }
 };

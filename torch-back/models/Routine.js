@@ -26,6 +26,9 @@ const routineSchema = new Schema({
   likes: {
     type: Schema.Types.Array,
   },
+  exercises: {
+    type: Schema.Types.Array,
+  },
 }, { timestamps: true });
 
 module.exports = mongoose.model('Routine', routineSchema);

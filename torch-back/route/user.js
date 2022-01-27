@@ -11,4 +11,12 @@ router.get('/get/user/:id', UserController.getUserById);
 router.get('/get/:id/image', UserController.getUserImage);
 router.post('/follow/:username', UserController.toggleFollow);
 
+// routine CRUD
+
+// router.get('/:username/:routine');
+// router.get('/:username/routines');
+router.post('/createroutine/:username', UserController.addUserRoutine);
+// router.put('/editroutine/:username',);
+router.delete('/:username/:routine', UserController.deleteUserRoutine);
+
 module.exports = router;
