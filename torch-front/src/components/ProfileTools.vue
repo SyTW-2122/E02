@@ -1,7 +1,13 @@
 <template>
   <b-container id="tools-tab" class="px-0">
-      <b-tabs content-class="mt-3" justified>
-        <b-tab>
+      <b-tabs
+        v-model="tabIndex"
+        content-class="mt-3 b-tabs"
+        justified
+        active-nav-item-class="font-weight-bold"
+        nav-item-class=""
+        active-tab-class="font-weight-bold ">
+        <b-tab :title-link-class="linkClass(0)">
           <template #title>
             <font-awesome-icon
             v-if="isPersonal"
@@ -11,7 +17,7 @@
           </template>
           <p>I'm the history tab</p>
         </b-tab>
-        <b-tab>
+        <b-tab :title-link-class="linkClass(1)">
           <template #title>
             <font-awesome-icon
             v-if="isPersonal" icon="plus-square"
@@ -20,7 +26,7 @@
           </template>
           <p>I'm the creator tab</p>
         </b-tab>
-        <b-tab>
+        <b-tab :title-link-class="linkClass(2)">
           <template #title>
             <div
               v-if="isPersonal && (user.newNotifications.length > 0)"
@@ -50,12 +56,25 @@ import NotificationsTab from '@/components/NotificationsTab.vue';
 export default {
   name: 'ProfileTools',
   props: ['user', 'authUser', 'mobile'],
+  data() {
+    return {
+      tabIndex: 0,
+    };
+  },
   components: {
     NotificationsTab,
   },
   computed: {
     isPersonal() {
       return this.user._id === this.authUser.data._id; // eslint-disable-line
+    },
+  },
+  methods: {
+    linkClass(idx) {
+      if (this.tabIndex === idx) {
+        return ['bg-white', 'tab-active'];
+      }
+      return ['bg-light', 'text-white'];
     },
   },
 };

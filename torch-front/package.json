@@ -49,6 +49,7 @@
     "@vue/eslint-config-airbnb": "^5.0.2",
     "@vue/test-utils": "^1.3.0",
     "babel-eslint": "^10.1.0",
+    "css-loader": "^3.6.0",
     "cucumber": "^7.0.0-rc.0",
     "cypress": "^9.1.1",
     "cypress-cucumber-preprocessor": "^4.3.1",
@@ -65,6 +66,9 @@
     "jest-cucumber": "^3.0.1",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
+    "node-sass": "^6.0.1",
+    "sass": "^1.49.0",
+    "sass-loader": "^10.2.1",
     "vue-template-compiler": "^2.6.11"
   },
   "cypress-cucumber-preprocessor": {
