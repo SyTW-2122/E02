@@ -1,6 +1,10 @@
 // Style imports
 
 import { BootstrapVue, BootstrapVueIcons, IconsPlugin } from 'bootstrap-vue';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
+import './assets/css/main.css';
+import './assets/css/custom-variables.css';
 import PortalVue from 'portal-vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';

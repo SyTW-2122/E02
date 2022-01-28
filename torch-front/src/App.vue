@@ -81,8 +81,7 @@ export default {
 };
 </script>
 
-<style lang="sass">
-@import './assets/css/main.sass'
+<style lang="css">
 
 #app{
   font-family: Avenir, Helvetica, Arial, sans-serif;

@@ -72,9 +72,9 @@ export default {
   methods: {
     linkClass(idx) {
       if (this.tabIndex === idx) {
-        return ['bg-white', 'tab-active'];
+        return ['bg-white', 'text-info'];
       }
-      return ['bg-light', 'text-white'];
+      return ['bg-light', 'text-secondary'];
     },
   },
 };

@@ -1,6 +1,3 @@
-@import '../../../node_modules/bootstrap/scss/bootstrap.scss';
-@import '../../../node_modules/bootstrap-vue/scss/bootstrap-vue.scss';
-
 :root {
   /* Set of colours */
   --bg-black: #000000;
@@ -19,5 +16,3 @@
   --font: 'Oxygen';
   --size: 22px;
 }
-$bg-primary-teal: #00dbde;
-$bg-light: $bg-primary-teal;
