@@ -1,46 +1,60 @@
 <template>
-   <b-card no-body class="overflow-hidden" style="max-width: 540px;">
-    <b-row no-gutters>
-      <b-col md="6">
-        <b-card-img v-if="mobile" fluid
-          id="picture"
-          class="img-sm-limit center-cropped"
-          alt="user card picture"
-          :src="imageUrl"
-          @error="imageError = true"></b-card-img>
-        <b-card-img v-else
-          id="picture"
-          :src="imageUrl"
-          @error="imageError = true"
-          class="img-limit center-cropped"
-          alt="user card picture"></b-card-img>
-      </b-col>
-      <b-col md="6">
-        <b-card-body>
-          <title>
-            {{user.username}}
-          </title>
-          <b-card-text>
-            {{user.valoration}}
-          </b-card-text>
-        </b-card-body>
-      </b-col>
-    </b-row>
-  </b-card>
+  <b-row>
+    <b-col md="6">
+      <div class="imgUser">
+        <img :src="arg.imgURL">
+      </div>
+      <div class="title">
+        {{arg.username}}
+      </div>
+      <div class="valoration">
+        {{arg.valoration}}
+      </div>
+    </b-col>
+  </b-row>
 </template>
 
 <script>
 export default {
   name: 'UserCard',
-  props: ['user'],
-  data() {
-    return {
-      imageError: false,
-    };
+  props: {
+    arg: {
+      username: String,
+      imgURL: String,
+      valoration: Number,
+    },
   },
 };
 </script>
 
 <style scoped>
+.username {
+  font-size: 30px;
+  height: 10%;
+  margin-top: 5px;
+  display: block;
+}
 
+.imgUser {
+  height: 68%;
+  margin: 10px auto;
+}
+
+.imgUser img {
+  border-radius: 20px;
+  border: solid 2px black;
+  height: 98%;
+  width: 60%;
+}
+
+.valoration {
+  width: 55%;
+  margin-left: 41%;
+  margin-bottom: 5px;
+  display: flex;
+  height: 10%;
+  justify-content: space-between;
+  font-size: 30px;
+  font-weight: bold;
+}
 </style>

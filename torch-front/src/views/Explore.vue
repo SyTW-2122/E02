@@ -10,23 +10,9 @@
         </b-col>
       </b-row>
       <b-row class="Cards pt-1 mb-5 pb-5 text-center">
-        <b-col class="col-12 mb-2 col-md-6 col-lg-4">
-          <RoutineCard />
-        </b-col>
-        <b-col class="col-12 mb-2 col-md-6 col-lg-4">
-          <UserCard />
-        </b-col>
-        <b-col class="col-12 mb-2 col-md-6 col-lg-4">
-          <UserCard />
-        </b-col>
-        <b-col class="col-12 mb-2 col-md-6 col-lg-4">
-          <RoutineCard/>
-        </b-col>
-        <b-col class="col-12 mb-2 col-md-6 col-lg-4">
-          <RoutineCard/>
-        </b-col>
-        <b-col class="col-12 mb-2 col-md-6 col-lg-4">
-          <UserCard/>
+        <b-col class="col-12 mb-2 col-md-6 col-lg-4"
+          :key="user.username" v-for="user in randomUsers">
+          <UserCard :arg="user"/>
         </b-col>
       </b-row>
     </div>
@@ -34,75 +20,23 @@
 </template>
 
 <script>
-
-import RoutineCard from '@/components/RoutineCard.vue';
 import UserCard from '@/components/UserCard.vue';
+
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'Explore',
   components: {
-    RoutineCard,
     UserCard,
   },
-  data() {
-    return {
-      users: [],
-      routines: [],
-      urlRoutine: {},
-      urlUser: {},
-    };
+  methods: {
+    ...mapActions(['getRandomUsers']),
+  },
+  computed: {
+    ...mapGetters(['randomUsers']),
   },
   created() {
-    this.$store.dispatch('user/getByUsername', this.$route.params.name).then(
-      (data) => {
-        this.urlUser = data;
-      },
-      (error) => {
-        console.log(`failed: ${error}`);
-      },
-    );
-
-    this.$store.dispatch('user/getBySportName', this.$route.params.name).then(
-      (data) => {
-        this.urlRoutine = data;
-      },
-      (error) => {
-        console.log(`failed: ${error}`);
-      },
-    );
-
-    this.getUsers();
-    this.getRoutines();
-  },
-  methods: {
-    fetchUser(username) {
-      this.$store.dispatch('user/getByUsername', username).then(
-        (data) => {
-          this.urlUser = data;
-        },
-        (error) => {
-          console.log(`failed: ${error}`);
-        },
-      );
-    },
-    fetchRoutine(sportName) {
-      this.$store.dispatch('routine/getBySportName', sportName).then(
-        (data) => {
-          this.urlRoutine = data;
-        },
-        (error) => {
-          console.log(`failed: ${error}`);
-        },
-      );
-    },
-    getUsers() {
-      const res = this.get(`${this.urlUser}/users`);
-      this.users = res.data.users;
-    },
-    getRoutines() {
-      const res = this.get(`${this.urlRoutine}/routines`);
-      this.routines = res.data.routines;
-    },
+    this.getRandomUsers();
   },
 };
 </script>

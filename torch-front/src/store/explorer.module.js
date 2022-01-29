@@ -3,40 +3,22 @@ import ExplorerService from '../services/explorer.service';
 export const explorer = {
   namespaced: true,
   state: {
-    explorer: {
-      routines: [],
-      users: [],
-    },
+    randomUsers: [],
+  },
+  getters: {
+    randomUsers: (state) => state.randomUsers,
   },
   actions: {
-    getAll({ commit }) {
-      return ExplorerService.all().then(
+    getUsers({ commit }) {
+      return ExplorerService.getRandomUsers().then(
         (res) => {
           commit('fetchSuccess', res);
           return Promise.resolve(res);
         },
       );
-    },
-    getByUsername({ commit }, username) {
-      return ExplorerService.fetchByUsername(username).then(
-        (res) => {
-          commit('fetchSuccess', res);
-          return Promise.resolve(res);
-        },
-      );
-    },
-    getBySportName({ commit }, sportName) {
-      return ExplorerService.fetchBySportName(sportName).then(
-        (res) => {
-          commit('fetchSuccess', res);
-          return Promise.resolve(res);
-        },
-      );
-    },
+    }
   },
   mutations: {
-    fetchSuccess(state, explorerInfo) {
-      state.explorer = explorerInfo;
-    },
+    setRandomUsers: (state, randomUsers) => (state.randomUsers = randomUsers),
   },
 };

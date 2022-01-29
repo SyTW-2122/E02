@@ -1,36 +1,26 @@
 import axios from 'axios';
 
-const API_URL = process.VUE_APP_EXPLORERAPIURL;
+const API_URL = process.VUE_APP_USERAPIURL;
 
 class ExplorerService {
-  fetchBySportName = (sportName) => axios
-    .get(`${API_URL}get/${sportName}`)
-    .then((response) => response.data);
-
-  fetchByUsername = (username) => axios
-    .get(`${API_URL}get/${username}`)
-    .then((response) => response.data);
-
-  all = () => axios
-    .get(`${API_URL}`)
-    .then((response) => {
-      console.log(response.data);
-      return response.data;
+  getRandomUsers() {
+    const response = axios.get(API_URL);
+    let showUsersAmount = 3;
+    if (response.data.length < 3) {
+      showUsersAmount = response.data.length;
+    }
+    const randomArray = [];
+    while (randomArray.length !== showUsersAmount) {
+      const newNum = Math.floor(Math.random() * response.data.length);
+      if (!randomArray.includes(newNum)) {
+        randomArray.push(newNum);
+      }
+    }
+    const save = [];
+    randomArray.forEach(element => {
+      save.push(response.data[element]);
     });
-
-  getUsers = () => axios
-    .get(`${API_URL}get/users`)
-    .then((response) => {
-      console.log(response.data);
-      return response.data;
-    });
-
-  getRoutines = () => axios
-    .get(`${API_URL}get/routines`)
-    .then((response) => {
-      console.log(response.data);
-      return response.data;
-    });
+  }
 }
 
 export default new ExplorerService();
