@@ -3,7 +3,7 @@ import axios from 'axios';
 const API_URL = process.VUE_APP_USERAPIURL;
 
 class ExplorerService {
-  getRandomUsers() {
+  getRandomUsers = () => {
     const response = axios.get(API_URL);
     let showUsersAmount = 3;
     if (response.data.length < 3) {
@@ -17,7 +17,7 @@ class ExplorerService {
       }
     }
     const save = [];
-    randomArray.forEach(element => {
+    randomArray.forEach((element) => {
       save.push(response.data[element]);
     });
   }
