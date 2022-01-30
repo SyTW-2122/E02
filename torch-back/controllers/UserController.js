@@ -241,43 +241,85 @@ module.exports = {
       }
     })
   },
+  // deleteUserRoutine: (req, res) => {
+  //   User.updateOne({
+  //     username: req.params.username, }, 
+  //     { $pull: {
+  //       routines: '61f67a5766cfcd0ccd92483d',
+  //     } },
+  //     (err, user) => {
+  //     if(err) throw err;
+  //     if (!user) {
+  //       res.status(401).send({ success: false, msg: 'Delete failed. User not found.' });
+  //     }
+  //     else {
+  //       //user.routines = user.routines.filter((el) => el !== req.params.routine);
+  //       // user.save()
+  //       //   .then(() => {
+  //           Routine.deleteOne({name: req.params.routine} , (err, result) => {
+  //             if (err) throw err;
+  //             if (!result) {
+  //               res.status(401).send({ success: false, msg: 'Delete failed. User not found.' });
+  //             }
+  //             else {
+  //               res.status(200).json(result);
+  //             }
+  //           })
+  //         // .catch((error) => {
+  //         //   res.status(401).json({ success: false, msg: error.msg});
+  //         // });
+  //       }
+  //     })
+  //   },
+
   deleteUserRoutine: (req, res) => {
-    User.findOne({
-      username: req.params.username,
-    }, (err, user) => {
-      if(err) throw err;
-      if (!user) {
-        res.status(401).send({ success: false, msg: 'Delete failed. User not found.' });
+    Routine.findOne({
+      name: req.params.routine,
+    }, (err, rout) => {
+      if (err) throw err;
+      if (!rout) {
+        res.status(401).send({ success: false, msg: 'Routine get failed. Routine not found' });
       }
       else {
-        user.routines = user.routines.filter((el) => el !== req.params.routines);
-        console.log(user.routines);
-        user.save()
-          .then(() => {
-            Routine.findOne({
-              routine: req.params.routine,
-            }, (err, routine) => {
-              if(err) throw err;
-              if (!routine) {
-                res.status(401).send({ success: false, msg: 'Delete failed. Routine not found.' });
-              }
-              else {
+        User.updateOne({
+          username: req.params.username, }, 
+          { $pull: {
+            routines: rout.id,
+          } },
+          (err, user) => {
+          if(err) throw err;
+          if (!user) {
+            res.status(401).send({ success: false, msg: 'Delete failed. User not found.' });
+          }
+          else {
+            //user.routines = user.routines.filter((el) => el !== req.params.routine);
+            // user.save()
+            //   .then(() => {
                 Routine.deleteOne({name: req.params.routine} , (err, result) => {
                   if (err) throw err;
+                  if (!result) {
+                    res.status(401).send({ success: false, msg: 'Delete failed. User not found.' });
+                  }
                   else {
                     res.status(200).json(result);
-                    routine.save()
                   }
                 })
-              }
-            }) 
+              // .catch((error) => {
+              //   res.status(401).json({ success: false, msg: error.msg});
+              // });
+            }
           })
-          .catch((error) => {
-            res.status(401).json({ success: false, msg: error.msg});
-          });
       }
     })
   },
+    
+    
+    
+
+
+
+
+
 //   updateUserRoutine: (req, res) => {
 //     User.findOne({
 //       username: req.params.username,
