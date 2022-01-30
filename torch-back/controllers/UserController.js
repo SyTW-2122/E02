@@ -290,11 +290,9 @@ module.exports = {
         res.status(401).send({ success: false, msg: 'Routine creation failed. User not found'});
       }
       else {
-        console.log('debugger');
         Routine.findOneAndUpdate({
           name: req.params.routine,
         }, (err, rout) => {
-          console.log('debugger');
           if (err) throw err;
           if (!rout) {
             res.status(401).send({ success: false, msg: 'Routine update failed. User not found.' });
