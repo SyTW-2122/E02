@@ -291,7 +291,7 @@ module.exports = {
       }
       else {
         console.log('debugger');
-        Routine.findOne({
+        Routine.findOneAndUpdate({
           name: req.params.routine,
         }, (err, rout) => {
           console.log('debugger');
