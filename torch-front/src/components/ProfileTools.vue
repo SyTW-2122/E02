@@ -24,7 +24,11 @@
             class="fa-2x my-3"/>
             <font-awesome-icon v-else icon="newspaper" class="fa-2x"/>
           </template>
-          <p>I'm the creator tab</p>
+          <p v-if="isPersonal">I'm the creator tab</p>
+          <PersonalBlogTip v-else
+            :user="user"
+            :authUser="authUser"
+            :mobile="mobile"/>
         </b-tab>
         <b-tab :title-link-class="linkClass(2)">
           <template #title>
@@ -52,6 +56,7 @@
 
 <script>
 import NotificationsTab from '@/components/NotificationsTab.vue';
+import PersonalBlogTip from '@/components/PersonalBlogTip.vue';
 
 export default {
   name: 'ProfileTools',
@@ -63,6 +68,7 @@ export default {
   },
   components: {
     NotificationsTab,
+    PersonalBlogTip,
   },
   computed: {
     isPersonal() {

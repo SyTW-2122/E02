@@ -32,6 +32,8 @@ import {
   faSignOutAlt,
 } from '@fortawesome/free-solid-svg-icons';
 
+import VueNotionRender from 'vue-notion-render';
+
 // Framework imports
 import Vue from 'vue';
 import Vuex from 'vuex';
@@ -50,6 +52,7 @@ Vue.use(BootstrapVueIcons);
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin);
 Vue.use(PortalVue);
+Vue.component('VueNotionRender', VueNotionRender);
 // Font awesome icons used in the app
 library.add(
   faCircle,
