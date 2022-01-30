@@ -1,4 +1,4 @@
-import ExerciseService from '../services/exercise.service';
+// import ExerciseService from '../services/exercise.service';
 
 export const exercise = {
   namespaced: true,
@@ -12,12 +12,4 @@ export const exercise = {
       media: {},
     },
   },
-  actions: {
-    getByID() {
-
-    },
-  },
-  mutations: {
-
-  },
-}
+};
