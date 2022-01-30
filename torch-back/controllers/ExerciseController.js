@@ -37,5 +37,58 @@ module.exports = {
       .catch((error) => {
         res.status(401).json({ success: false, msg: error.msg});
       });
-  }
+  },
+
+  deleteExercise: (req, res) => {
+    Exercise.deleteOne({
+      name: req.params.exercise,
+    }, (err, result) => {
+      if (err) throw err;
+      if (!result) {
+        res.status(401).send({ success: false, msg: 'Update failed. Exercise not found.' });
+      }
+      else {
+        res.status(200).json(result);
+      }
+    });
+  },
+
+  updateExercise: (req, res) => {
+    Exercise.findOneAndUpdate({
+      name: req.params.exercise,
+    }, (err, result) => {
+      if (err) throw err;
+      if (!result) {
+        res.status(401).send({ success: false, msg: 'Update failed. Exercise not found.' });
+      }
+      else {
+        if (req.body.name !== '') {
+          result.name = req.body.name;
+        }
+        if (req.body.reps !== '') {
+          result.reps = req.body.reps;
+        }
+        if (req.body.sets !== '') {
+          result.sets = req.body.sets;
+        }
+        if (req.body.status !== '') {
+          result.status = req.body.status;
+        }
+        if (req.body.image !== null) {
+          result.image = req.body.image;
+        }
+        if (req.body.media !== null) {
+          result.media = req.body.media;
+        }
+        result.save()
+        .then(() => {
+          res.status(200).json(result);
+        })
+        .catch((error) => {
+          res.status(400).json({ success: false, msg: error.msg });
+        });
+      }
+    });
+  },
+
 };
