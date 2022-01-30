@@ -312,5 +312,29 @@ module.exports = {
           res.status(200).json(user.routines);
         }
     })
-  }
+  }, 
+
+  getRoutinesByUser: (req, res) => {
+    User.findOne({
+      username: req.params.username,
+    }, (err, user) => {
+      if (err) throw err;
+      if (!user) {
+        res.status(401).send({ success: false, msg: 'Routine get failed. User not found.' });
+      }
+      else {
+        Routine.findOne({
+          name: req.params.routine,
+        }, (err, rout) => {
+          if (err) throw err;
+          if (!rout) {
+            res.status(401).send({ success: false, msg: 'Routine get failed. Routine not found' });
+          }
+          else {
+            res.status(200).json(rout);
+          }
+        })
+      }
+    }) 
+  } 
 };
