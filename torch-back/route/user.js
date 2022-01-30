@@ -17,7 +17,7 @@ router.post('/follow/:username', UserController.toggleFollow);
 router.get('/:username/routines', UserController.allUserRoutines);
 router.get('/:username/:routine', UserController.getRoutinesByUser);
 router.post('/createroutine/:username', UserController.addUserRoutine);
-// router.put('/editroutine/:username/:routine', UserController.updateUserRoutine);
+router.put('/editroutine/:username/:routine', UserController.updateUserRoutine);
 router.delete('/:username/:routine', UserController.deleteUserRoutine);
 
 module.exports = router;
