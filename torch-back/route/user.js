@@ -1,4 +1,5 @@
 const express = require('express');
+//const { allUserRoutines } = require('../controllers/UserController');
 const UserController = require('../controllers/UserController');
 
 const router = express.Router();
@@ -13,10 +14,10 @@ router.post('/follow/:username', UserController.toggleFollow);
 
 // routine CRUD
 
-// router.get('/:username/:routine');
-// router.get('/:username/routines');
+//router.get('/:username/:routine', UserController.allUserRoutines);
+router.get('/:username/routines', UserController.allUserRoutines);
 router.post('/createroutine/:username', UserController.addUserRoutine);
-// router.put('/editroutine/:username',);
+// router.put('/editroutine/:username/:routine', UserController.updateUserRoutine);
 router.delete('/:username/:routine', UserController.deleteUserRoutine);
 
 module.exports = router;

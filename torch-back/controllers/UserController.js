@@ -251,6 +251,7 @@ module.exports = {
       }
       else {
         user.routines = user.routines.filter((el) => el !== req.params.routines);
+        console.log(user.routines);
         user.save()
           .then(() => {
             Routine.findOne({
@@ -261,10 +262,11 @@ module.exports = {
                 res.status(401).send({ success: false, msg: 'Delete failed. Routine not found.' });
               }
               else {
-                Routine.deleteOne({id: req.params.routines} , (err, result) => {
+                Routine.deleteOne({name: req.params.routine} , (err, result) => {
                   if (err) throw err;
                   else {
                     res.status(200).json(result);
+                    routine.save()
                   }
                 })
               }
@@ -274,6 +276,41 @@ module.exports = {
             res.status(401).json({ success: false, msg: error.msg});
           });
       }
+    })
+  },
+//   updateUserRoutine: (req, res) => {
+//     User.findOne({
+//       username: req.params.username,
+//     }, (err, user) => {
+//       if (err) throw err;
+//       if (!user) {
+//         res.status(401).send({ success: false, msg: 'Routine update failed. User not found.' });
+//       }
+//       else {
+        
+//         }
+//         user.save()
+//           .then(() => {
+//             res.status(200).json(user);
+//           })
+//           .catch((error) => {
+//             res.status(400).json({ success: false, msg: error.msg });
+//           });
+//       }
+//     });
+//   },
+//   }
+  allUserRoutines: (req, res) => {
+    User.findOne({
+      username: req.params.username, 
+    }, (err, user) => {
+        if (err) throw err;
+        if (!user) {
+          res.status(401).send({ success: false, msg: 'Routine get failed. User not found.' });
+        }
+        else {  
+          res.status(200).json(user.routines);
+        }
     })
   }
 };
