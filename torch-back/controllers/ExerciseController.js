@@ -4,6 +4,17 @@ require('../config/passport')(passport);
 const Exercise = require('../models/Exercise');
 
 module.exports = {
+
+  getAllExercise: (req, res) => {
+    Exercise.find((err, exercises) => {
+      if(err) {
+        res.json(err);
+      }
+      else {
+        res.json(exercises);
+      }
+    });
+  },
   getExercise: (req, res) => {
     Exercise.findOne({
       name: req.params.exercise,
@@ -54,7 +65,7 @@ module.exports = {
   },
 
   updateExercise: (req, res) => {
-    Exercise.findOneAndUpdate({
+    Exercise.findOne({
       name: req.params.exercise,
     }, (err, result) => {
       if (err) throw err;
