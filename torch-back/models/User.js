@@ -31,6 +31,9 @@ const userSchema = new Schema({
   newNotifications: {
     type: Schema.Types.Array,
   },
+  routines: {
+    type: Schema.Types.Array,
+  },
 }, { timestamps: true });
 
 userSchema.pre('save', function(next) { // eslint-disable-line 
