@@ -65,7 +65,7 @@ module.exports = {
   },
 
   updateExercise: (req, res) => {
-    Exercise.findOneAndUpdate({
+    Exercise.findOne({
       name: req.params.exercise,
     }, (err, result) => {
       if (err) throw err;
