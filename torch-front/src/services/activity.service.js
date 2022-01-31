@@ -7,7 +7,7 @@ class ActivityService {
     .then((response) => {
       console.log(response.data);
       return response.data;
-    })
+    });
 }
 
 export default new ActivityService();
