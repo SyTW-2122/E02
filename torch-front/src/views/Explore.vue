@@ -6,12 +6,12 @@
           <font-awesome-icon id ="search-icon" icon="search" class="fa-2x mt-2"/>
         </b-col>
         <b-col class="col-10 col-md-11">
-          <b-form-input id="search-text" v-model="search" placeholder="Search"></b-form-input>
+          <b-form-input id="search-text" placeholder="Search"></b-form-input>
         </b-col>
       </b-row>
       <b-row class="Cards pt-1 mb-5 pb-5 text-center">
         <b-col class="col-12 mb-2 col-md-6 col-lg-4"
-          :key="user.username" v-for="user in randomUsers">
+          :key="user.id" v-for="user in randomUsers">
           <UserCard :arg="user"/>
         </b-col>
       </b-row>
@@ -22,7 +22,7 @@
 <script>
 import UserCard from '@/components/UserCard.vue';
 
-import { mapGetters, mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'Explore',
@@ -30,13 +30,26 @@ export default {
     UserCard,
   },
   methods: {
-    ...mapActions(['getRandomUsers']),
+    ...mapState('explorer', ['randomUsers']),
+    ...mapActions('user', ['getAll']),
   },
-  computed: {
-    ...mapGetters(['randomUsers']),
-  },
-  created() {
-    this.getRandomUsers();
+  async created() {
+    const response = await this.getAll();
+    let UsersAmount = 3;
+    if (response.length < 3) {
+      UsersAmount = response.length;
+    }
+    const randomUsersArray = [];
+    while (randomUsersArray.length !== UsersAmount) {
+      const num = Math.floor(Math.random() * response.length);
+      if (!randomUsersArray.includes(num)) {
+        randomUsersArray.push(num);
+      }
+    }
+    const save = [];
+    randomUsersArray.forEach((element) => {
+      save.push(response[element]);
+    });
   },
 };
 </script>
