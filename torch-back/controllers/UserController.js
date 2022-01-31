@@ -290,7 +290,7 @@ module.exports = {
         res.status(401).send({ success: false, msg: 'Routine creation failed. User not found'});
       }
       else {
-        Routine.findOneAndUpdate({
+        Routine.findOne({
           name: req.params.routine,
         }, (err, rout) => {
           if (err) throw err;
