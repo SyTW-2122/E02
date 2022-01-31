@@ -16,4 +16,11 @@ export const activity = {
       routineUserLiked: '',
     },
   },
+  actions: {
+    getAllActivities() {
+      return ActivityService.all(username).then(
+        (res) => Promise.resolve(res),
+      );
+    }
+  }
 },
