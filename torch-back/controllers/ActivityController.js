@@ -1,11 +1,12 @@
 const passport = require('passport');
 require('../config/passport')(passport);
 // const Exercise = require('../models/Exercise');
+const User = require('../models/User');
 
 const mockData = [
   {
     activeUser: 'Ale',
-    createDate: '12/01/2020',
+    createDate: '09/01/2022',
     type: 'routine',
     title: 'Rutina de Push',
     description: 'Rutina de Push de tren superior',
@@ -42,7 +43,7 @@ const mockData = [
   },
   {
     activeUser: 'Vicente',
-    createDate: '12/01/2020',
+    createDate: '09/01/2022',
     type: 'routine',
     title: 'Rutina de Pierna',
     description: 'Rutina de tren inferior',
@@ -70,6 +71,16 @@ const mockData = [
 module.exports = {
 
   getAllActivities: (req, res) => {
-    res.status(200).send(mockData);
+    User.find({
+      username: req.params.username,
+    }, (err, user) => {
+      if (err) throw err;
+      if (!user) {
+        res.status(401).send({ success: false, msg: 'Update failed. User not found.' });
+      }
+      else {
+        res.status(200).send(mockData);
+      }
+    });
   },
 };

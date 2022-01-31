@@ -4,6 +4,7 @@ const express = require('express'),
   logger = require('morgan'),
   userAPI = require('./route/user'),
   indexAPI = require('./route/staticIndex'),
+  activityAPI = require('./route/activity'),
   auth = require('./route/auth');
 
 const app = express();
@@ -18,6 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexAPI);
 app.use('/api/user', userAPI);
 app.use('/api/auth', auth);
+app.use('/api/activity', activityAPI);
 
 app.use(require('connect-history-api-fallback')());
 
