@@ -6,6 +6,7 @@ const express = require('express'),
   exerciseAPI = require('./route/exercise'),
   routineAPI = require('./route/routine'),
   indexAPI = require('./route/staticIndex'),
+  activityAPI = require('./route/activity'),
   auth = require('./route/auth');
 
 const app = express();
@@ -22,6 +23,7 @@ app.use('/api/user', userAPI);
 app.use('/api/auth', auth);
 app.use('/api/exercise', exerciseAPI);
 app.use('/api/routine', routineAPI);
+app.use('/api/activity', activityAPI);
 
 app.use(require('connect-history-api-fallback')());
 
