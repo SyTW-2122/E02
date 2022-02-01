@@ -4,10 +4,12 @@
       <b-col align-self="center" cols="8 px-1">
         <b-row align-v="center" class="text-sm">
           <b-col class="">
-            <p class="my-0 fw-bold text-center"> 0
-              <span v-if="!mobile" class="text-secondary fw-md"> routines</span>
-            </p>
-            <p v-if="mobile" class="my-0 text-secondary  text-center">routines</p>
+            <router-link :to="{path: `/${user.username}/routines`}" tag="div">
+              <p class="my-0 fw-bold text-center"> {{user.routines.length}}
+                <span v-if="!mobile" class="text-secondary fw-md"> routines</span>
+              </p>
+              <p v-if="mobile" class="my-0 text-secondary  text-center">routines</p>
+            </router-link>
           </b-col>
           <b-col class="">
             <router-link :to="{path: `/${user.username}/followers`}" tag="div">
