@@ -14,16 +14,18 @@
           v-for="user in randomUsers" :key="user.id">
           <b-row>
             <b-col class="col-12">
-              <b-card>
-                <b-img
-                  fluid
-                  rounded="circle"
-                  class="img-sm-limit center-cropped"
-                  :src="user.image.dataUrl"/>
-                <b-card-text>
-                  <p class="pt-2"><strong>{{user.username}}</strong></p>
-                </b-card-text>
-              </b-card>
+              <router-link :to="{path: `/${user.username}`}" tag="div">
+                <b-card>
+                  <b-img
+                    fluid
+                    rounded="circle"
+                    class="img-sm-limit center-cropped"
+                    :src="user.image.dataUrl"/>
+                  <b-card-text>
+                    <p class="pt-2"><strong>{{user.username}}</strong></p>
+                  </b-card-text>
+                </b-card>
+              </router-link>
             </b-col>
           </b-row>
         </b-col>
