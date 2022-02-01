@@ -27,7 +27,8 @@
       <ProfileHeader
         id="profile-header"
         v-if="user" :user="urlUser" :authUser="authUser" :mobile="mobile" />
-      <ProfileTools />
+      <ProfileTools
+        v-if="user" :user="urlUser" :authUser="authUser" :mobile="mobile"/>
     </div>
      <b-sidebar
       id="sidebar-1"
@@ -158,6 +159,7 @@ export default {
         },
         (error) => {
           console.log(`failed: ${error}`);
+          this.$router.push('/');
         },
       );
     },

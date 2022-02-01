@@ -1,32 +1,32 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose'); // eslint-disable-line
+const Schema = mongoose.Schema; // eslint-disable-line
 
 const routineSchema = new Schema({
-  sportName: {
-    type: Schema.Types.String,
-    required: true,
-  },
-  image: {
-  },
-  description: {
+  name: {
     type: Schema.Types.String,
     required: true,
   },
   author: {
     type: Schema.Types.String,
-    required: true,
   },
-  valoration: {
-    type: Schema.Types.Number,
-    required: true,
+  authorid: {
+    type: Schema.Types.String,
+  },
+  ratings: {
+    type: Schema.Types.Array,
   },
   comments: {
     type: Schema.Types.Array,
   },
-  done: {
-    type: Schema.Types.Boolean,
+  image: {
   },
-  tags: {
+  description: {
+    type: Schema.Types.String,
+  },
+  likes: {
+    type: Schema.Types.Array,
+  },
+  exercises: {
     type: Schema.Types.Array,
   },
 }, { timestamps: true });

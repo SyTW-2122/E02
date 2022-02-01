@@ -7,6 +7,9 @@ module.exports = {
     'plugin:vue/essential',
     '@vue/airbnb',
   ],
+  'plugins': [
+    "smells"
+  ],
   parserOptions: {
     parser: 'babel-eslint',
   },
@@ -15,6 +18,11 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'linebreak-style': 0,
     'import/prefer-default-export': 'off',
+    'smells/no-switch': 1,
+    'smells/no-complex-switch-case': 1,
+    'smells/no-complex-string-concat': 1,
+    'smells/no-setinterval': 1,
+    'smells/no-this-assign': 1
   },
   overrides: [
     {

@@ -41,6 +41,11 @@ class UserService {
     .put(`${API_URL}edit/${obj.u.username}/password`, {
       password: obj.p,
     });
+
+  viewNotification = (obj) => axios
+    .put(`${API_URL}notification/${obj.username}/view`, {
+      id: obj.id,
+    });
 }
 
 export default new UserService();
