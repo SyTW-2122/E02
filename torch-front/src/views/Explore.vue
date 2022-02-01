@@ -11,8 +11,21 @@
       </b-row>
       <b-row class="Cards pt-1 mb-5 pb-5 text-center">
         <b-col class="col-12 mb-2 col-md-6 col-lg-4"
-          :key="user.username" v-for="user in randomUsers">
-          <UserCard user/>
+          v-for="user in randomUsers" :key="user.id">
+          <b-row>
+            <b-col class="col-12">
+              <b-card>
+                <b-img
+                  fluid
+                  rounded="circle"
+                  class="img-sm-limit center-cropped"
+                  :src="user.image.dataUrl"/>
+                <b-card-text>
+                  <p class="pt-2"><strong>{{user.username}}</strong></p>
+                </b-card-text>
+              </b-card>
+            </b-col>
+          </b-row>
         </b-col>
       </b-row>
     </div>
@@ -20,15 +33,10 @@
 </template>
 
 <script>
-import UserCard from '@/components/UserCard.vue';
-
 import { mapActions } from 'vuex';
 
 export default {
   name: 'Explore',
-  components: {
-    UserCard,
-  },
   props: {
     randomUsers: [],
   },
@@ -66,4 +74,5 @@ export default {
   border-radius: 20px;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
+
 </style>
