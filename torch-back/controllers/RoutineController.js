@@ -96,33 +96,33 @@ module.exports = {
         res.status(401).send({ success: false, msg: 'Routine creation failed. User not found' });
       }
       else {
-        Routine.findOneAndUpdate({
-          id: req.params.routine,
+        Routine.findOne({
+          _id: req.params.routine,
         }, (err, rout) => {
           if (err) throw err;
           if (!rout) {
-            res.status(401).send({ success: false, msg: 'Routine update failed. User not found.' });
+            res.status(401).send({ success: false, msg: 'Routine update failed. Routine not found.' });
           }
           else {
             if (req.body.name !== '') {
               rout.name = req.body.name;
             }
-            if (req.body.ratings !== '') {
+            if (req.body.ratings !== []) {
               rout.ratings = req.body.ratings;
             }
-            if (req.body.comments !== '') {
+            if (req.body.comments !== []) {
               rout.comments = req.body.comments;
             }
-            if (req.body.image !== '') {
+            if (req.body.image !== null) {
               rout.image = req.body.image;
             }
             if (req.body.description !== '') {
               rout.description = req.body.description;
             }
-            if (req.body.likes !== '') {
+            if (req.body.likes !== []) {
               rout.likes = req.body.likes;
             }
-            if (req.body.exercises !== '') {
+            if (req.body.exercises !== []) {
               rout.exercises = req.body.exercises;
             }
             rout.save()
@@ -138,15 +138,15 @@ module.exports = {
     });
   },
   allUserRoutines: (req, res) => {
-    User.findOne({
-      username: req.params.username,
-    }, (err, user) => {
+    Routine.find({
+      author: req.params.username,
+    }, (err, routine) => {
       if (err) throw err;
-      if (!user) {
-        res.status(401).send({ success: false, msg: 'Routine get failed. User not found.' });
+      if (!routine) {
+        res.status(401).send({ success: false, msg: 'Routine get failed. No routines for this user.' });
       }
       else {
-        res.status(200).json(user.routines);
+        res.status(200).json(routine);
       }
     });
   },
