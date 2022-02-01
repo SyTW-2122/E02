@@ -122,6 +122,7 @@ export default {
     };
   },
   created() {
+    this.user.routines = [];
     this.user.followers = [];
     this.user.following = [];
   },
