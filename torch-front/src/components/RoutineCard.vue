@@ -1,5 +1,5 @@
 <template>
-   <b-card no-body class="overflow-hidden" style="max-width: 540px;">
+  <b-card no-body class="overflow-hidden" style="max-width: 540px;">
     <b-row no-gutters>
       <b-col md="6">
         <b-card
@@ -23,11 +23,9 @@
 export default {
   name: 'RoutineCard',
   props: {
-    arg: {
-      sportname: String,
-      imgURL: String,
-      description: String,
-    },
+    sportname: String,
+    imgURL: String,
+    description: String,
   },
 };
 </script>

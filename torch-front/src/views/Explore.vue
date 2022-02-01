@@ -11,8 +11,8 @@
       </b-row>
       <b-row class="Cards pt-1 mb-5 pb-5 text-center">
         <b-col class="col-12 mb-2 col-md-6 col-lg-4"
-          :key="user.id" v-for="user in randomUsers">
-          <UserCard :arg="user"/>
+          :key="user.username" v-for="user in randomUsers">
+          <UserCard user/>
         </b-col>
       </b-row>
     </div>
@@ -22,15 +22,17 @@
 <script>
 import UserCard from '@/components/UserCard.vue';
 
-import { mapState, mapActions } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'Explore',
   components: {
     UserCard,
   },
+  props: {
+    randomUsers: [],
+  },
   methods: {
-    ...mapState('explorer', ['randomUsers']),
     ...mapActions('user', ['getAll']),
   },
   async created() {
@@ -50,6 +52,7 @@ export default {
     randomUsersArray.forEach((element) => {
       save.push(response[element]);
     });
+    this.randomUsers = save;
   },
 };
 </script>
