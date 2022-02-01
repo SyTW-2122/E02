@@ -1,32 +1,20 @@
 <template>
-  <b-card no-body class="overflow-hidden" style="max-width: 540px;">
-    <b-row no-gutters>
-      <b-col md="6">
-        <b-card
-          title= {{arg.sportname}}
-          img :src="arg.imgURL"
-          img-alt="Image"
-          img-top
-          style="max-width: 20rem;"
-          class="mb-2">
-      </b-col>
-      <b-col md="6">
-      <b-card-text>
-        {{arg.description}}
-      </b-card-text>
-      </b-col>
-    </b-row>
-  </b-card>
+  <b-row no-gutters>
+    <b-col md="6">
+      <b-card :src="routine.image" img-top>
+        <b-card-text>
+          {{rouine.name}}
+          {{routine.likes.length}}
+        </b-card-text>
+      </b-card>
+    </b-col>
+  </b-row>
 </template>
 
 <script>
 export default {
   name: 'RoutineCard',
-  props: {
-    sportname: String,
-    imgURL: String,
-    description: String,
-  },
+  props: ['routine'],
 };
 </script>
 
