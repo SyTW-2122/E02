@@ -135,5 +135,8 @@ export default {
 .slide-down-enter {
   transform: translate(0, -10em);
 }
+.bg-gray {
+  background-color: lightgray;
+}
 
 </style>

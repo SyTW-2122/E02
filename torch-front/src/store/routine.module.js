@@ -9,12 +9,14 @@ export const routine = {
   state: {
     routine: {
     },
+    routines: [
+    ],
   },
   actions: {
-    getAll({ commit }) {
-      return RoutineService.all().then(
+    getAll({ commit }, username) {
+      return RoutineService.all(username).then(
         (res) => {
-          commit('fetchAllSucess' ,res);
+          commit('fetchAllSuccess', res);
           return Promise.resolve(res);
         },
       );
@@ -60,20 +62,18 @@ export const routine = {
   },
   mutations: {
     fetchAllSuccess(state, routineInfo) {
-      auth.state.userData.routines = routineInfo.user.routines; 
-      user.state.routines = routineInfo.user.routines;
-      state.routine = routineInfo.routine;
+      state.routines = routineInfo;
     },
     fetchSuccess(state, routineInfo) {
       state.routine = routineInfo;
     },
     addRoutineSuccess(state, routineInfo) {
-      auth.state.userData.routines = routineInfo.user.routines; 
+      auth.state.userData.routines = routineInfo.user.routines;
       user.state.routines = routineInfo.user.routines;
       state.routine = routineInfo.routine;
     },
     editRoutineSuccess(state, routineInfo) {
-      state.routine = routineInfo;
+      console.log(state.routine);
       console.log(routineInfo);
     },
     deleteRoutineSuccess(state, routineInfo) {

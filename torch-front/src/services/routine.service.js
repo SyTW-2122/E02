@@ -4,9 +4,7 @@ const API_URL = process.env.VUE_APP_ROUTINEAPIURL;
 class RoutineService {
   all = (username) => axios
     .get(`${API_URL}${username}/routines`)
-    .then((response) => {
-      return response.data;
-    });
+    .then((response) => response.data);
 
   fetchByID = (username, routineID) => axios
     .get(`${API_URL}${username}/routines/${routineID}`)
@@ -35,7 +33,6 @@ class RoutineService {
   deleteRoutine = (username, routineID) => axios
     .delete(`${API_URL}${username}/${routineID}`)
     .then((response) => response.data);
-  
 }
 
-export default new UserService();
+export default new RoutineService();
