@@ -8,7 +8,3 @@ Given ('User is at the explorer page', () => {
 When ('User look at the view', () => {
   cy.url().should('include', '/explore')
 });
-
-Then ('User should see the explorer layout as espected', () => {
-  cy.get('#User')
-})

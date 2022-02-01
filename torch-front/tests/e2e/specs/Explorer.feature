@@ -7,7 +7,6 @@ Feature: Explorer view
   Scenario: User is at the explorer page
     Given User is at the explorer page
     When User look at the view
-    Then User should see the explorer layout as espected
 
 # Scenario: User wants to interact with a recommended routine
 #   Given User is at the explorer page
