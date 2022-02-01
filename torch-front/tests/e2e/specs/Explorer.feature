@@ -1,8 +1,8 @@
 Feature: Explorer view
   The explorer page must be a complete
-  layout with all the routines and users
-  recommended and with a search engine
-  that allows the user's preference search.
+  layout with all random users and with
+  a search engine that allows the user's
+  preference search.
 
   Scenario: User is at the explorer page
     Given User is at the explorer page

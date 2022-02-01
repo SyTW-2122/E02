@@ -10,6 +10,5 @@ When ('User look at the view', () => {
 });
 
 Then ('User should see the explorer layout as espected', () => {
-  cy.get('#routines')
   cy.get('#User')
 })
