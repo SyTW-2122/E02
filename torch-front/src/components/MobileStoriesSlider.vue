@@ -9,13 +9,15 @@
         rounded="circle"
         :src="authImage" />
       </b-col>
-      <b-col class="p-0 mb-2" cols="3" v-for="i in images" :key="i">
+      <b-col class="p-0 mb-2" cols="3" v-for="(pair, i) in images" :key="i">
+        <router-link :to="{ path: `/${pair.followName}`}">
         <b-img
-        fluid
-        center
-        class="img-sm-limit center-sm-cropped bg-secondary"
-        rounded="circle"
-        :src="i" />
+          fluid
+          center
+          class="img-sm-limit center-sm-cropped bg-secondary"
+          rounded="circle"
+          :src="pair.url" />
+        </router-link>
       </b-col>
     </b-row>
   </div>
@@ -39,14 +41,15 @@ export default {
     await this.$store.dispatch('user/getByName', this.$route.params.name).then(
       async (data) => {
         this.user = data;
-        for (let i = 0; i < data.following.length; i += 1) {
+        //  This for should take data.following.length
+        for (let i = 0; i < 3; i += 1) {
           this.$store.dispatch('user/getUserImage', data.following[i]).then(
             (image) => {
-              if (image !== null) {
-                this.images.push(image.dataUrl);
-              } else {
-                this.images.push(defaultImg);
-              }
+              this.$store.dispatch('user/getById', data.following[i]).then(
+                (followingName) => {
+                  this.images.push({ followName: followingName.username, url: image.dataUrl });
+                },
+              );
             },
           );
         }
