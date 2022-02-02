@@ -78,7 +78,7 @@ export default {
 </script>
 
 <style>
-.slider > .row {
+.slider {
   overflow-x: auto;
 }
 </style>
