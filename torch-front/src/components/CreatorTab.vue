@@ -31,7 +31,7 @@
           pill
           type="submit"
           variant="info"
-          class="py-3 text-white btn-lg">
+          class="py-3 px-5 text-white btn-md">
             Create new routine
         </b-button>
       </b-form>

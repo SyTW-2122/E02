@@ -32,10 +32,10 @@
             rounded
             :src="routine.image.dataUrl" fluid alt="routine image"></b-img>
         </b-col>
-        <b-col cols="7">
+        <b-col cols="7" class="my-2">
           <h4>Comments</h4>
         </b-col>
-        <b-col cols="5">
+        <b-col cols="5" class="my-2">
           <h5 class="text-end">Likes <span>{{routine.likes.length}}</span></h5>
         </b-col>
         <b-col cols="12" class="text-end">
@@ -60,15 +60,26 @@ export default {
     ...mapState('user', ['user']),
     ...mapState('routine', ['routines']),
   },
-  async created() {
-    await this.$store.dispatch('routine/getAll', this.user.username).then( // eslint-disable-line
-      async (data) => {
-        this.routinesList = data;
-      },
-      (error) => {
-        console.log(`failed: ${error}`);
-      },
-    );
+  mounted() {
+    this.bringRoutines();
+  },
+  created() {
+    this.bringRoutines();
+  },
+  updated() {
+    this.bringRoutines();
+  },
+  methods: {
+    bringRoutines() {
+      this.$store.dispatch('routine/getAll', this.user.username).then( // eslint-disable-line
+        async (data) => {
+          this.routinesList = data;
+        },
+        (error) => {
+          console.log(`failed: ${error}`);
+        },
+      );
+    },
   },
 };
 </script>
