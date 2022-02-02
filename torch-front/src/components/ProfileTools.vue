@@ -15,7 +15,10 @@
             class="fa-2x my-3"/>
             <font-awesome-icon v-else icon="stream" class="fa-2x"/>
           </template>
-          <p>I'm the history tab</p>
+          <RoutinesListTab
+            :user="user"
+            :authUser="authUser"
+            :mobile="mobile"/>
         </b-tab>
         <b-tab :title-link-class="linkClass(1)">
           <template #title>
@@ -24,11 +27,15 @@
             class="fa-2x my-3"/>
             <font-awesome-icon v-else icon="newspaper" class="fa-2x"/>
           </template>
-          <p v-if="isPersonal">I'm the creator tab</p>
-          <PersonalBlogTip v-else
+          <CreatorTab
+            v-if="isPersonal"
             :user="user"
             :authUser="authUser"
             :mobile="mobile"/>
+          <!-- <PersonalBlogTip v-else
+            :user="user"
+            :authUser="authUser"
+            :mobile="mobile"/> -->
         </b-tab>
         <b-tab :title-link-class="linkClass(2)">
           <template #title>
@@ -55,8 +62,10 @@
 </template>
 
 <script>
+import RoutinesListTab from '@/components/RoutinesListTab.vue';
+import CreatorTab from '@/components/CreatorTab.vue';
 import NotificationsTab from '@/components/NotificationsTab.vue';
-import PersonalBlogTip from '@/components/PersonalBlogTip.vue';
+// import PersonalBlogTip from '@/components/PersonalBlogTip.vue';
 
 export default {
   name: 'ProfileTools',
@@ -67,8 +76,10 @@ export default {
     };
   },
   components: {
+    RoutinesListTab,
+    CreatorTab,
     NotificationsTab,
-    PersonalBlogTip,
+    // PersonalBlogTip,
   },
   computed: {
     isPersonal() {
