@@ -31,8 +31,8 @@ export const routine = {
           },
         );
     },
-    add({ commit }, username, routineInfo) {
-      return RoutineService.createRoutine(username, routineInfo).then(
+    add({ commit }, routineInfo) {
+      return RoutineService.createRoutine(routineInfo.username, routineInfo.routine).then(
         (res) => {
           commit('addRoutineSuccess', res);
           return Promise.resolve(res);
@@ -49,9 +49,10 @@ export const routine = {
           },
         );
     },
-    delete({ commit }, username, routineID) {
+    delete({ commit }, params) {
+      console.log(params);
       return RoutineService
-        .deleteRoutine(username, routineID)
+        .deleteRoutine(params.user, params.routineID)
         .then(
           (res) => {
             commit('deleteRoutineSuccess', res);
@@ -69,7 +70,7 @@ export const routine = {
     },
     addRoutineSuccess(state, routineInfo) {
       auth.state.userData.routines = routineInfo.user.routines;
-      user.state.routines = routineInfo.user.routines;
+      user.state.user.routines = routineInfo.user.routines;
       state.routine = routineInfo.routine;
     },
     editRoutineSuccess(state, routineInfo) {
@@ -77,8 +78,10 @@ export const routine = {
       console.log(routineInfo);
     },
     deleteRoutineSuccess(state, routineInfo) {
-      state.routine = routineInfo;
-      console.log(routineInfo);
+      console.log(routineInfo.user);
+      auth.state.userData.routines = routineInfo.user.routines;
+      user.state.user.routines = routineInfo.user.routines;
+      state.routines = state.routines.filter((el) => el._id !== routineInfo.routine); // eslint-disable-line
     },
   },
 };

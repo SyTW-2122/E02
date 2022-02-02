@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <b-container class="p-0 m-0">
     <b-row id="user-head-info">
       <b-col align-self="center" cols="8 px-1">
         <b-row align-v="center" class="text-sm">
@@ -105,7 +105,7 @@
           class="my-2 px-5">{{followed && !aux ? 'unfollow' : 'follow'}}</b-button>
       </b-container>
     </b-row>
-  </div>
+  </b-container>
 </template>
 
 <script>

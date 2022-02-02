@@ -1,8 +1,8 @@
 <template>
-  <b-container id="tools-tab" class="px-0">
+  <b-row id="tools-tab" class="p-0 m-0">
       <b-tabs
         v-model="tabIndex"
-        content-class="mt-3 b-tabs"
+        content-class="mt-2 p-0 b-tabs"
         justified
         active-nav-item-class="font-weight-bold"
         nav-item-class=""
@@ -15,10 +15,12 @@
             class="fa-2x my-3"/>
             <font-awesome-icon v-else icon="stream" class="fa-2x"/>
           </template>
+          <b-container>
           <RoutinesListTab
             :user="user"
             :authUser="authUser"
             :mobile="mobile"/>
+          </b-container>
         </b-tab>
         <b-tab :title-link-class="linkClass(1)">
           <template #title>
@@ -58,7 +60,7 @@
             :mobile="mobile"/>
         </b-tab>
       </b-tabs>
-    </b-container>
+    </b-row>
 </template>
 
 <script>

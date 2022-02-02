@@ -25,7 +25,7 @@ module.exports = {
         if (req.body.description !== '') {
           newRoutine.description = req.body.description;
         }
-        if (req.body.image !== null) {
+        if (req.body.image !== {}) {
           newRoutine.image = req.body.image;
         }
 
@@ -57,33 +57,34 @@ module.exports = {
         res.status(401).send({ success: false, msg: 'Routine get failed. Routine not found' });
       }
       else {
-        User.updateOne(
-          {
-            username: req.params.username,
-          },
-          {
-            $pull: {
-              routines: rout.id,
-            },
-          },
-          (err, user) => {
-            if(err) throw err;
-            if (!user) {
-              res.status(401).send({ success: false, msg: 'Delete failed. User not found.' });
-            }
-            else {
-              Routine.deleteOne({ name: req.params.routine }, (err, result) => {
-                if (err) throw err;
-                if (!result) {
-                  res.status(401).send({ success: false, msg: 'Delete failed. User not found.' });
-                }
-                else {
-                  res.status(200).json(result);
-                }
-              });
-            }
-          },
-        );
+        Routine.deleteOne({ id: req.params.routine }, (err, result) => {
+          if (err) throw err;
+          if (!result) {
+            res.status(401).send({ success: false, msg: 'Delete failed. User not found.' });
+          }
+          else {
+            User.findOne({
+              username: req.params.username,
+            }, (err, user) => {
+              if (err) throw err;
+              if (!user) {
+                res.status(402).send({ success: false, msg: 'Delete failed. User not found.' });
+              }
+              else {
+                user.routines = user
+                  .routines.filter((el) => el !== req.params.routine);
+                user.save()
+                  .then(() => {
+                    res.status(200)
+                      .json({ routine: req.params.routine, user });
+                  })
+                  .catch((error) => {
+                    res.status(401).json({ success: false, msg: error.msg });
+                  });
+              }
+            });
+          }
+        });
       }
     });
   },

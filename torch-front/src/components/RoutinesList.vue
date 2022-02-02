@@ -31,10 +31,18 @@
         <b-col
         v-else
         cols=4
-        class="bg-gray rounded p-0 m-0" >
+        class=" rounded p-0 m-0" >
           <b-img
             rounded
             :src="routine.image.dataUrl" fluid alt="routine image"></b-img>
+        </b-col>
+        <b-col
+        v-if="authUser.data.id === user.id"
+        cols=12
+        class="p-3 mx-5 text-end" >
+          <b-button variant="danger" @click="del(routine._id)">
+            <font-awesome-icon icon="trash" class="fa-1x "/>
+          </b-button>
         </b-col>
     </b-row>
   </b-container>
@@ -44,7 +52,7 @@
 import { mapState } from 'vuex';
 
 export default {
-  props: ['user', 'authUser', 'mobile'],
+  props: ['authUser', 'mobile'],
   data() {
     return {
       urlUser: {},
@@ -56,7 +64,6 @@ export default {
     ...mapState('routine', ['routines']),
   },
   async created() {
-    console.log(this.user.username);
     await this.$store.dispatch('routine/getAll', this.user.username).then( // eslint-disable-line
       async (data) => {
         this.routinesList = data;
@@ -65,6 +72,35 @@ export default {
         console.log(`failed: ${error}`);
       },
     );
+  },
+  mounted() {
+    this.$store.dispatch('routine/getAll', this.user.username).then( // eslint-disable-line
+      (data) => {
+        this.routinesList = data;
+      },
+      (error) => {
+        console.log(`failed: ${error}`);
+      },
+    );
+  },
+  methods: {
+    del(id) {
+      const params = {
+        routineID: id,
+        user: this.user.username,
+      };
+      this.$store.dispatch('routine/delete', params)
+        .then(
+          this.$store.dispatch('routine/getAll', this.user.username).then( // eslint-disable-line
+            async (data) => {
+              this.routinesList = data;
+            },
+            (error) => {
+              console.log(`failed: ${error}`);
+            },
+          ),
+        );
+    },
   },
 };
 </script>

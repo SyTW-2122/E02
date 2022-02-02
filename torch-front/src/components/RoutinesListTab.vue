@@ -1,6 +1,6 @@
 <template>
   <b-container
-    class="my-4 p-2">
+    class="my-4 p-0">
     <b-row class="text-center">
       <h1 class="text-center my-3">{{user.username}}'s routines</h1>
     </b-row>
@@ -11,23 +11,23 @@
     </b-row>
     <b-row
       v-else
-      class="bg-light py-2 mt-3 shadow rounded"
+      class="bg-light py-2 mt-3  px-2 shadow rounded"
       align-h="center" v-for="(routine, index) in routinesList" :key="index">
         <b-col
-        cols=8
+        cols=5
         class="text-start" >
           <h3>{{routine.name}}</h3>
           <p>{{routine.description}}</p>
         </b-col>
         <b-col
         v-if="!routine.image"
-        cols=4
+        cols=7
         class="bg-gray rounded " >
         </b-col>
         <b-col
         v-else
-        cols=4
-        class="bg-gray rounded p-0 m-0" >
+        cols=7
+        class="rounded p-0 m-0" >
           <b-img
             rounded
             :src="routine.image.dataUrl" fluid alt="routine image"></b-img>
@@ -59,9 +59,6 @@ export default {
   computed: {
     ...mapState('user', ['user']),
     ...mapState('routine', ['routines']),
-  },
-  mounted() {
-    this.bringRoutines();
   },
   created() {
     this.bringRoutines();

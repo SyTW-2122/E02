@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <b-container fluid class="m-0 p-0">
     <div class="container" id="User">
       <b-row id="settings-button" >
         <b-col
@@ -30,7 +30,8 @@
       <ProfileTools
         v-if="user" :user="urlUser" :authUser="authUser" :mobile="mobile"/>
     </div>
-     <b-sidebar
+    <b-container id="fill" v-if="mobile"></b-container>
+    <b-sidebar
       id="sidebar-1"
       aria-label="Sidebar with custom footer"
       no-header
@@ -94,7 +95,7 @@
       <div class="px-3 py-2">
       </div>
     </b-sidebar>
-  </div>
+  </b-container>
 </template>
 
 <script>
@@ -166,3 +167,9 @@ export default {
   },
 };
 </script>
+
+<style>
+  #fill {
+    height: 6em;
+  }
+</style>
