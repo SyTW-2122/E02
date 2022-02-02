@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <b-row class="mt-2">
+    <b-row class="mt-3 border-bottom">
       <b-col class="p-0" cols="3">
         <b-img
         fluid
@@ -9,11 +9,11 @@
         rounded="circle"
         :src="authImage" />
       </b-col>
-      <b-col class="p-0" cols="3" v-for="i in images" :key="i">
+      <b-col class="p-0 mb-2" cols="3" v-for="i in images" :key="i">
         <b-img
         fluid
         center
-        class="img-sm-limit center-sm-cropped"
+        class="img-sm-limit center-sm-cropped bg-secondary"
         rounded="circle"
         :src="i" />
       </b-col>
@@ -22,6 +22,8 @@
 </template>
 
 <script>
+
+const defaultImg = '../assets/images/torch-logo-black.png';
 
 export default {
   name: 'MobileStoriesSlider',
@@ -40,7 +42,11 @@ export default {
         for (let i = 0; i < data.following.length; i += 1) {
           this.$store.dispatch('user/getUserImage', data.following[i]).then(
             (image) => {
-              this.images.push(image.dataUrl);
+              if (image !== null) {
+                this.images.push(image.dataUrl);
+              } else {
+                this.images.push(defaultImg);
+              }
             },
           );
         }
@@ -54,7 +60,11 @@ export default {
         this.authUser = data;
         this.$store.dispatch('user/getUserImage', data._id).then(  // eslint-disable-line
           (image) => {
-            this.authImage = image.dataUrl;
+            if (image !== null) {
+              this.authImage = image.dataUrl;
+            } else {
+              this.authImage = defaultImg;
+            }
           },
         );
       },
