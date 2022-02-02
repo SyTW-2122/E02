@@ -28,13 +28,14 @@ const mockData = [
     ],
     userLike: '',
     routineUserLiked: '',
+    image: 'https://cdn.fitclans.com/exercises/iamstipke/group-cover.jpg.1080w.jpg',
   },
   {
     activeUser: '',
     createDate: '',
     type: 'like',
     title: '',
-    description: 'le ha gustado la rutida de',
+    description: 'le ha gustado la rutina de',
     estimatedTime: '',
     likes: [],
     comments: [],
@@ -65,6 +66,7 @@ const mockData = [
     ],
     userLike: '',
     routineUserLiked: '',
+    image: 'https://cdn.kingsbox.com/assets/media/products/bars-plates/props-accessories/squat-ramp/KB09RI-029--kingsbox-squat-ramp--2.jpg',
   },
 ];
 

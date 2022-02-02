@@ -14,6 +14,7 @@ export const activity = {
       comments: [],
       userLike: '',
       routineUserLiked: '',
+      image: '',
     },
   },
   actions: {
@@ -32,8 +33,8 @@ export const activity = {
     },
   },
   mutations: {
-    fetchActivityByName(state, activityInfo) {
-      state.activity = activityInfo;
+    fetchSuccess(state, userInfo) {
+      state.user = userInfo;
     },
   },
 };

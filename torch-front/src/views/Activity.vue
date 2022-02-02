@@ -1,17 +1,24 @@
 <template>
     <div class="container">
       <MobileStoriesSlider />
+      <b-row>
+        <b-col cols="12">
+          <ActivityPost />
+        </b-col>
+      </b-row>
     </div>
 </template>
 
 <script>
 import MobileStoriesSlider from '@/components/MobileStoriesSlider.vue';
+import ActivityPost from '@/components/ActivityPost.vue';
 
 export default {
-  name: 'Home',
+  name: 'Activity',
   data() {
     return {
       content: 'Content for activity page!',
+      userActivity: {},
     };
   },
   computed: {
@@ -26,6 +33,18 @@ export default {
   },
   components: {
     MobileStoriesSlider,
+    ActivityPost,
+  },
+  created() {
+    // this.$store.dispatch('activity/getByUsername', this.$route.params.name).then(
+    //   (data) => {
+    //     this.userActivity = data;
+    //     console.log(data);
+    //   },
+    //   (error) => {
+    //     console.log(`failed: ${error}`);
+    //   },
+    // );
   },
 };
 </script>

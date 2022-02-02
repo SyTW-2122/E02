@@ -30,6 +30,9 @@ const activitySchema = new Schema({
   userRoutineLike: {
     type: Schema.Types.String,
   },
+  image: {
+    type: Schema.Types.String,
+  },
 }, { timestamps: true });
 
 module.exports = mongoose.model('Activity', activitySchema);
