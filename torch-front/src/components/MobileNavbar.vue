@@ -1,6 +1,6 @@
 <template>
   <b-nav class="navbar">
-    <b-nav-item to="/activity" >
+    <b-nav-item :to="{ path: `activity/${this.user.data.username}` }" >
       <font-awesome-icon icon="home" class="fa-md"/>
     </b-nav-item>
     <b-nav-item to="/explore">

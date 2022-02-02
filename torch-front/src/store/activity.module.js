@@ -31,4 +31,9 @@ export const activity = {
       );
     },
   },
+  mutations: {
+    fetchActivityByName(state, activityInfo) {
+      state.activity = activityInfo;
+    },
+  },
 };

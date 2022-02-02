@@ -1,14 +1,11 @@
 <template>
-  <div class="activity">
     <div class="container">
-      <header class="jumbotron">
-        <h3>{{content}}</h3>
-      </header>
+      <MobileStoriesSlider />
     </div>
-  </div>
 </template>
 
 <script>
+import MobileStoriesSlider from '@/components/MobileStoriesSlider.vue';
 
 export default {
   name: 'Home',
@@ -26,6 +23,9 @@ export default {
     if (!this.currentUser) {
       this.$router.push('/');
     }
+  },
+  components: {
+    MobileStoriesSlider,
   },
 };
 </script>
