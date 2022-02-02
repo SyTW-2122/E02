@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <b-row class="mt-3 border-bottom">
+    <b-row class="slider mt-3 border-bottom flex-nowrap">
       <b-col class="p-0" cols="3">
         <b-img
         fluid
@@ -42,7 +42,7 @@ export default {
       async (data) => {
         this.user = data;
         //  This for should take data.following.length
-        for (let i = 0; i < 3; i += 1) {
+        for (let i = 0; i < data.following.length; i += 1) {
           this.$store.dispatch('user/getUserImage', data.following[i]).then(
             (image) => {
               this.$store.dispatch('user/getById', data.following[i]).then(
@@ -78,5 +78,7 @@ export default {
 </script>
 
 <style>
-
+.slider > .row {
+  overflow-x: auto;
+}
 </style>
