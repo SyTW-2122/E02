@@ -1,12 +1,19 @@
 <template>
   <div class="container">
-    <b-row>
-      <b-col cols="2">
-        holi
-      </b-col>
-      <b-col v-for="i in images" :key="i">
+    <b-row class="mt-2">
+      <b-col class="p-0" cols="3">
         <b-img
         fluid
+        center
+        class="img-sm-limit center-sm-cropped"
+        rounded="circle"
+        :src="authImage" />
+      </b-col>
+      <b-col class="p-0" cols="3" v-for="i in images" :key="i">
+        <b-img
+        fluid
+        center
+        class="img-sm-limit center-sm-cropped"
         rounded="circle"
         :src="i" />
       </b-col>
@@ -22,6 +29,8 @@ export default {
     return {
       user: {},
       images: [],
+      authImage: '',
+      authUser: '',
     };
   },
   async created() {
@@ -38,6 +47,16 @@ export default {
       },
       (error) => {
         console.log(`failed: ${error}`);
+      },
+    );
+    await this.$store.dispatch('user/getByUsername', this.$route.params.name).then(
+      async (data) => {
+        this.authUser = data;
+        this.$store.dispatch('user/getUserImage', data._id).then(  // eslint-disable-line
+          (image) => {
+            this.authImage = image.dataUrl;
+          },
+        );
       },
     );
   },
