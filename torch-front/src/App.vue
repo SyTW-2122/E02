@@ -1,17 +1,26 @@
 <template>
   <div>
-    <MobileNavbar v-if="mobile && ['activity','explore','user'].includes($route.name)"/>
-    <DesktopNavbar v-else-if="!mobile && ['activity','explore','user'].includes($route.name)"/>
-    <transition
-      :name="transitionName"
-      mode="out-in">
-      <router-view :mobile="mobile"/>
-    </transition>
+    <b-container fluid class="p-0 m-0">
+      <DesktopNavbar v-if="!mobile && ['activity','explore','user'].includes($route.name)"/>
+    </b-container>
+    <b-container fluid class="p-0 m-0">
+      <transition
+        :name="transitionName"
+        mode="out-in">
+        <router-view
+          :mobile="mobile"
+          :authUser="user"
+          :urlUser="urlUser"/>
+      </transition>
+    </b-container>
+    <b-row class="p-0 m-0">
+      <MobileNavbar v-if="mobile && ['activity','explore','user'].includes($route.name)"/>
+    </b-row>
   </div>
 </template>
 <script>
 // @ is an alias to /srcç
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 import DesktopNavbar from '@/components/DesktopNavbar.vue';
 import MobileNavbar from '@/components/MobileNavbar.vue';
@@ -29,6 +38,12 @@ export default {
     mobile: false,
     transitionName: DEFAULT_TRANSITION,
   }),
+  computed: {
+    ...mapState('auth', ['user']),
+    ...mapState('user', {
+      urlUser: (state) => state.user,
+    }),
+  },
   mounted() {
     this.getDimensions();
     window.addEventListener('resize', this.getDimensions);
@@ -81,8 +96,9 @@ export default {
 };
 </script>
 
-<style lang="less">
-#app {
+<style lang="css">
+
+#app{
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -133,6 +149,9 @@ export default {
 .slide-up-leave-active,
 .slide-down-enter {
   transform: translate(0, -10em);
+}
+.bg-gray {
+  background-color: lightgray;
 }
 
 </style>
