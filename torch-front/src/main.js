@@ -30,6 +30,8 @@ import {
   faUserPlus,
   faSignInAlt,
   faSignOutAlt,
+  faHeart,
+  faComment,
 } from '@fortawesome/free-solid-svg-icons';
 
 // Framework imports
@@ -73,6 +75,8 @@ library.add(
   faUserPlus,
   faSignInAlt,
   faSignOutAlt,
+  faHeart,
+  faComment,
 );
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 

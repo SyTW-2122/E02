@@ -45,11 +45,16 @@
               <p> 0 me gusta</p>
             </b-col>
             <b-col cols="2">
+              <font-awesome-icon icon="heart" class="far"/>
             </b-col>
             <b-col cols="2">
-
+              <font-awesome-icon icon="comment" class="far"/>
             </b-col>
-
+          </b-row>
+          <b-row v-for="(comments,index) in activity.comments" :key="index">
+            <b-col >
+              <p> {{ comments.user }} {{ comments.comment }} </p>
+            </b-col>
           </b-row>
         </b-col>
       </b-row>
