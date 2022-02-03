@@ -73,3 +73,10 @@
 .ankaCropper.dark .ankaCropper__navButton:hover {
   background: #000;
 }
+
+.tab-active {
+  color: #00dbde;
+}
+.tab-inactive {
+  color: #00dbde;
+}

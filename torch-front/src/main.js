@@ -1,14 +1,15 @@
 // Style imports
 
 import { BootstrapVue, BootstrapVueIcons, IconsPlugin } from 'bootstrap-vue';
-import PortalVue from 'portal-vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import './assets/css/main.css';
 import './assets/css/custom-variables.css';
+import PortalVue from 'portal-vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
+  faEdit,
   faCircle,
   faTrash,
   faStarHalfAlt,
@@ -32,6 +33,8 @@ import {
   faSignOutAlt,
 } from '@fortawesome/free-solid-svg-icons';
 
+import VueNotionRender from 'vue-notion-render';
+
 // Framework imports
 import Vue from 'vue';
 import Vuex from 'vuex';
@@ -50,8 +53,10 @@ Vue.use(BootstrapVueIcons);
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin);
 Vue.use(PortalVue);
+Vue.component('VueNotionRender', VueNotionRender);
 // Font awesome icons used in the app
 library.add(
+  faEdit,
   faCircle,
   faTrash,
   faStarHalfAlt,
