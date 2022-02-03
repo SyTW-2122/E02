@@ -28,6 +28,9 @@ const userSchema = new Schema({
   following: {
     type: Schema.Types.Array,
   },
+  valoration: {
+    type: Schema.Types.Number,
+  },
   newNotifications: {
     type: Schema.Types.Array,
   },
