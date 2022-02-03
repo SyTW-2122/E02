@@ -68,6 +68,18 @@ const mockData = [
     routineUserLiked: '',
     image: 'https://cdn.kingsbox.com/assets/media/products/bars-plates/props-accessories/squat-ramp/KB09RI-029--kingsbox-squat-ramp--2.jpg',
   },
+  {
+    activeUser: '',
+    createDate: '',
+    type: 'like',
+    title: '',
+    description: 'le ha gustado la rutina de',
+    estimatedTime: '',
+    likes: [],
+    comments: [],
+    userLike: 'Ale',
+    routineUserLiked: 'Laura',
+  },
 ];
 
 module.exports = {

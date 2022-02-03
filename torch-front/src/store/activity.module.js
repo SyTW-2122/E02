@@ -18,11 +18,6 @@ export const activity = {
     },
   },
   actions: {
-    // getAllActivities() {
-    //   return ActivityService.all().then(
-    //     (res) => Promise.resolve(res),
-    //   );
-    // },
     getByUsername({ commit }, username) {
       return ActivityService.fetchActivityByName(username).then(
         (res) => {

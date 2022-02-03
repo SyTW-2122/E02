@@ -7,8 +7,7 @@
             <b-col cols="10">
               <p> {{ activity.activeUser }} </p>
             </b-col>
-            <b-col cols="2">
-              <p>foto</p>
+            <b-col cols="2" v-bind="getImage(activity.activeUser, i)" :id="`image${i}`">
             </b-col>
           </b-row>
           <b-row>
@@ -82,19 +81,35 @@ export default {
       userActivity: {},
       userCreator: [],
       creatorImg: [],
-
+      imageUrl: '',
     };
   },
-  created() {
+  async created() {
     this.$store.dispatch('activity/getByUsername', this.$route.params.name).then(
       (data) => {
         this.userActivity = data;
-        console.log(data);
+        // console.log(data);
       },
       (error) => {
         console.log(`failed: ${error}`);
       },
     );
+  },
+  methods: {
+    getImage(name, i) {
+      this.$store.dispatch('user/getByUsername', name).then(
+        (data) => {
+          this.$store.dispatch('user/getUserImage', data._id).then( // eslint-disable-line
+            (image) => {
+              this.imageUrl = image.dataUrl;
+              document.getElementById(`image${i}`).innerHTML = `<img
+              class="img-sm-limit center-sm-cropped bg-secondary img-fluid rounded-circle"
+              src="${image.dataUrl}" />`;
+            },
+          );
+        },
+      );
+    },
   },
 };
 
@@ -122,4 +137,9 @@ p {
 .title {
   font-size: 16px;
 }
+
+.img-circle {
+  max-height: 10px;
+}
+
 </style>
