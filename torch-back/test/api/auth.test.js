@@ -27,10 +27,9 @@ describe('User try to access web', () => {
   };
 
   // Checking existance of the test user (no multiple user for test)
-  const exists = User.exists({ username: 'test_user' });
-  if (exists) {
+  if (User.exists({ username: 'test_user' })) {
     User
-      .deleteOne({ username: 'test_user' })
+      .deleteMany({ username: 'test_user' })
       .then(() => console.log('Cleaned test user'))
       .catch((err) => console.log(err));
   }

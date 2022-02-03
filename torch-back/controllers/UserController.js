@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const ObjectIDObj = require('mongoose').ObjectID;
 const settings = require('../config/SecretToken');
 const User = require('../models/User');
+const Routine = require('../models/Routine');
 const u = require('ulid');
 
 module.exports = {

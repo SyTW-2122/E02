@@ -9,6 +9,7 @@ import PortalVue from 'portal-vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
+  faEdit,
   faCircle,
   faTrash,
   faStarHalfAlt,
@@ -55,6 +56,7 @@ Vue.use(PortalVue);
 Vue.component('VueNotionRender', VueNotionRender);
 // Font awesome icons used in the app
 library.add(
+  faEdit,
   faCircle,
   faTrash,
   faStarHalfAlt,

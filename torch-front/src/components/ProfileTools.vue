@@ -1,8 +1,8 @@
 <template>
-  <b-container id="tools-tab" class="px-0">
+  <b-row id="tools-tab" class="p-0 m-0">
       <b-tabs
         v-model="tabIndex"
-        content-class="mt-3 b-tabs"
+        content-class="mt-2 p-0 b-tabs"
         justified
         active-nav-item-class="font-weight-bold"
         nav-item-class=""
@@ -15,7 +15,18 @@
             class="fa-2x my-3"/>
             <font-awesome-icon v-else icon="stream" class="fa-2x"/>
           </template>
-          <p>I'm the history tab</p>
+          <b-container>
+          <HistoryTab
+            v-if="isPersonal"
+            :user="user"
+            :authUser="authUser"
+            :mobile="mobile"/>
+          <RoutinesListTab
+            v-else
+            :user="user"
+            :authUser="authUser"
+            :mobile="mobile"/>
+          </b-container>
         </b-tab>
         <b-tab :title-link-class="linkClass(1)">
           <template #title>
@@ -24,11 +35,15 @@
             class="fa-2x my-3"/>
             <font-awesome-icon v-else icon="newspaper" class="fa-2x"/>
           </template>
-          <p v-if="isPersonal">I'm the creator tab</p>
-          <PersonalBlogTip v-else
+          <CreatorTab
+            v-if="isPersonal"
             :user="user"
             :authUser="authUser"
             :mobile="mobile"/>
+          <!-- <PersonalBlogTip v-else
+            :user="user"
+            :authUser="authUser"
+            :mobile="mobile"/> -->
         </b-tab>
         <b-tab :title-link-class="linkClass(2)">
           <template #title>
@@ -51,12 +66,15 @@
             :mobile="mobile"/>
         </b-tab>
       </b-tabs>
-    </b-container>
+    </b-row>
 </template>
 
 <script>
+import HistoryTab from '@/components/HistoryTab.vue';
+import RoutinesListTab from '@/components/RoutinesListTab.vue';
+import CreatorTab from '@/components/CreatorTab.vue';
 import NotificationsTab from '@/components/NotificationsTab.vue';
-import PersonalBlogTip from '@/components/PersonalBlogTip.vue';
+// import PersonalBlogTip from '@/components/PersonalBlogTip.vue';
 
 export default {
   name: 'ProfileTools',
@@ -67,8 +85,11 @@ export default {
     };
   },
   components: {
+    HistoryTab,
+    RoutinesListTab,
+    CreatorTab,
     NotificationsTab,
-    PersonalBlogTip,
+    // PersonalBlogTip,
   },
   computed: {
     isPersonal() {
