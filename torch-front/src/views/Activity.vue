@@ -36,15 +36,6 @@ export default {
     ActivityPost,
   },
   created() {
-    // this.$store.dispatch('activity/getByUsername', this.$route.params.name).then(
-    //   (data) => {
-    //     this.userActivity = data;
-    //     console.log(data);
-    //   },
-    //   (error) => {
-    //     console.log(`failed: ${error}`);
-    //   },
-    // );
   },
 };
 </script>
