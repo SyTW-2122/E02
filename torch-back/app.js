@@ -1,55 +1,49 @@
-let express = require('express'),
+const express = require('express'),
   cors = require('cors'),
-  mongoose = require('mongoose'),
-  database = require('./database'),
-  bodyParser = require('body-parser');
+  path = require('path'),
+  logger = require('morgan'),
+  userAPI = require('./route/user'),
+  exerciseAPI = require('./route/exercise'),
+  routineAPI = require('./route/routine'),
+  indexAPI = require('./route/staticIndex'),
+  auth = require('./route/auth');
 
-mongoose
-  .connect("mongodb://localhost:27017/JestDB", { useNewUrlParser: true })
-  .then(() => {
-    app.listen(5000, () => {
-      console.log("Server has started!");
-    });
-  });
-
-// Connect mongoDB
-mongoose.Promise = global.Promise;
-mongoose.connect(database.db, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(() => {
-    console.log("Database connected");
-  },
-  error => {
-    console.log("Database could't be connected to: " + error);
-  }
-);
-
-const userAPI = require('../backend/routes/user.route');
 const app = express();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: false,
-}));
+
+app.use(logger('dev'));
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }));
 app.use(cors());
+app.use(express.static(path.join(__dirname, 'public')));
 
 // API
-app.use('/api', userAPI);
+app.use('/', indexAPI);
+app.use('/api/user', userAPI);
+app.use('/api/auth', auth);
+app.use('/api/exercise', exerciseAPI);
+app.use('/api/routine', routineAPI);
 
-// Create port
-const port = process.env.PORT || 5000;
-const server = app.listen(port, () => {
-  console.log('Connected to port ' + port)
-})
+app.use(require('connect-history-api-fallback')());
 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+
+app.all('*', (req, res) => res.redirect('/'));
 // Find 404
 app.use((req, res, next) => {
-  next(createError(404));
+  var err = new Error('Not Found');
+  err.status = 404;
+  res.render('404NotFound', { title: 'Express' });
+  next(err);
 });
 
 // error handler
-app.use(function (err, req, res, next) {
-  console.error(err.message);
-  if (!err.statusCode) err.statusCode = 500;
-  res.status(err.statusCode).send(err.message);
+app.use((err, req, res, next) => {
+  console.log(err);
+  if (req.app.get('env') !== 'development') {
+    delete err.stack;
+  }
+  res.status(err.statusCode || 500).json(err);
 });
+
+module.exports = app;

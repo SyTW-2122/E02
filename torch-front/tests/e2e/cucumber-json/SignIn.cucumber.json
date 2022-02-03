@@ -1,0 +1,62 @@
+[
+  {
+    "keyword": "Feature",
+    "name": "User sign in",
+    "line": 1,
+    "id": "user-sign-in",
+    "tags": [],
+    "uri": "SignIn.feature",
+    "elements": [
+      {
+        "id": "user-sign-in;user-with-an-acount-created-can-login-with-username-and-password",
+        "keyword": "Scenario",
+        "line": 10,
+        "name": "User with an acount created can login with username and password",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 3,
+            "name": "User is at the login page",
+            "result": {
+              "status": "passed",
+              "duration": 1447000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 4,
+            "name": "User enters username as \"Eric\" and password as \"123456\"",
+            "result": {
+              "status": "passed",
+              "duration": 805000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 5,
+            "name": "User clicks on login button",
+            "result": {
+              "status": "passed",
+              "duration": 177000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 6,
+            "name": "User is at the user page",
+            "result": {
+              "status": "passed",
+              "duration": 611000000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

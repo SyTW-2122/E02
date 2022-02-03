@@ -4,7 +4,8 @@
   "description": "Proyecto Torch",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd torch-back/ && npm i && npm run start"
   },
   "repository": {
     "type": "git",
