@@ -39,9 +39,13 @@ export const routine = {
         },
       );
     },
-    edit({ commit }, username, routineID, routineInfo) {
+    edit({ commit }, routineInfo) {
       return RoutineService
-        .editRoutine(username, routineID, routineInfo)
+        .editRoutine(
+          routineInfo.username,
+          routineInfo.routine._id, // eslint-disable-line
+          routineInfo.routine,
+        )
         .then(
           (res) => {
             commit('editRoutineSuccess', res);
@@ -63,7 +67,9 @@ export const routine = {
   },
   mutations: {
     fetchAllSuccess(state, routineInfo) {
-      state.routines = routineInfo;
+      state.routines = routineInfo.routines;
+      auth.state.userData.routines = routineInfo.user.routines;
+      user.state.user.routines = routineInfo.user.routines;
     },
     fetchSuccess(state, routineInfo) {
       state.routine = routineInfo;
@@ -72,13 +78,15 @@ export const routine = {
       auth.state.userData.routines = routineInfo.user.routines;
       user.state.user.routines = routineInfo.user.routines;
       state.routine = routineInfo.routine;
+      state.routines.append(routineInfo.routine);
     },
     editRoutineSuccess(state, routineInfo) {
-      console.log(state.routine);
-      console.log(routineInfo);
+      const inx = state.routines.indexOf(routineInfo); //eslint-disable-line
+      console.log(routineInfo._id); // eslint-disable-line
+      console.log(state.routines.indexOf(routineInfo));
+      state.routines[inx] = routineInfo;// eslint-disable-line
     },
     deleteRoutineSuccess(state, routineInfo) {
-      console.log(routineInfo.user);
       auth.state.userData.routines = routineInfo.user.routines;
       user.state.user.routines = routineInfo.user.routines;
       state.routines = state.routines.filter((el) => el._id !== routineInfo.routine); // eslint-disable-line

@@ -19,7 +19,7 @@ class RoutineService {
     .then((response) => response.data);
 
   editRoutine = (username, routineID, routine) => axios
-    .put(`${API_URL}${username}/${routineID}`, {
+    .put(`${API_URL}editroutine/${username}/${routineID}`, {
       name: routine.name,
       ratings: routine.ratings,
       comments: routine.comments,

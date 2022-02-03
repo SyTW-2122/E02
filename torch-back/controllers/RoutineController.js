@@ -37,7 +37,7 @@ module.exports = {
         user.save();
         newRoutine.save()
           .then(() => {
-            res.status(200).json({
+            res.status(201).json({
               routine: newRoutine,
               user,
             });
@@ -57,7 +57,7 @@ module.exports = {
         res.status(401).send({ success: false, msg: 'Routine get failed. Routine not found' });
       }
       else {
-        Routine.deleteOne({ id: req.params.routine }, (err, result) => {
+        Routine.deleteOne({ _id: req.params.routine }, (err, result) => {
           if (err) throw err;
           if (!result) {
             res.status(401).send({ success: false, msg: 'Delete failed. User not found.' });
@@ -71,8 +71,10 @@ module.exports = {
                 res.status(402).send({ success: false, msg: 'Delete failed. User not found.' });
               }
               else {
+                console.log(user.routines);
                 user.routines = user
                   .routines.filter((el) => el !== req.params.routine);
+                console.log(user.routines);
                 user.save()
                   .then(() => {
                     res.status(200)
@@ -139,15 +141,25 @@ module.exports = {
     });
   },
   allUserRoutines: (req, res) => {
-    Routine.find({
-      author: req.params.username,
-    }, (err, routine) => {
+    User.findOne({
+      username: req.params.username,
+    }, (err, user) => {
       if (err) throw err;
-      if (!routine) {
-        res.status(401).send({ success: false, msg: 'Routine get failed. No routines for this user.' });
+      if (!user) {
+        res.status(401).send({ success: false, msg: 'User find failed!' });  
       }
       else {
-        res.status(200).json(routine);
+        Routine.find({
+          author: req.params.username,
+        }, (err, routines) => {
+          if (err) throw err;
+          if (!routines) {
+            res.status(401).send({ success: false, msg: 'Routine get failed. No routines for this user.' });
+          }
+          else {
+            res.status(200).json({ routines, user });
+          }
+        });
       }
     });
   },

@@ -5,14 +5,14 @@
       <h1 class="text-center my-3">{{user.username}}'s routines</h1>
     </b-row>
     <b-row
-      v-if="routinesList.length === 0"
+      v-if="routines.length === 0"
       class="border-bottom border-top m-1 text-center">
       <h3 class="text-secondary">No routines created yet</h3>
     </b-row>
     <b-row
       v-else
       class="bg-light py-2 mt-3  px-2 shadow rounded"
-      align-h="center" v-for="(routine, index) in routinesList" :key="index">
+      align-h="center" v-for="(routine, index) in routines" :key="index">
         <b-col
         cols=5
         class="text-start" >
@@ -61,9 +61,6 @@ export default {
     ...mapState('routine', ['routines']),
   },
   created() {
-    this.bringRoutines();
-  },
-  updated() {
     this.bringRoutines();
   },
   methods: {

@@ -110,22 +110,22 @@ export default {
       this.hasImage = true;
       this.routine.image = output;
     },
-    newRoutine(event) {
+    async newRoutine(event) {
       event.preventDefault();
       console.log(this.routine.name);
       const routineInfo = {
         username: this.user.username,
         routine: this.routine,
       };
-      this.$store.dispatch('routine/add', routineInfo).then(
-        (data) => {
+      await this.$store.dispatch('routine/add', routineInfo).then(
+        async (data) => {
           this.msg = data.msg;
           this.successful = true;
           this.routine.name = '';
           this.routine.description = '';
           this.routine.image = {};
           this.hasImage = false;
-          this.$bvToast.toast(`New routine: ${this.routine.name}, was created`, {
+          await this.$bvToast.toast(`New routine: ${this.routine.name}, was created`, {
             title: 'New routine!',
             autoHideDelay: 30000,
             appendToast: true,
