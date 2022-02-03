@@ -1,7 +1,7 @@
 <template>
   <div class = "container">
     <b-row class = "slider" v-for="(activity,i) in userActivity" :key="i">
-      <b-row class = "routine-card border-bottom pt-4 pb-4" v-if="activity.type === 'routine'">
+      <b-row class = "routine-card border-bottom pt-4 pb-4 pr-0" v-if="activity.type === 'routine'">
         <b-col cols="12">
           <b-row>
             <b-col cols="10">
@@ -22,12 +22,12 @@
             <b-col cols=6>
               <b-row>
                 <b-col>
-                  <p>{{ activity.title }}</p>
+                  <p class="text-center title"><b>{{ activity.title }}</b></p>
                 </b-col>
               </b-row>
               <b-row>
-                <b-col>
-                  <p> {{ activity.description }} </p>
+                <b-col class="pr-0">
+                  <p class="text-justify"> {{ activity.description }} </p>
                 </b-col>
               </b-row>
               <b-row>
@@ -38,8 +38,10 @@
             </b-col>
           </b-row>
           <b-row>
-            <b-col cols="8" v-if="activity.likes.length > 0">
-              <p> Le gusta a {{ activity.likes[0] }} y a {{ activity.likes.length - 1 }} más</p>
+            <b-col class="likes" cols="8" v-if="activity.likes.length > 0">
+              <p>
+                Le gusta a {{ activity.likes[0] }} y a {{ activity.likes.length - 1 }} más
+              </p>
             </b-col>
             <b-col cols="8" v-else>
               <p> 0 me gusta</p>
@@ -51,9 +53,9 @@
               <font-awesome-icon icon="comment" class="far"/>
             </b-col>
           </b-row>
-          <b-row v-for="(comments,index) in activity.comments" :key="index">
+          <b-row class="comments" v-for="(comments,index) in activity.comments" :key="index">
             <b-col >
-              <p> {{ comments.user }} {{ comments.comment }} </p>
+              <p><b> {{ comments.user }}</b> {{ comments.comment }} </p>
             </b-col>
           </b-row>
         </b-col>
@@ -102,5 +104,22 @@ export default {
 
 p {
   font-size: 12px;
+}
+
+.comments p {
+  margin-bottom: 0;
+}
+
+.routine-card {
+  padding-right: 0;
+}
+
+.likes p {
+  font-size: 10px;
+  color: grey;
+}
+
+.title {
+  font-size: 16px;
 }
 </style>

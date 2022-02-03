@@ -49,7 +49,7 @@ const mockData = [
     title: 'Rutina de Pierna',
     description: 'Rutina de tren inferior',
     estimatedTime: '60 min',
-    likes: ['Laura', 'Eric', 'Vicente', 'Ale'],
+    likes: ['Eric', 'Laura', 'Vicente', 'Ale'],
     comments: [
       {
         user: 'Laura',
