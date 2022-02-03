@@ -2,7 +2,7 @@
   <b-container
     class="my-4 p-0">
     <b-row class="text-center">
-      <h1 class="text-center my-3">{{user.username}}'s routines</h1>
+      <h1 class="text-center my-3">routines</h1>
     </b-row>
     <b-row
       v-if="routines.length === 0"
@@ -39,7 +39,6 @@
           <h5 class="text-end">Likes <span>{{routine.likes.length}}</span></h5>
         </b-col>
         <b-col cols="12" class="text-end">
-          (rating component)
         </b-col>
     </b-row>
   </b-container>

@@ -16,7 +16,13 @@
             <font-awesome-icon v-else icon="stream" class="fa-2x"/>
           </template>
           <b-container>
+          <HistoryTab
+            v-if="isPersonal"
+            :user="user"
+            :authUser="authUser"
+            :mobile="mobile"/>
           <RoutinesListTab
+            v-else
             :user="user"
             :authUser="authUser"
             :mobile="mobile"/>
@@ -64,6 +70,7 @@
 </template>
 
 <script>
+import HistoryTab from '@/components/HistoryTab.vue';
 import RoutinesListTab from '@/components/RoutinesListTab.vue';
 import CreatorTab from '@/components/CreatorTab.vue';
 import NotificationsTab from '@/components/NotificationsTab.vue';
@@ -78,6 +85,7 @@ export default {
     };
   },
   components: {
+    HistoryTab,
     RoutinesListTab,
     CreatorTab,
     NotificationsTab,

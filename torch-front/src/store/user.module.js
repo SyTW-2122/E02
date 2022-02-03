@@ -10,7 +10,6 @@ export const user = {
       data: {
       },
       routines: [],
-      history: [],
       following: [],
       followers: [],
       newNotifications: [],

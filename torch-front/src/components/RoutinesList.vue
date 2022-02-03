@@ -7,7 +7,7 @@
         icon="chevron-left" id="settings"  class="fa-2x"/>
         </router-link>
     </b-row>
-    <h1 class="text-center my-3">{{user.username}}'s routines</h1>
+    <h1 class="text-center my-3">routines</h1>
     <b-row
       v-if="routines.length === 0"
       class="border-bottom border-top m-1 text-center">
@@ -215,7 +215,7 @@ export default {
         username: this.user.username,
         routine: this.routineToEdit,
       };
-      this.$store.dispatch('routine/edit', params)
+      await this.$store.dispatch('routine/edit', params)
         .then(
           await this.$store.dispatch('routine/getAll', this.user.username).then( // eslint-disable-line
             (data) => {

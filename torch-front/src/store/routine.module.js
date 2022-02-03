@@ -81,9 +81,9 @@ export const routine = {
       state.routines.append(routineInfo.routine);
     },
     editRoutineSuccess(state, routineInfo) {
-      const inx = state.routines.indexOf(routineInfo); //eslint-disable-line
-      console.log(routineInfo._id); // eslint-disable-line
-      console.log(state.routines.indexOf(routineInfo));
+      const inx = state.routines.map((el) => el._id).indexOf(routineInfo._id); //eslint-disable-line
+      console.log(routineInfo); // eslint-disable-line
+      console.log(inx);
       state.routines[inx] = routineInfo;// eslint-disable-line
     },
     deleteRoutineSuccess(state, routineInfo) {
