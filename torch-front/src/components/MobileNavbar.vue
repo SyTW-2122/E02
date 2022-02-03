@@ -1,5 +1,5 @@
 <template>
-  <b-nav class="navbar">
+  <b-nav class="navbar fixed-bottom">
     <b-nav-item to="/activity" >
       <font-awesome-icon icon="home" class="fa-md"/>
     </b-nav-item>

@@ -1,0 +1,43 @@
+[
+  {
+    "description": "  The explorer page must be a complete\n  layout with all random users and with\n  a search engine that allows the user's\n  preference search.",
+    "keyword": "Feature",
+    "name": "Explorer view",
+    "line": 1,
+    "id": "explorer-view",
+    "tags": [],
+    "uri": "Explorer.feature",
+    "elements": [
+      {
+        "id": "explorer-view;user-is-at-the-explorer-page",
+        "keyword": "Scenario",
+        "line": 7,
+        "name": "User is at the explorer page",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 8,
+            "name": "User is at the explorer page",
+            "result": {
+              "status": "passed",
+              "duration": 3505000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 9,
+            "name": "User look at the view",
+            "result": {
+              "status": "passed",
+              "duration": 75000000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
