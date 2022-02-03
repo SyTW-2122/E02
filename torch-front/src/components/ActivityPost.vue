@@ -4,10 +4,23 @@
       <b-row class = "routine-card border-bottom pt-4 pb-4 pr-0" v-if="activity.type === 'routine'">
         <b-col cols="12">
           <b-row>
-            <b-col cols="10">
-              <p> {{ activity.activeUser }} </p>
+            <b-col class ="activity-info" cols="9">
+              <b-row>
+                <b-col class = "creator-info">
+                  <p class="user-creator"> {{ activity.activeUser }} </p>
+                </b-col>
+              </b-row>
+              <b-row>
+                <b-col class = "creator-info">
+                  <p class="user-creator create-date"> {{ activity.createDate }} </p>
+                </b-col>
+              </b-row>
             </b-col>
-            <b-col cols="2" v-bind="getImage(activity.activeUser, i)" :id="`image${i}`">
+            <b-col
+            class="mb-2"
+            cols="3"
+            v-bind="getImage(activity.activeUser, i)"
+            :id="`image${i}`">
             </b-col>
           </b-row>
           <b-row>
@@ -15,7 +28,7 @@
               <b-img
               fluid
               center
-              class="img-sm-limit center-md-cropped bg-secondary rounded"
+              class="img-sm-limit center-md-cropped bg-secondary rounded activity-img"
               :src="activity.image" />
             </b-col>
             <b-col cols=6>
@@ -26,12 +39,12 @@
               </b-row>
               <b-row>
                 <b-col class="pr-0">
-                  <p class="text-justify"> {{ activity.description }} </p>
+                  <p class="text-justify activity-description"> {{ activity.description }} </p>
                 </b-col>
               </b-row>
               <b-row>
                 <b-col>
-                  <p>Tiempo estimado: {{ activity.estimatedTime }}</p>
+                  <p class="estimated-time">Tiempo estimado: {{ activity.estimatedTime }}</p>
                 </b-col>
               </b-row>
             </b-col>
@@ -60,7 +73,7 @@
         </b-col>
       </b-row>
       <b-row class = "routine-card border-bottom pt-4 pb-4" v-if="activity.type === 'like'">
-        <b-col>
+        <b-col align-v="center">
           <p>
             A {{ activity.userLike }}
             {{ activity.description }}
@@ -103,7 +116,7 @@ export default {
             (image) => {
               this.imageUrl = image.dataUrl;
               document.getElementById(`image${i}`).innerHTML = `<img
-              class="img-sm-limit center-sm-cropped bg-secondary img-fluid rounded-circle"
+              class="img-fluid rounded-circle creator-img"
               src="${image.dataUrl}" />`;
             },
           );
@@ -134,12 +147,69 @@ p {
   color: grey;
 }
 
-.title {
-  font-size: 16px;
+.routine-card p {
+  margin-bottom: 0;
 }
 
-.img-circle {
-  max-height: 10px;
+.estimated-time {
+  font-size: 10px;
+  color: grey;
+}
+
+.create-date {
+  font-size: 10px;
+  color: grey;
+}
+
+.title {
+  font-size: 14px;
+}
+
+.creator-img {
+  height: 34px;
+  width: 34px;
+}
+
+.user-creator {
+  text-align: right;
+  margin-bottom: 0;
+}
+
+.creator-info {
+  padding-right: 0;
+}
+
+@media screen and (min-width: 601px) {
+  p {
+    font-size: 20px;
+  }
+  .activity-info {
+    margin-bottom: 2vh;
+  }
+  .create-date {
+    font-size: 14px;
+    color: grey;
+  }
+  .likes p {
+    font-size: 14px;
+    color: grey;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+  }
+  .title {
+    font-size: 24px;
+  }
+  .activity-img {
+    max-height: 400px;
+  }
+  .activity-description {
+    margin-top: 2vh;
+  }
+  .estimated-time {
+    font-size: 16px;
+    color: grey;
+    margin-top: 2vh;
+  }
 }
 
 </style>
