@@ -1,20 +1,24 @@
 <template>
-  <div class="activity">
     <div class="container">
-      <header class="jumbotron">
-        <h3>{{content}}</h3>
-      </header>
+      <MobileStoriesSlider />
+      <b-row>
+        <b-col cols="12">
+          <ActivityPost />
+        </b-col>
+      </b-row>
     </div>
-  </div>
 </template>
 
 <script>
+import MobileStoriesSlider from '@/components/MobileStoriesSlider.vue';
+import ActivityPost from '@/components/ActivityPost.vue';
 
 export default {
-  name: 'Home',
+  name: 'Activity',
   data() {
     return {
       content: 'Content for activity page!',
+      userActivity: {},
     };
   },
   computed: {
@@ -26,6 +30,12 @@ export default {
     if (!this.currentUser) {
       this.$router.push('/');
     }
+  },
+  components: {
+    MobileStoriesSlider,
+    ActivityPost,
+  },
+  created() {
   },
 };
 </script>

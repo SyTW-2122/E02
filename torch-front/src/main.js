@@ -31,6 +31,8 @@ import {
   faUserPlus,
   faSignInAlt,
   faSignOutAlt,
+  faHeart,
+  faComment,
 } from '@fortawesome/free-solid-svg-icons';
 
 import VueNotionRender from 'vue-notion-render';
@@ -78,6 +80,8 @@ library.add(
   faUserPlus,
   faSignInAlt,
   faSignOutAlt,
+  faHeart,
+  faComment,
 );
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 

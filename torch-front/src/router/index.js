@@ -35,7 +35,7 @@ const routes = [
     },
   },
   {
-    path: '/activity',
+    path: '/activity/:name',
     name: 'activity',
     component: Activity,
     meta: {
