@@ -4,10 +4,7 @@
       <b-row class = "routine-card border-bottom pt-4 pb-4" v-if="activity.type === 'routine'">
         <b-col cols="12">
           <b-row>
-            <b-col cols="2">
-              <p>a</p>
-            </b-col>
-            <b-col cols="8">
+            <b-col cols="10">
               <p> {{ activity.activeUser }} </p>
             </b-col>
             <b-col cols="2">
@@ -39,6 +36,20 @@
                 </b-col>
               </b-row>
             </b-col>
+          </b-row>
+          <b-row>
+            <b-col cols="8" v-if="activity.likes.length > 0">
+              <p> Le gusta a {{ activity.likes[0] }} y a {{ activity.likes.length - 1 }} más</p>
+            </b-col>
+            <b-col cols="8" v-else>
+              <p> 0 me gusta</p>
+            </b-col>
+            <b-col cols="2">
+            </b-col>
+            <b-col cols="2">
+
+            </b-col>
+
           </b-row>
         </b-col>
       </b-row>
@@ -83,4 +94,8 @@ export default {
 </script>
 
 <style>
+
+p {
+  font-size: 12px;
+}
 </style>
