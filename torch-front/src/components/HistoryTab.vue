@@ -23,8 +23,8 @@
             <b-col
               cols=5
               class="text-start mt-2" >
-                <h4>{{element.routine.name}} - {{element.routine.time}}</h4>
-                <h5>{{element.routine.author}}</h5>
+                <p class="fs-md-3">{{element.routine.name}} - {{element.routine.time}}</p>
+                <p class="fs-md-4">{{element.routine.author}} </p>
             </b-col>
             <b-col
             cols=3

@@ -54,7 +54,6 @@ export const routine = {
         );
     },
     delete({ commit }, params) {
-      console.log(params);
       return RoutineService
         .deleteRoutine(params.user, params.routineID)
         .then(
@@ -82,8 +81,6 @@ export const routine = {
     },
     editRoutineSuccess(state, routineInfo) {
       const inx = state.routines.map((el) => el._id).indexOf(routineInfo._id); //eslint-disable-line
-      console.log(routineInfo); // eslint-disable-line
-      console.log(inx);
       state.routines[inx] = routineInfo;// eslint-disable-line
     },
     deleteRoutineSuccess(state, routineInfo) {

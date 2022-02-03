@@ -7,7 +7,10 @@
       <transition
         :name="transitionName"
         mode="out-in">
-        <router-view :mobile="mobile" :authUser="user"/>
+        <router-view
+          :mobile="mobile"
+          :authUser="user"
+          :urlUser="urlUser"/>
       </transition>
     </b-container>
     <b-row class="p-0 m-0">
@@ -37,6 +40,9 @@ export default {
   }),
   computed: {
     ...mapState('auth', ['user']),
+    ...mapState('user', {
+      urlUser: (state) => state.user,
+    }),
   },
   mounted() {
     this.getDimensions();

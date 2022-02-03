@@ -109,12 +109,11 @@ export default {
   data() {
     return {
       prevRoute: '',
-      urlUser: {},
       authUser: {},
     };
   },
-  beforeRouteUpdate(to, from, next) {
-    this.fetchUser(to.params.name);
+  async beforeRouteUpdate(to, from, next) {
+    await this.fetchUser(to.params.name);
     next();
   },
   beforeRouteEnter(to, from, next) {
@@ -127,7 +126,7 @@ export default {
     ProfileHeader,
     ProfileTools,
   },
-  props: ['mobile', 'name'],
+  props: ['mobile', 'name', 'urlUser'],
   computed: {
     ...mapState('auth', ['user']),
   },

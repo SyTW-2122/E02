@@ -112,7 +112,6 @@ export default {
     },
     async newRoutine(event) {
       event.preventDefault();
-      console.log(this.routine.name);
       const routineInfo = {
         username: this.user.username,
         routine: this.routine,
