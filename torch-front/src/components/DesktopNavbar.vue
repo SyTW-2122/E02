@@ -11,7 +11,7 @@
         </a>
         <ul class="nav navbar-nav justify-content-between flex-nowrap flex-row ">
           <li class="nav-item mx-5 px-5" to="/activity">
-            <b-nav-item to="/activity">
+            <b-nav-item :to="{ path: `activity/${this.user.data.username}` }" >
               ACTIVITY
             </b-nav-item>
           </li>
