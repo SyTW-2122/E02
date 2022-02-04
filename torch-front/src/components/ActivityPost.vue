@@ -82,6 +82,13 @@
         </b-col>
       </b-row>
     </b-row>
+    <b-row v-if="!mobile">
+      <b-col cols="12">
+        <br>
+        <br>
+        <br>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -97,6 +104,7 @@ export default {
       imageUrl: '',
     };
   },
+  props: ['mobile'],
   async created() {
     this.$store.dispatch('activity/getByUsername', this.$route.params.name).then(
       (data) => {
