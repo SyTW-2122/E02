@@ -111,7 +111,9 @@
         </b-row>
         <b-row>
           <b-col align="center" cols="12">
-            <p class="text-white">Text</p>
+            <p class="text-white number-users">
+              ¡Ya somos {{ numberOfUsers }} personas creando rutinas!
+            </p>
           </b-col>
         </b-row>
       </b-col>
@@ -129,6 +131,7 @@ export default {
       attemptUser: new User('', ''),
       loading: false,
       message: '',
+      numberOfUsers: '',
     };
   },
   props: ['mobile'],
@@ -142,6 +145,11 @@ export default {
     if (this.loggedIn) {
       this.$router.push(`/${this.user.data.username}`);
     }
+    this.$store.dispatch('user/getAll').then(
+      (data) => {
+        this.numberOfUsers = data.length;
+      },
+    );
   },
   methods: {
     handleLogin() {
@@ -326,6 +334,9 @@ h1 {
     height: auto;
     vertical-align: middle;
     filter: drop-shadow(30px 10px 3px #433f3f79);
+  }
+  .number-users {
+    font-size: 30px;
   }
 }
 @media screen and (max-width: 1025px) {
