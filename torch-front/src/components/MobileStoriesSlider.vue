@@ -80,5 +80,6 @@ export default {
 <style>
 .slider {
   overflow-x: auto;
+  scrollbar-width: none;
 }
 </style>
