@@ -110,8 +110,8 @@
           </b-col>
         </b-row>
         <b-row>
-          <b-col align="center" cols="12">
-            <p class="text-white">Text</p>
+          <b-col class="text-white" align="center" cols="12">
+            <AnimatedNumber :number="numberOfUsers" class="number-users" />
           </b-col>
         </b-row>
       </b-col>
@@ -119,6 +119,7 @@
   </b-container>
 </template>
 <script>
+import AnimatedNumber from '@/components/AnimatedNumber.vue';
 import { mapState } from 'vuex';
 import User from '../models/user';
 
@@ -129,7 +130,11 @@ export default {
       attemptUser: new User('', ''),
       loading: false,
       message: '',
+      numberOfUsers: '',
     };
+  },
+  components: {
+    AnimatedNumber,
   },
   props: ['mobile'],
   computed: {
@@ -142,6 +147,11 @@ export default {
     if (this.loggedIn) {
       this.$router.push(`/${this.user.data.username}`);
     }
+    this.$store.dispatch('user/getAll').then(
+      (data) => {
+        this.numberOfUsers = data.length;
+      },
+    );
   },
   methods: {
     handleLogin() {
@@ -326,6 +336,9 @@ h1 {
     height: auto;
     vertical-align: middle;
     filter: drop-shadow(30px 10px 3px #433f3f79);
+  }
+  .number-users {
+    font-size: 30px;
   }
 }
 @media screen and (max-width: 1025px) {

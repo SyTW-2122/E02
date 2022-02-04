@@ -35,6 +35,7 @@ export default {
       images: [],
       authImage: '',
       authUser: '',
+      count: 0,
     };
   },
   async created() {
@@ -80,5 +81,6 @@ export default {
 <style>
 .slider {
   overflow-x: auto;
+  scrollbar-width: none;
 }
 </style>
