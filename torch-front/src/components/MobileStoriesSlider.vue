@@ -35,6 +35,7 @@ export default {
       images: [],
       authImage: '',
       authUser: '',
+      count: 0,
     };
   },
   async created() {

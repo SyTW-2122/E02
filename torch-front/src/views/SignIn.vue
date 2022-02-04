@@ -110,10 +110,8 @@
           </b-col>
         </b-row>
         <b-row>
-          <b-col align="center" cols="12">
-            <p class="text-white number-users">
-              ¡Ya somos {{ numberOfUsers }} personas creando rutinas!
-            </p>
+          <b-col class="text-white" align="center" cols="12">
+            <AnimatedNumber :number="numberOfUsers" class="number-users" />
           </b-col>
         </b-row>
       </b-col>
@@ -121,6 +119,7 @@
   </b-container>
 </template>
 <script>
+import AnimatedNumber from '@/components/AnimatedNumber.vue';
 import { mapState } from 'vuex';
 import User from '../models/user';
 
@@ -133,6 +132,9 @@ export default {
       message: '',
       numberOfUsers: '',
     };
+  },
+  components: {
+    AnimatedNumber,
   },
   props: ['mobile'],
   computed: {
